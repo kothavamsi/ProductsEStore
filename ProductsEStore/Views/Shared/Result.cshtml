@@ -34,7 +34,7 @@
                     var md = ((12 / cols) * 2) > 12 ? 12 : ((12 / cols) * 2);
                     var sm = 12;
                     var xs = sm;
-                    
+
                     string colLayout = string.Format("col-lg-{0} col-md-{1} col-sm-{2} col-xs-{3}", lg, md, sm, xs);
                     <div class="@colLayout">
                         <div class="panel panel-info">
@@ -51,22 +51,6 @@
                 }
             </div>
         }
-        @*@foreach (var book in @Model.DisplayedBooks)
-        {
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-info">
-                        <div class="panel-heading text-nowrap">
-                            <p class="panel-title" style="overflow: hidden">@book.Title</p>
-                        </div>
-                        <div class="panel-body">
-                            <img src="http://ecx.images-amazon.com/images/I/514%2BoWhnajL._SL200_.jpg" alt="phyton guide"
-                                class="img-thumbnail img-responsive">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }*@
         <div class="container-fluid text-center">
             @Html.Partial("_PagerPartial", @Model.Pager)
         </div>
@@ -75,7 +59,7 @@
 else
 {
     <h1 class="h2 alert-danger">
-         @Model.Header.Message
+        @Model.Header.Message
     </h1>
     <p>
         Sorry, no ebooks matched your criteria.</p>
