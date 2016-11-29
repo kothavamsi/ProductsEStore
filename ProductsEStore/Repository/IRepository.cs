@@ -18,7 +18,7 @@ namespace ProductsEStore.Core
         /// Gets All Products
         /// </summary>
         /// <returns></returns>
-        IList<Product> GetAllProducts();
+        //IList<Product> GetAllProducts();
 
         /// <summary>
         /// Gets Number of products per year,per month

@@ -14,7 +14,8 @@ namespace ProductsEStore.Repository.DataBase
     public class InMemoryCache : ICacheService
     {
         public int CACHE_DURATION = 10;
-        public T GetOrSet<T>(string cacheKey, Func<T> getItemCallback) where T : class
+        public T GetOrSet<T>(string cacheKey, Func<T> getItemCallback)
+            where T : class
         {
             T item = MemoryCache.Default.Get(cacheKey) as T;
             //item = null;

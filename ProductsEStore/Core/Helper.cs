@@ -10,7 +10,7 @@ namespace ProductsEStore.Core
     {
         public static ProductListViewResult GetProductListViewResult(RequestCriteria requestCriteria, Response response,IRepository repository)
         {
-            ProductListViewResult catergoryViewResult;
+            ProductListViewResult productListViewResult;
             //if (!IsSearchCategoryValid(categoryName))
             //{
             //    return new SearchResult() { SearchKeyword = categoryName, PageNo = pageNo, FoundResult = false };
@@ -20,7 +20,7 @@ namespace ProductsEStore.Core
             //    throw new Exception(string.Format("The Page No:{0} Is NotValid", pageNo));
             //}
 
-            catergoryViewResult = new ProductListViewResult(repository)
+            productListViewResult = new ProductListViewResult(repository)
             {
                 ViewProducts = response.ViewProducts,
                 FoundResult = response.ViewProducts.Count > 0 ? true : false,
@@ -28,7 +28,7 @@ namespace ProductsEStore.Core
                 
                 Pager = new Pager(response.ProductCount, requestCriteria.PageNo)
             };
-            return catergoryViewResult;
+            return productListViewResult;
         }
     }
 }

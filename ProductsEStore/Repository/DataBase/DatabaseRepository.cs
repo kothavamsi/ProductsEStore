@@ -65,32 +65,6 @@ namespace ProductsEStore.Core
             return r.ToList();
         }
 
-        public IList<ProductsEStore.Models.Product> GetAllProducts()
-        {
-            return _cacheService.GetOrSet("GetAllProducts", () => GetAllProductsFromDB());
-        }
-
-        public IList<ProductsEStore.Models.Product> GetAllProductsFromDB()
-        {
-            var r = from dbProduct in dbContext.Products
-                    select new ProductsEStore.Models.Product()
-                    {
-                        Title = dbProduct.Title,
-                        Author = dbProduct.Author,
-                        CategoryId = dbProduct.CategoryId,
-                        CoverPageUrl = dbProduct.CoverPageUrl,
-                        DetailPageUrl = dbProduct.DetailsPageUrl,
-                        Id = dbProduct.Id,
-                        ISBN_10 = dbProduct.ISBN10,
-                        ISBN_13 = dbProduct.ISBN13,
-                        Language = dbProduct.Language,
-                        Pages = dbProduct.Length ?? -1,
-                        Edition = dbProduct.Edition ?? -1,
-                        //PublishedDate = dbProduct.PublicationDate ?? DateTime.MinValue
-                    };
-            return r.ToList();
-        }
-
         public Response GetProducts(RequestCriteria requestCriteria)
         {
             Response response = new Response();
@@ -105,12 +79,58 @@ namespace ProductsEStore.Core
                 case RequestMode.Monthly:
                     response = GetProductsByYearMonth(requestCriteria.MonthlyYearly.Year, requestCriteria.MonthlyYearly.Month, requestCriteria.PageNo, requestCriteria.SortMode);
                     break;
+                case RequestMode.All:
+                    response = GetAllProducts(requestCriteria.PageNo, requestCriteria.SortMode);
+                    break;
             }
             return response;
         }
 
+        private Response GetAllProducts(int PageNo, SortMode sortMode)
+        {
+            return _cacheService.GetOrSet(string.Format("GetAllProducts_{0}_{1}", PageNo, sortMode.ToString()),
+                () => GetAllProductsFromDB(PageNo, sortMode));
+        }
+
         // TODO: SortMode Not Yet Implemented
+        private Response GetAllProductsFromDB(int PageNo, SortMode sortMode)
+        {
+            var allProductsQuery = from dbProduct in dbContext.Products
+                                   orderby dbProduct.Title
+                                   select dbProduct;
+            var pagedAllProductsQuery = allProductsQuery.Skip((PageNo - 1) * PagerSettings.PageSize).Take(PagerSettings.PageSize);
+            var MappedProductsQuery = from dbProduct in pagedAllProductsQuery
+                                      select new ProductsEStore.Models.Product()
+                                      {
+                                          Title = dbProduct.Title,
+                                          Author = dbProduct.Author,
+                                          CategoryId = dbProduct.CategoryId,
+                                          CoverPageUrl = dbProduct.CoverPageUrl,
+                                          DetailPageUrl = dbProduct.DetailsPageUrl,
+                                          Id = dbProduct.Id,
+                                          ISBN_10 = dbProduct.ISBN10,
+                                          ISBN_13 = dbProduct.ISBN13,
+                                          Language = dbProduct.Language,
+                                          Pages = dbProduct.Length ?? -1,
+                                          Edition = dbProduct.Edition ?? -1,
+                                          //PublishedDate = dbProduct.PublicationDate ?? DateTime.MinValue
+                                      };
+            Response response = new Response()
+            {
+                ProductCount = allProductsQuery.Count(),
+                ViewProducts = MappedProductsQuery.ToList()
+            };
+            return response;
+        }
+
         private Response GetProductItemsInCategory(string SeoFriendlyCategoryName, int PageNo, SortMode sortMode)
+        {
+            return _cacheService.GetOrSet(string.Format("GetProductItemsInCategory_{0}_{1}_{2}", SeoFriendlyCategoryName, PageNo, sortMode.ToString()),
+                () => GetProductItemsInCategoryFromDB(SeoFriendlyCategoryName, PageNo, sortMode));
+        }
+
+        // TODO: SortMode Not Yet Implemented
+        private Response GetProductItemsInCategoryFromDB(string SeoFriendlyCategoryName, int PageNo, SortMode sortMode)
         {
             var categoryProductsQuery = from dbProduct in dbContext.Products
                                         where dbProduct.Category.SEOFriendlyName == SeoFriendlyCategoryName
@@ -145,8 +165,14 @@ namespace ProductsEStore.Core
             return response;
         }
 
-        // TODO: SortMode Not Yet Implemented
         private Response GetProductItemsBySearchKeyWord(string SearchKeyWord, int PageNo, SortMode sortMode)
+        {
+            return _cacheService.GetOrSet(string.Format("GetProductItemsBySearchKeyWord_{0}_{1}_{2}", SearchKeyWord, PageNo, sortMode.ToString()),
+                () => GetProductItemsBySearchKeyWordFromDB(SearchKeyWord, PageNo, sortMode));
+        }
+
+        // TODO: SortMode Not Yet Implemented
+        private Response GetProductItemsBySearchKeyWordFromDB(string SearchKeyWord, int PageNo, SortMode sortMode)
         {
             var keywordProductsQuery = from dbProduct in dbContext.Products
                                        where dbProduct.Title.Contains(SearchKeyWord)
@@ -178,14 +204,20 @@ namespace ProductsEStore.Core
             return response;
         }
 
+        private Response GetProductsByYearMonth(int year, int month, int PageNo, SortMode sortMode)
+        {
+            return _cacheService.GetOrSet(string.Format("GetProductsByYearMonth_{0}_{1}_{2}_{3}", year, month, PageNo, sortMode.ToString()),
+                () => GetProductsByYearMonthFromDB(year, month, PageNo, sortMode));
+        }
+
         // TODO: SortMode Not Yet Implemented
-        private Response GetProductsByYearMonth(int year, int month, int pageNo, SortMode sortMode)
+        private Response GetProductsByYearMonthFromDB(int year, int month, int PageNo, SortMode sortMode)
         {
             var MonthYearProductsQuery = from dbProduct in dbContext.Products
                                          where dbProduct.PublicationDate.Value.Month == month && dbProduct.PublicationDate.Value.Year == year
                                          orderby dbProduct.Title
                                          select dbProduct;
-            var pagedMonthYearProductsQuery = MonthYearProductsQuery.Skip((pageNo - 1) * PagerSettings.PageSize).Take(PagerSettings.PageSize);
+            var pagedMonthYearProductsQuery = MonthYearProductsQuery.Skip((PageNo - 1) * PagerSettings.PageSize).Take(PagerSettings.PageSize);
 
             var MappedProductsQuery = from dbProduct in pagedMonthYearProductsQuery
                                       select new ProductsEStore.Models.Product()
@@ -212,6 +244,13 @@ namespace ProductsEStore.Core
         }
 
         public int GetProductCountForYearMonth(int year, int month)
+        {
+            //return _cacheService.GetOrSet(string.Format("GetProductCountForYearMonth_{0}_{1}", year, month),
+            //() => GetProductCountForYearMonthFromDB(year, month));
+            return GetProductCountForYearMonthFromDB(year, month);
+        }
+
+        private int GetProductCountForYearMonthFromDB(int year, int month)
         {
             var query = from dbProduct in dbContext.Products
                         where dbProduct.PublicationDate.Value.Month == month && dbProduct.PublicationDate.Value.Year == year

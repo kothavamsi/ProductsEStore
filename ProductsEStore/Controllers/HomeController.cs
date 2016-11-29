@@ -5,14 +5,31 @@ using System.Web;
 using System.Web.Mvc;
 using ProductsEStore.Models;
 using ProductsEStore.WebApi;
+using ProductsEStore.Core;
 
 namespace ProductsEStore.Controllers
 {
     public class HomeController : MyBaseController
     {
-        public ActionResult Index()
+        public ActionResult Index(string sort = "post-date", int pageNo = 1)
         {
-            return View("Index", this.ViewModelBaseObj);
+            RequestCriteria requestCriteria = new RequestCriteria()
+            {
+                RequestMode = RequestMode.All,
+                SortMode = SortModeMappings.GetSortMode(sort),
+                PageNo = pageNo
+            };
+
+            Response response = _repository.GetProducts(requestCriteria);
+
+            // Dependency Injection
+            var productListViewResult = Helper.GetProductListViewResult(requestCriteria, response, _repository);
+            string headerMessage = string.Format("Total {0} Books", response.ProductCount, requestCriteria.SeoFriendlyCategoryName);
+            productListViewResult.Header = new ProductListViewResultHeader()
+            {
+                Message = headerMessage
+            };
+            return View("Index", productListViewResult);
         }
 
         public ActionResult About()
