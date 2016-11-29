@@ -1,87 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ProductStoreModelStoreContainer" CdmEntityContainer="ProductStoreEntities">
-    <EntitySetMapping Name="Books">
-      <EntityTypeMapping TypeName="ProductStoreModel.Book">
-        <MappingFragment StoreEntitySet="Book">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Author" ColumnName="Author" />
-          <ScalarProperty Name="Length" ColumnName="Length" />
-          <ScalarProperty Name="Edition" ColumnName="Edition" />
-          <ScalarProperty Name="Language" ColumnName="Language" />
-          <ScalarProperty Name="Publisher" ColumnName="Publisher" />
-          <ScalarProperty Name="PublicationDate" ColumnName="PublicationDate" />
-          <ScalarProperty Name="ISBN10" ColumnName="ISBN10" />
-          <ScalarProperty Name="ISBN13" ColumnName="ISBN13" />
-          <ScalarProperty Name="CoverPageUrl" ColumnName="CoverPageUrl" />
-          <ScalarProperty Name="DetailsPageUrl" ColumnName="DetailsPageUrl" />
-          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Categories">
-      <EntityTypeMapping TypeName="ProductStoreModel.Category">
-        <MappingFragment StoreEntitySet="Category">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="SEOFriendlyName" ColumnName="SEOFriendlyName" />
-          <ScalarProperty Name="Rank" ColumnName="Rank" />
-          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
-          <ScalarProperty Name="Weight" ColumnName="Weight" />
-          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Contacts">
-      <EntityTypeMapping TypeName="ProductStoreModel.Contact">
-        <MappingFragment StoreEntitySet="Contacts">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-          <ScalarProperty Name="Responded" ColumnName="Responded" />
-          <ScalarProperty Name="RespondedOn" ColumnName="RespondedOn" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PopularAuthorTags">
-      <EntityTypeMapping TypeName="ProductStoreModel.PopularAuthorTag">
-        <MappingFragment StoreEntitySet="PopularAuthorTags">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Author" ColumnName="Author" />
-          <ScalarProperty Name="Count" ColumnName="Count" />
-          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-          <ScalarProperty Name="LastSearchedOn" ColumnName="LastSearchedOn" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PopularPublisherTags">
-      <EntityTypeMapping TypeName="ProductStoreModel.PopularPublisherTag">
-        <MappingFragment StoreEntitySet="PopularPublisherTags">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Publisher" ColumnName="Publisher" />
-          <ScalarProperty Name="Count" ColumnName="Count" />
-          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-          <ScalarProperty Name="LastSearchedOn" ColumnName="LastSearchedOn" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PopularTags">
-      <EntityTypeMapping TypeName="ProductStoreModel.PopularTag">
-        <MappingFragment StoreEntitySet="PopularTags">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Keyword" ColumnName="Keyword" />
-          <ScalarProperty Name="Count" ColumnName="Count" />
-          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-          <ScalarProperty Name="LastSearchedOn" ColumnName="LastSearchedOn" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Subscriptions">
       <EntityTypeMapping TypeName="ProductStoreModel.Subscription">
         <MappingFragment StoreEntitySet="Subscriptions">
@@ -89,6 +8,89 @@
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="SubscribedOn" ColumnName="SubscribedOn" />
           <ScalarProperty Name="SubscriptionValid" ColumnName="SubscriptionValid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="ProductStoreModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+          <ScalarProperty Name="Rank" ColumnName="Rank" />
+          <ScalarProperty Name="BackUpName" ColumnName="BackUpName" />
+          <ScalarProperty Name="SEOFriendlyName" ColumnName="SEOFriendlyName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contacts">
+      <EntityTypeMapping TypeName="ProductStoreModel.Contact">
+        <MappingFragment StoreEntitySet="Contacts">
+          <ScalarProperty Name="RespondedOn" ColumnName="RespondedOn" />
+          <ScalarProperty Name="Responded" ColumnName="Responded" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PopularAuthorTags">
+      <EntityTypeMapping TypeName="ProductStoreModel.PopularAuthorTag">
+        <MappingFragment StoreEntitySet="PopularAuthorTags">
+          <ScalarProperty Name="LastSearchedOn" ColumnName="LastSearchedOn" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PopularPublisherTags">
+      <EntityTypeMapping TypeName="ProductStoreModel.PopularPublisherTag">
+        <MappingFragment StoreEntitySet="PopularPublisherTags">
+          <ScalarProperty Name="LastSearchedOn" ColumnName="LastSearchedOn" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PopularTags">
+      <EntityTypeMapping TypeName="ProductStoreModel.PopularTag">
+        <MappingFragment StoreEntitySet="PopularTags">
+          <ScalarProperty Name="LastSearchedOn" ColumnName="LastSearchedOn" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Keyword" ColumnName="Keyword" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="ProductStoreModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="DetailsPageUrl" ColumnName="DetailsPageUrl" />
+          <ScalarProperty Name="CoverPageUrl" ColumnName="CoverPageUrl" />
+          <ScalarProperty Name="ISBN13" ColumnName="ISBN13" />
+          <ScalarProperty Name="ISBN10" ColumnName="ISBN10" />
+          <ScalarProperty Name="PublicationDate" ColumnName="PublicationDate" />
+          <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+          <ScalarProperty Name="Language" ColumnName="Language" />
+          <ScalarProperty Name="Edition" ColumnName="Edition" />
+          <ScalarProperty Name="Length" ColumnName="Length" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -100,6 +102,7 @@
           <ScalarProperty Name="Weight" ColumnName="Weight" />
           <ScalarProperty Name="Enabled" ColumnName="Enabled" />
           <ScalarProperty Name="Rank" ColumnName="Rank" />
+          <ScalarProperty Name="BackUpName" ColumnName="BackUpName" />
           <ScalarProperty Name="SEOFriendlyName" ColumnName="SEOFriendlyName" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />

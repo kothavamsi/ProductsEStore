@@ -33,7 +33,7 @@ namespace ProductsEStore
 
             routes.MapRoute(
                 name: "Category",
-                url: "category/{categoryName}",
+                url: "category/{seoFriendlyCategoryName}",
                 defaults: new { controller = "Category", action = "Index" }
             );
 

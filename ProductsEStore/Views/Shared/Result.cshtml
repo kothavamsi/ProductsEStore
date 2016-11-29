@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Search Results";
     int cols = 4;
-    int totalBookCount = Model.ProductCount;
+    int totalBookCount = Model.ViewProducts.Count;
     int rows = (totalBookCount / cols) + (totalBookCount % cols > 0 ? 1 : 0);
     int bookIndex = 0;
 }
@@ -42,7 +42,7 @@
                                 <h5 class="panel-title" style="overflow: hidden">@Model.ViewProducts[bookIndex].Title</h5>
                             </div>
                             <div class="panel-body">
-                                <img src="http://ecx.images-amazon.com/images/I/514%2BoWhnajL._SL200_.jpg" alt="phyton guide"
+                                <img src="@Model.ViewProducts[bookIndex].CoverPageUrl" alt="phyton guide"
                                     class="img-thumbnail img-responsive">
                             </div>
                         </div>

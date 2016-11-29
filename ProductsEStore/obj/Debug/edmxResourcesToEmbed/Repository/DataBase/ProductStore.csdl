@@ -1,90 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ProductStoreModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
   <EntityContainer Name="ProductStoreEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Books" EntityType="ProductStoreModel.Book" />
+    <EntitySet Name="Subscriptions" EntityType="ProductStoreModel.Subscription" />
     <EntitySet Name="Categories" EntityType="ProductStoreModel.Category" />
     <EntitySet Name="Contacts" EntityType="ProductStoreModel.Contact" />
     <EntitySet Name="PopularAuthorTags" EntityType="ProductStoreModel.PopularAuthorTag" />
     <EntitySet Name="PopularPublisherTags" EntityType="ProductStoreModel.PopularPublisherTag" />
     <EntitySet Name="PopularTags" EntityType="ProductStoreModel.PopularTag" />
-    <EntitySet Name="Subscriptions" EntityType="ProductStoreModel.Subscription" />
+    <EntitySet Name="Products" EntityType="ProductStoreModel.Product" />
     <EntitySet Name="SortByMenuItems" EntityType="ProductStoreModel.SortByMenuItem" />
+    <AssociationSet Name="FK_Product_Category" Association="ProductStoreModel.FK_Product_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="Book">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Title" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
-    <Property Name="Author" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-    <Property Name="Length" Type="Int32" />
-    <Property Name="Edition" Type="Int32" />
-    <Property Name="Language" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-    <Property Name="Publisher" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-    <Property Name="PublicationDate" Type="DateTime" />
-    <Property Name="ISBN10" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-    <Property Name="ISBN13" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-    <Property Name="CoverPageUrl" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-    <Property Name="DetailsPageUrl" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-    <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Category">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ParentId" Type="Int32" Nullable="false" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="SEOFriendlyName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Rank" Type="Int32" Nullable="false" />
-    <Property Name="Enabled" Type="Boolean" Nullable="false" />
-    <Property Name="Weight" Type="Int32" Nullable="false" />
-    <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
-    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Contact">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
-    <Property Name="Responded" Type="Boolean" Nullable="false" />
-    <Property Name="RespondedOn" Type="DateTime" Nullable="false" />
-  </EntityType>
-  <EntityType Name="PopularAuthorTag">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Author" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="Count" Type="Int32" Nullable="false" />
-    <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
-    <Property Name="LastSearchedOn" Type="DateTime" Nullable="false" />
-  </EntityType>
-  <EntityType Name="PopularPublisherTag">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Publisher" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="Count" Type="Int32" Nullable="false" />
-    <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
-    <Property Name="LastSearchedOn" Type="DateTime" Nullable="false" />
-  </EntityType>
-  <EntityType Name="PopularTag">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Keyword" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="Count" Type="Int32" Nullable="false" />
-    <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
-    <Property Name="LastSearchedOn" Type="DateTime" Nullable="false" />
-  </EntityType>
   <EntityType Name="Subscription">
     <Key>
       <PropertyRef Name="Id" />
@@ -97,6 +26,85 @@
     <Property Name="SubscribedOn" Type="DateTime" Nullable="false" />
     <Property Name="SubscriptionValid" Type="Boolean" Nullable="false" />
   </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="ParentId" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="SEOFriendlyName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="BackUpName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Rank" Nullable="false" />
+    <Property Type="Boolean" Name="Enabled" Nullable="false" />
+    <Property Type="Int32" Name="Weight" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedOn" Nullable="false" />
+    <Property Type="DateTime" Name="ModifiedOn" />
+    <NavigationProperty Name="Products" Relationship="ProductStoreModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreatedOn" Nullable="false" />
+    <Property Type="Boolean" Name="Responded" Nullable="false" />
+    <Property Type="DateTime" Name="RespondedOn" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PopularAuthorTag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Author" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="Count" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedOn" Nullable="false" />
+    <Property Type="DateTime" Name="LastSearchedOn" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PopularPublisherTag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Publisher" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="Count" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedOn" Nullable="false" />
+    <Property Type="DateTime" Name="LastSearchedOn" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PopularTag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Keyword" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="Count" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedOn" Nullable="false" />
+    <Property Type="DateTime" Name="LastSearchedOn" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Title" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Author" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Length" />
+    <Property Type="Int32" Name="Edition" />
+    <Property Type="String" Name="Language" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Publisher" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="PublicationDate" />
+    <Property Type="String" Name="ISBN10" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ISBN13" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CoverPageUrl" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="DetailsPageUrl" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreatedOn" Nullable="false" />
+    <Property Type="Int32" Name="CategoryId" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="ProductStoreModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
+  </EntityType>
   <EntityType Name="SortByMenuItem">
     <Key>
       <PropertyRef Name="Id" />
@@ -104,10 +112,23 @@
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="SEOFriendlyName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="BackUpName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Type="Int32" Name="Rank" Nullable="false" />
     <Property Type="Boolean" Name="Enabled" Nullable="false" />
     <Property Type="Int32" Name="Weight" Nullable="false" />
     <Property Type="DateTime" Name="CreatedOn" Nullable="false" />
-    <Property Type="DateTime" Name="ModifiedOn" Nullable="false" />
+    <Property Type="DateTime" Name="ModifiedOn" />
   </EntityType>
+  <Association Name="FK_Product_Category">
+    <End Type="ProductStoreModel.Category" Role="Category" Multiplicity="1" />
+    <End Type="ProductStoreModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

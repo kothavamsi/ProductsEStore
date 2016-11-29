@@ -104,7 +104,7 @@ namespace ProductsEStore.Models
                 MonthlyTreeItems.Add(
                 new MonthlyTreeItem()
                 {
-                    DisplayValue = string.Format("{0} {1} ({2})", SiteMapData.MonthNames[dt.Month], dt.Year, _repository.GetProductsByYearMonth(dt.Year, dt.Month).Count),
+                    DisplayValue = string.Format("{0} {1} ({2})", SiteMapData.MonthNames[dt.Month], dt.Year, _repository.GetProductCountForYearMonth(dt.Year, dt.Month)),
                     Month = dt.Month,
                     Year = dt.Year
                 });
@@ -122,21 +122,26 @@ namespace ProductsEStore.Models
         public PopularPublisherData PopularPublisherData;
         public MonthlyData MonthlyData;
 
+        public SiteMapData()
+        {
+            LoadSiteMapData();
+        }
+
         // Dependency Injection
         IRepository _repository;
         public SiteMapData(IRepository repository)
             : base(repository)
         {
             this._repository = repository;
-            PopularTagData = new PopularTagData();
-            PopularAuthorData = new PopularAuthorData();
-            PopularPublisherData = new PopularPublisherData();
             MonthlyData = new MonthlyData(_repository);
             LoadSiteMapData();
         }
 
         public void LoadSiteMapData()
         {
+            PopularTagData = new PopularTagData();
+            PopularAuthorData = new PopularAuthorData();
+            PopularPublisherData = new PopularPublisherData();
             PopularTagData.PopularTags = MapDBPopularSearchTagToViewTagData(new TagManager().GetPopularTagsByRecent(SiteMapSettings.PopularTags.TagDisplayCount));
         }
 

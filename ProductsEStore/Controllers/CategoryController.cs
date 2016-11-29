@@ -24,7 +24,7 @@ namespace ProductsEStore.Controllers
 
             // Dependency Injection
             var productListViewResult = Helper.GetProductListViewResult(requestCriteria, response, _repository);
-            string headerMessage = string.Format("Found {0} Books Under {1} Category", response.ProductCount, requestCriteria.GetUserFriendlyCategoryName(requestCriteria.SeoFriendlyCategoryName));
+            string headerMessage = string.Format("Found {0} Books Under {1} Category", response.ProductCount, requestCriteria.SeoFriendlyCategoryName);
             productListViewResult.Header = new ProductListViewResultHeader()
             {
                 Message = headerMessage

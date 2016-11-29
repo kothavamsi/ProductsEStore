@@ -18,7 +18,7 @@ namespace ProductsEStore.Core
         /// Gets All Products
         /// </summary>
         /// <returns></returns>
-        IList<IProduct> GetAllProducts();
+        IList<Product> GetAllProducts();
 
         /// <summary>
         /// Gets Number of products per year,per month
@@ -26,8 +26,8 @@ namespace ProductsEStore.Core
         /// <param name="year"></param>
         /// <param name="month"></param>
         /// <returns></returns>
-        IList<IProduct> GetProductsByYearMonth(int year, int month);
-
+        int GetProductCountForYearMonth(int year, int month);
+        
         /// <summary>
         /// Gets Category ListMenu Items
         /// </summary>

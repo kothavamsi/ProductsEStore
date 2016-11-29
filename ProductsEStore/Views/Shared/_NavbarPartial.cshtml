@@ -18,7 +18,7 @@
                     <ul class="dropdown-menu scrollable-menu" style="height: auto">
                         @foreach (var categoryListItem in Model.Categories)
                         {
-                            <li>@Html.ActionLink(categoryListItem.Text, categoryListItem.BackEndPurposeText, "category")</li>
+                            <li>@Html.ActionLink(categoryListItem.Name, categoryListItem.SEOFriendlyName, "category")</li>
                         }
                     </ul>
                 </li>
@@ -33,7 +33,7 @@
                         <ul class="dropdown-menu">
                             @foreach (var sortByListItem in Model.SortByListItems)
                             {
-                                <li>@Html.ActionLink(sortByListItem.Text, "Index", new { sort = @sortByListItem.SeoFriendlyText })</li>
+                                <li>@Html.ActionLink(sortByListItem.Name, "Index", new { sort = @sortByListItem.SEOFriendlyName })</li>
                             }
                            @* <li>@Html.ActionLink("PostDate(Default)", "Index", new { sort = "post-date" })</li>
                             <li>@Html.ActionLink("Upload Date", "Index", new { sort = "upload" })</li>

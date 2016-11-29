@@ -175,12 +175,10 @@
     <Compile Include="Controllers\YearAndMonthController.cs" />
     <Compile Include="Core\Helper.cs" />
     <Compile Include="Models\ProductListViewResult.cs" />
-    <Compile Include="Models\IProduct.cs" />
     <Compile Include="Core\RequestCriteria.cs" />
     <Compile Include="Core\Response.cs" />
     <Compile Include="Core\SortByListItem.cs" />
     <Compile Include="Core\CategoryListItem.cs" />
-    <Compile Include="DataBaseHandler\DBManager.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\MostReviews.cs" />
     <Compile Include="Models\NewRelease.cs" />
@@ -203,7 +201,7 @@
     <Compile Include="LogHandler\LogSettingsHandler\LogSettings.cs" />
     <Compile Include="LogHandler\LogSettingsHandler\LogSettingsManager.cs" />
     <Compile Include="LogHandler\XmlLog\XmlLogger.cs" />
-    <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -263,7 +261,9 @@
     <Content Include="Scripts\RecentActivityTickerJs\Ra-ticker.js" />
     <Content Include="Scripts\TagCloudSquareJs\jquery-1.11.3.min.js" />
     <Content Include="Scripts\TagCloudSquareJs\jquery.tagcloud.js" />
-    <Content Include="Sql\Tags.sql" />
+    <Content Include="Repository\DataBase\Sql\Categories.sql" />
+    <Content Include="Repository\DataBase\Sql\Cleaning&amp;CreatingProductStore.sql" />
+    <Content Include="Repository\DataBase\Sql\Tags.sql" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProductsEStore.Models;
-using ProductsEStore.DataBaseHandler;
 using ProductsEStore.WebApi;
 
 namespace ProductsEStore.Controllers
@@ -44,7 +43,7 @@ namespace ProductsEStore.Controllers
             }
             else
             {
-                DBManager.SaveContact(contact);
+                _repository.SaveContact(contact);
                 contact.NavigationBar.RenderSortByListMenu = false;
                 return View("Contact", contact);
             }

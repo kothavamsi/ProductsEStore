@@ -6,7 +6,7 @@ using System.Runtime.Caching;
 
 namespace ProductsEStore.Repository.DataBase
 {
-    interface ICacheService
+    public interface ICacheService
     {
         T GetOrSet<T>(string cacheKey, Func<T> getItemCallback) where T : class;
     }
@@ -17,6 +17,7 @@ namespace ProductsEStore.Repository.DataBase
         public T GetOrSet<T>(string cacheKey, Func<T> getItemCallback) where T : class
         {
             T item = MemoryCache.Default.Get(cacheKey) as T;
+            //item = null;
             if (item == null)
             {
                 item = getItemCallback();
