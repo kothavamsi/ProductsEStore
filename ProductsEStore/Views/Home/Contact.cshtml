@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+        $("input[data-val-required]").on("blur", function () {
+            if (!$(this).val()) {
+                $(this).addClass("input-validation-error")
+                $(this).parent().next().text($(this).attr('data-val-required')).addClass("field-validation-error").show();
+            }
+            else {
+                $(this).removeClass("input-validation-error")
+                $(this).parent().next().hide();
+            }
+
+            var dirty = false;
+            $("input[data-val-required]").each(function () {
+                if (!$(this).val()) {
+                    dirty = true;
+                }
+            });
+            $("#contactSubmit").prop("disabled", dirty);
+        })
+    });
+</script>
+@model ProductsEStore.Models.Contact
+<div class="container">
+    <div class="row">
+        <div class="col-lg-7">
+            @using (Html.BeginForm("contact", "home", FormMethod.Post, new { id = "contact_form", @class = "well form-horizontal" }))
+            {
+                <fieldset>
+                    <legend>Contact Us !</legend>
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-xs-12">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">
+                            First Name *</label>
+                        <div class="col-md-9 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                @Html.TextBoxFor(x => x.Fname, new { placeholder = "First Name", @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.Fname)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">
+                            Last Name *</label>
+                        <div class="col-md-9 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                @Html.TextBoxFor(x => x.Lname, new { placeholder = "Last Name", @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.Lname)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">
+                            E-Mail *</label>
+                        <div class="col-md-9 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                @Html.TextBoxFor(x => x.Email, new { placeholder = "Email", @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.Email)
+                        </div>
+                    </div>
+                    <!-- Text area -->
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">
+                            Description</label>
+                        <div class="col-md-9 inputGroupContainer">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                                @Html.TextAreaFor(x => x.Description, new { placeholder = "Description", rows = "6", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">
+                        </label>
+                        <div class="col-md-9">
+                            <button type="submit" class="btn btn-warning" id="contactSubmit">
+                                Send <span class="glyphicon glyphicon-send"></span>
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+            }
+        </div>
+    </div>
+</div>

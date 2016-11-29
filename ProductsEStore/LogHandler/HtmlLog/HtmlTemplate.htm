@@ -1,0 +1,190 @@
+﻿<tr id="{{CATEGORY_CSS_CLASS}}">
+    <td>
+        {{SNO}}
+    </td>
+    <td>
+        {{LOGENTRY_TIME_STAMP}}
+    </td>
+    <td class="{{CATEGORY_CSS_CLASS}}">
+        {{CATEGORY}}
+    </td>
+    <td>
+        {{MESSAGE}}
+    </td>
+</tr>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <!--<meta http-equiv="refresh" content="3">-->
+    <title>foxebook.net EBook Crawler</title>
+    <style type="text/css">
+        table
+        {
+            font-family: "Trebuchet MS" , Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        td, th
+        {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        
+        tr:nth-child(even)
+        {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover
+        {
+            background-color: #ddd;
+        }
+        
+        th
+        {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+        .Information
+        {
+            color: Olive;
+        }
+        .Warning
+        {
+            color: Green;
+        }
+        .Error
+        {
+            color: Orange;
+        }
+        .Critical
+        {
+            color: Red;
+        }
+        
+        #sno
+        {
+            width: 5%;
+        }
+        #timestamp
+        {
+            width: 15%;
+        }
+        #category
+        {
+            width: 10%;
+        }
+        #msg
+        {
+        }
+        #title
+        {
+            font: 35px arial, sans-serif;
+            margin: auto;
+            width: 400px;
+            color: #3366ff;
+        }
+        #details
+        {
+            margin: 20px;
+        }
+        #version, #dtCreated
+        {
+            font-weight: bolder;
+            color: #ff3300;
+        }
+    </style>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#informationCntVal").html($(".Information").length);
+            $("#warningCntVal").html($(".Warning").length);
+            $("#errorCntVal").html($(".Error").length);
+            $("#criticalCntVal").html($(".Critical").length);
+            $("#netCntVal").html($("#log tr").length - 1);
+
+            $("#informationCnt").click(function () {
+                $("#log tr:gt(0)").hide();
+                $("#log tr#Information").show();
+            });
+            $("#warningCnt").click(function () {
+                $("#log tr:gt(0)").hide();
+                $("#log tr#Warning").show();
+            });
+            $("#errorCnt").click(function () {
+                $("#log tr:gt(0)").hide();
+                $("#log tr#Error").show();
+            });
+            $("#criticalCnt").click(function () {
+                $("#log tr:gt(0)").hide();
+                $("#log tr#Critical").show();
+            });
+            $("#netCnt").click(function () {
+                $("#log tr").show();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="title">
+        Foxebook Crawler Log
+    </div>
+    <div id="details">
+        Version:<span id="version">1.0.0.1</span>
+        <br />
+        Created On:<span id="dtCreated">{{LOGFILE_CREATED_ON}}</span>
+        <br />
+    </div>
+    <table id="logCounter">
+        <tr>
+            <th id="informationCnt">
+                <a href="#">Information Count</a>
+            </th>
+            <th id="warningCnt">
+                <a href="#">Warning Count</a>
+            </th>
+            <th id="errorCnt">
+                <a href="#">Error Count</a>
+            </th>
+            <th id="criticalCnt">
+                <a href="#">Critical Error Count</a>
+            </th>
+            <th id="netCnt">
+                <a href="#">Net Count</a>
+            </th>
+        </tr>
+        <tr>
+            <td id="informationCntVal">
+            </td>
+            <td id="warningCntVal">
+            </td>
+            <td id="errorCntVal">
+            </td>
+            <td id="criticalCntVal">
+            </td>
+            <td id="netCntVal">
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table id="log">
+        <tr>
+            <th id="sno">
+                Sno.
+            </th>
+            <th id="timestamp">
+                TimeStamp
+            </th>
+            <th id="category">
+                Category
+            </th>
+            <th id="msg">
+                Message
+            </th>
+        </tr>

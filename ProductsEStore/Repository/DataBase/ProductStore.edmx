@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProductStoreModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ProductStoreModelStoreContainer">
+          <EntitySet Name="Book" EntityType="ProductStoreModel.Store.Book" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Category" EntityType="ProductStoreModel.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Contacts" EntityType="ProductStoreModel.Store.Contacts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PopularAuthorTags" EntityType="ProductStoreModel.Store.PopularAuthorTags" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PopularPublisherTags" EntityType="ProductStoreModel.Store.PopularPublisherTags" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PopularTags" EntityType="ProductStoreModel.Store.PopularTags" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SortByMenuItems" EntityType="ProductStoreModel.Store.SortByMenuItems" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Subscriptions" EntityType="ProductStoreModel.Store.Subscriptions" store:Type="Tables" store:Schema="dbo" store:Name="Subscriptions">
+            <DefiningQuery>SELECT 
+      [Subscriptions].[Id] AS [Id], 
+      [Subscriptions].[Email] AS [Email], 
+      [Subscriptions].[SubscribedOn] AS [SubscribedOn], 
+      [Subscriptions].[SubscriptionValid] AS [SubscriptionValid]
+      FROM [dbo].[Subscriptions] AS [Subscriptions]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Author" Type="nvarchar" MaxLength="256" />
+          <Property Name="Length" Type="int" />
+          <Property Name="Edition" Type="int" />
+          <Property Name="Language" Type="nvarchar" MaxLength="256" />
+          <Property Name="Publisher" Type="nvarchar" MaxLength="256" />
+          <Property Name="PublicationDate" Type="datetime" />
+          <Property Name="ISBN10" Type="nvarchar" MaxLength="256" />
+          <Property Name="ISBN13" Type="nvarchar" MaxLength="256" />
+          <Property Name="CoverPageUrl" Type="nvarchar" MaxLength="256" />
+          <Property Name="DetailsPageUrl" Type="nvarchar" MaxLength="256" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SEOFriendlyName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Rank" Type="int" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="Weight" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contacts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="Responded" Type="bit" Nullable="false" />
+          <Property Name="RespondedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PopularAuthorTags">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Author" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="LastSearchedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PopularPublisherTags">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Publisher" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="LastSearchedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PopularTags">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Keyword" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="LastSearchedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SortByMenuItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SEOFriendlyName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Rank" Type="int" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="Weight" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'ProductStore.dbo.Subscriptions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Subscriptions">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="SubscribedOn" />
+            <PropertyRef Name="SubscriptionValid" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="SubscribedOn" Type="datetime" Nullable="false" />
+          <Property Name="SubscriptionValid" Type="bit" Nullable="false" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProductStoreModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="ProductStoreEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Books" EntityType="ProductStoreModel.Book" />
+          <EntitySet Name="Categories" EntityType="ProductStoreModel.Category" />
+          <EntitySet Name="Contacts" EntityType="ProductStoreModel.Contact" />
+          <EntitySet Name="PopularAuthorTags" EntityType="ProductStoreModel.PopularAuthorTag" />
+          <EntitySet Name="PopularPublisherTags" EntityType="ProductStoreModel.PopularPublisherTag" />
+          <EntitySet Name="PopularTags" EntityType="ProductStoreModel.PopularTag" />
+          <EntitySet Name="Subscriptions" EntityType="ProductStoreModel.Subscription" />
+          <EntitySet Name="SortByMenuItems" EntityType="ProductStoreModel.SortByMenuItem" />
+        </EntityContainer>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Author" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Length" Type="Int32" />
+          <Property Name="Edition" Type="Int32" />
+          <Property Name="Language" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Publisher" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="PublicationDate" Type="DateTime" />
+          <Property Name="ISBN10" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="ISBN13" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="CoverPageUrl" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="DetailsPageUrl" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="SEOFriendlyName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Rank" Type="Int32" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="Weight" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
+          <Property Name="Responded" Type="Boolean" Nullable="false" />
+          <Property Name="RespondedOn" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PopularAuthorTag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Author" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
+          <Property Name="LastSearchedOn" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PopularPublisherTag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Publisher" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
+          <Property Name="LastSearchedOn" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PopularTag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Keyword" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
+          <Property Name="LastSearchedOn" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subscription">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="SubscribedOn" />
+            <PropertyRef Name="SubscriptionValid" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="SubscribedOn" Type="DateTime" Nullable="false" />
+          <Property Name="SubscriptionValid" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SortByMenuItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SEOFriendlyName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Rank" Nullable="false" />
+          <Property Type="Boolean" Name="Enabled" Nullable="false" />
+          <Property Type="Int32" Name="Weight" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="false" />
+          <Property Type="DateTime" Name="ModifiedOn" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProductStoreModelStoreContainer" CdmEntityContainer="ProductStoreEntities">
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="ProductStoreModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="Edition" ColumnName="Edition" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+                <ScalarProperty Name="PublicationDate" ColumnName="PublicationDate" />
+                <ScalarProperty Name="ISBN10" ColumnName="ISBN10" />
+                <ScalarProperty Name="ISBN13" ColumnName="ISBN13" />
+                <ScalarProperty Name="CoverPageUrl" ColumnName="CoverPageUrl" />
+                <ScalarProperty Name="DetailsPageUrl" ColumnName="DetailsPageUrl" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="ProductStoreModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SEOFriendlyName" ColumnName="SEOFriendlyName" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="ProductStoreModel.Contact">
+              <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Responded" ColumnName="Responded" />
+                <ScalarProperty Name="RespondedOn" ColumnName="RespondedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PopularAuthorTags">
+            <EntityTypeMapping TypeName="ProductStoreModel.PopularAuthorTag">
+              <MappingFragment StoreEntitySet="PopularAuthorTags">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LastSearchedOn" ColumnName="LastSearchedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PopularPublisherTags">
+            <EntityTypeMapping TypeName="ProductStoreModel.PopularPublisherTag">
+              <MappingFragment StoreEntitySet="PopularPublisherTags">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LastSearchedOn" ColumnName="LastSearchedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PopularTags">
+            <EntityTypeMapping TypeName="ProductStoreModel.PopularTag">
+              <MappingFragment StoreEntitySet="PopularTags">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Keyword" ColumnName="Keyword" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LastSearchedOn" ColumnName="LastSearchedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subscriptions">
+            <EntityTypeMapping TypeName="ProductStoreModel.Subscription">
+              <MappingFragment StoreEntitySet="Subscriptions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SubscribedOn" ColumnName="SubscribedOn" />
+                <ScalarProperty Name="SubscriptionValid" ColumnName="SubscriptionValid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SortByMenuItems">
+            <EntityTypeMapping TypeName="ProductStoreModel.SortByMenuItem">
+              <MappingFragment StoreEntitySet="SortByMenuItems">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="SEOFriendlyName" ColumnName="SEOFriendlyName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="ProductStore">
+        <EntityTypeShape EntityType="ProductStoreModel.Book" Width="1.5" PointX="0.75" PointY="0.75" Height="3.5186979166666665" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductStoreModel.Category" Width="1.5" PointX="2.75" PointY="0.75" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductStoreModel.Contact" Width="1.5" PointX="4.75" PointY="0.75" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductStoreModel.PopularAuthorTag" Width="1.5" PointX="2.75" PointY="4.75" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductStoreModel.PopularPublisherTag" Width="1.5" PointX="4.75" PointY="4.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductStoreModel.PopularTag" Width="1.5" PointX="6.75" PointY="0.75" Height="1.9802864583333326" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductStoreModel.Subscription" Width="1.5" PointX="0.75" PointY="7.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProductStoreModel.SortByMenuItem" Width="1.5" PointX="7.375" PointY="3.75" Height="2.5571907552083317" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

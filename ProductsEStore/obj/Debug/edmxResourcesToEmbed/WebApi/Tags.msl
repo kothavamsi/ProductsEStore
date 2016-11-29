@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MyEbooksModelStoreContainer" CdmEntityContainer="MyEbooksEntities">
+    <EntitySetMapping Name="PopularAuthorTags">
+      <EntityTypeMapping TypeName="MyEbooksModel.PopularAuthorTag">
+        <MappingFragment StoreEntitySet="PopularAuthorTags">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="LastSearchedOn" ColumnName="LastSearchedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PopularPublisherTags">
+      <EntityTypeMapping TypeName="MyEbooksModel.PopularPublisherTag">
+        <MappingFragment StoreEntitySet="PopularPublisherTags">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="LastSearchedOn" ColumnName="LastSearchedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PopularTags">
+      <EntityTypeMapping TypeName="MyEbooksModel.PopularTag">
+        <MappingFragment StoreEntitySet="PopularTags">
+          <ScalarProperty Name="LastSearchedOn" ColumnName="LastSearchedOn" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Keyword" ColumnName="Keyword" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,67 @@
+﻿@model ProductsEStore.Models.NavigationBar
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid ">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span><span
+                    class="icon-bar"></span><span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">MyEbook</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                    aria-haspopup="true" aria-expanded="false">Books <span class="caret"></span></a>
+                    <ul class="dropdown-menu scrollable-menu" style="height: auto">
+                        @foreach (var categoryListItem in Model.Categories)
+                        {
+                            <li>@Html.ActionLink(categoryListItem.Text, categoryListItem.BackEndPurposeText, "category")</li>
+                        }
+                    </ul>
+                </li>
+                <li>@Html.ActionLink("Top Sellers", "Index", "TopSellers")</li>
+                <li>@Html.ActionLink("Most Reviews", "Index", "MostReviews")</li>
+                <li>@Html.ActionLink("New Release", "Index", "NewRelease")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                @if (Model.RenderSortByListMenu)
+                {
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">Sort By <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            @foreach (var sortByListItem in Model.SortByListItems)
+                            {
+                                <li>@Html.ActionLink(sortByListItem.Text, "Index", new { sort = @sortByListItem.SeoFriendlyText })</li>
+                            }
+                           @* <li>@Html.ActionLink("PostDate(Default)", "Index", new { sort = "post-date" })</li>
+                            <li>@Html.ActionLink("Upload Date", "Index", new { sort = "upload" })</li>
+                            <li>@Html.ActionLink("Publication Date", "Index", new { sort = "daterank" })</li>
+                            <li>@Html.ActionLink("Most Reviews", "Index", new { sort = "review-count-rank" })</li>
+                            <li>@Html.ActionLink("Avg. customer Review", "Index", new { sort = "average-review-rank" })</li>
+                            <li>@Html.ActionLink("Most Downloads", "Index", new { sort = "download-count-rank" })</li>*@
+                        </ul>
+                    </li>
+                }
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <form class="navbar-form navbar-left form-inline" method="post" action="/search/index">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for..." id="keyword"
+                            name="keyword">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                Go!</button>
+                        </span>
+                    </div>
+                    </form>
+                </li>
+                @Html.Partial("_LoginPartial")
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>

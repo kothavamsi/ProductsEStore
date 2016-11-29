@@ -1,0 +1,9 @@
+﻿@model ProductsEStore.Models.MonthlyData
+<h4>
+    Monthly :</h4>
+<ul>
+    @foreach (var treeItem in Model.MonthlyTreeItems)
+    {
+        <li>@Html.ActionLink(@treeItem.DisplayValue, "Index", "YearAndMonth", new { Year = @treeItem.Year, Month = @treeItem.Month }, null)</li>
+    }
+</ul>

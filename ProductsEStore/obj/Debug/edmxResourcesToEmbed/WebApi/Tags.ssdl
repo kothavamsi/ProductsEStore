@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyEbooksModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="MyEbooksModelStoreContainer">
+    <EntitySet Name="PopularAuthorTags" EntityType="MyEbooksModel.Store.PopularAuthorTags" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PopularPublisherTags" EntityType="MyEbooksModel.Store.PopularPublisherTags" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PopularTags" EntityType="MyEbooksModel.Store.PopularTags" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="PopularAuthorTags">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Author" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastSearchedOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PopularPublisherTags">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Publisher" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastSearchedOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PopularTags">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Keyword" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastSearchedOn" Type="datetime" Nullable="false" />
+  </EntityType>
+</Schema>

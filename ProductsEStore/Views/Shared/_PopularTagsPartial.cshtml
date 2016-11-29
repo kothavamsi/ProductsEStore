@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.PanelTitle = "Popular Tags:";
+}
+@model ProductsEStore.Models.PopularTagData
+@Styles.Render("~/bundles/tagCloudstyles")
+@Scripts.Render("~/bundles/tagCloudscripts")
+<script type="text/javascript">
+
+    if (!String.format) {
+        String.format = function (format) {
+            var args = Array.prototype.slice.call(arguments, 1);
+            return format.replace(/{(\d+)}/g, function (match, number) {
+                return typeof args[number] != 'undefined' ? args[number] : match;
+            });
+        };
+    }
+
+    function LoadPopularTags(filterBy, totalItemsToGet) {
+        var apiPath = String.format("/api/PopularTags/{0}/{1}", filterBy, totalItemsToGet);
+        $.getJSON(apiPath, function (data) {
+            $("#popularTagCloud").empty();
+
+            $.each(data, function (index, element) {
+                var url = String.format("<a href='/search/{0}' rel='{1}'>{0} </a>", element.Keyword, element.Count);
+                $("#popularTagCloud").append(url);
+            });
+
+            $("#popularTagCloud a").tagcloud({
+                size: { start: 12, end: 36, unit: "px" },
+                color: { start: '#3498DB', end: '#46CFB0' }
+            });
+        });
+    }
+
+    $(function () {
+        $("#popularTagCloud a").tagcloud({
+            size: { start: 12, end: 36, unit: "px" },
+            color: { start: '#3498DB', end: '#46CFB0' }
+        });
+
+        $("#filterBtnPopularTagRecentActivity,#filterBtnPopularTagRecentCount").on("click", function () {
+            LoadPopularTags($(this).attr('data-api'), $(this).attr('data-items'));
+        });
+    });
+</script>
+<div class="panel panel-success">
+    <div class="panel-heading text-nowrap">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-info">
+                            Popular Tags</button>
+                        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-filter"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li id="filterBtnPopularTagRecentActivity" data-api="recent" data-items="@Model.TotalTagsToGet">
+                                <a href="#">Recent</a></li>
+                            <li id="filterBtnPopularTagRecentCount" data-api="hit" data-items="@Model.TotalTagsToGet">
+                                <a href="#">Hit Count</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div id="popularTagCloud">
+            @foreach (var tag in Model.PopularTags)
+            {
+                @Html.ActionLink(@tag.TagName + " ", "index", "search", new { keyword = @tag.TagName }, new { rel = @tag.Weight });
+            }
+        </div>
+    </div>
+</div>
