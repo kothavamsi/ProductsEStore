@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProductsEStore.Models
 {
-    public class GridView
+    public class ProductsView
     {
         public int ColumnCount { get; set; }
         public IList<Product> CurrentPageProducts { get; set; }
@@ -15,7 +15,7 @@ namespace ProductsEStore.Models
         public int sm_col { get; set; }
         public int xs_col { get; set; }
 
-        public GridView(int columns, IList<Product> currentPageProducts)
+        public ProductsView(int columns, IList<Product> currentPageProducts)
         {
             ColumnCount = columns;
             CurrentPageProducts = currentPageProducts;

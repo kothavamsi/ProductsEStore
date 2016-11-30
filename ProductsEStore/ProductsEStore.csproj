@@ -197,13 +197,13 @@
     <Compile Include="Models\ExceptionPageModel.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\GridView.cs" />
+    <Compile Include="Models\ProductsView.cs" />
     <Compile Include="Core\RequestCriteria.cs" />
     <Compile Include="Core\Response.cs" />
     <Compile Include="Core\SortByListItem.cs" />
     <Compile Include="Core\CategoryListItem.cs" />
     <Compile Include="Models\Contact.cs" />
-    <Compile Include="Models\GridViewLayout.cs" />
+    <Compile Include="Models\ProductsViewLayout.cs" />
     <Compile Include="Models\NewRelease.cs" />
     <Compile Include="Models\SiteMapData.cs" />
     <Compile Include="LogHandler\Config\LogManagerSection.cs" />

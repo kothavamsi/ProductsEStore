@@ -29,9 +29,9 @@ namespace ProductsEStore.Controllers
             };
 
             RepositoryResponse repoResp = _repository.GetProducts(reqCriteria);
-            GridViewLayout gridViewLayout = new GridViewLayout(reqCriteria, repoResp, 6);
-            gridViewLayout.NavigationBar.RenderSortByListMenu = true;
-            return View("ProductGridViewResult", "_HomeLayout", gridViewLayout);
+            ProductsViewLayout productViewLayout = new ProductsViewLayout(reqCriteria, repoResp, 6);
+            productViewLayout.NavigationBar.RenderSortByListMenu = true;
+            return View("ProductGridViewResult", "_HomeLayout", productViewLayout);
         }
 
         public ActionResult About()

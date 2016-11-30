@@ -11,10 +11,10 @@ namespace ProductsEStore.Models
         public string Message { get; set; }
     }
 
-    public class GridViewLayout : ViewModelBase
+    public class ProductsViewLayout : ViewModelBase
     {
         public LayoutHeader LayoutHeader { get; set; }
-        public GridView GridView { get; set; }
+        public ProductsView ProductsView { get; set; }
         public bool HasRenderableProducts { get; set; }
         public Pager Pager { get; set; }
 
@@ -22,12 +22,12 @@ namespace ProductsEStore.Models
         private RepositoryResponse repoResp { get; set; }
         private int columns { get; set; }
 
-        public GridViewLayout(RequestCriteria reqCriteria, RepositoryResponse repoResp, int columns)
+        public ProductsViewLayout(RequestCriteria reqCriteria, RepositoryResponse repoResp, int columns)
         {
             this.reqCriteria = reqCriteria;
             this.repoResp = repoResp;
             this.columns = columns;
-            GridView = new GridView(columns, repoResp.CurrentPageProducts);
+            ProductsView = new ProductsView(columns, repoResp.CurrentPageProducts);
             HasRenderableProducts = repoResp.CurrentPageProducts.Count > 0 ? true : false;
             LayoutHeader = new LayoutHeader() { Message = GetLayoutHeaderMessage() };
             Pager = new Pager(repoResp.ItemsCount, reqCriteria.PageNo, reqCriteria.PageSize);

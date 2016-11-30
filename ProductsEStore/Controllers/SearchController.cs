@@ -33,15 +33,15 @@ namespace ProductsEStore.Controllers
             };
 
             RepositoryResponse repoResp = _repository.GetProducts(reqCriteria);
-            GridViewLayout gridViewLayout = new GridViewLayout(reqCriteria, repoResp, 6);
-            gridViewLayout.NavigationBar = new NavigationBar(_repository);
-            gridViewLayout.NavigationBar.RenderSortByListMenu = false;
+            ProductsViewLayout productViewLayout = new ProductsViewLayout(reqCriteria, repoResp, 6);
+            productViewLayout.NavigationBar = new NavigationBar(_repository);
+            productViewLayout.NavigationBar.RenderSortByListMenu = false;
            
-            if (gridViewLayout.HasRenderableProducts)
+            if (productViewLayout.HasRenderableProducts)
             {
                 new TagManager().PostPopularTag(new PopularTag().CreateTagInstance(keyword));
             }
-            return View("ProductListViewResult", gridViewLayout);
+            return View("ProductListViewResult", productViewLayout);
         }
     }
 }

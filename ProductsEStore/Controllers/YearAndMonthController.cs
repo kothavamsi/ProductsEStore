@@ -24,10 +24,10 @@ namespace ProductsEStore.Controllers
             };
 
             RepositoryResponse repoResp = _repository.GetProducts(reqCriteria);
-            GridViewLayout gridViewLayout = new GridViewLayout(reqCriteria, repoResp, 6);
-            gridViewLayout.NavigationBar = new NavigationBar(_repository);
-            gridViewLayout.NavigationBar.RenderSortByListMenu = false;
-            return View("ProductGridViewResult", gridViewLayout);
+            ProductsViewLayout productViewLayout = new ProductsViewLayout(reqCriteria, repoResp, 6);
+            productViewLayout.NavigationBar = new NavigationBar(_repository);
+            productViewLayout.NavigationBar.RenderSortByListMenu = false;
+            return View("ProductGridViewResult", productViewLayout);
         }
     }
 }
