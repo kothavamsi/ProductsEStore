@@ -10,7 +10,7 @@ namespace ProductsEStore.Core
 
         public Response()
         {
-
+           
         }
     }
 }

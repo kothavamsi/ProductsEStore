@@ -19,5 +19,12 @@ namespace ProductsEStore.Core
            };
             return productListViewResult;
         }
+
+        public static bool IsValidateRequest(RequestCriteria requestCriteria)
+        {
+            bool retVal = false;
+
+            return retVal;
+        }
     }
 }

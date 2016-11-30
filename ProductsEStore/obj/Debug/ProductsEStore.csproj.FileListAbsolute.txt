@@ -106,4 +106,3 @@ F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\DotNetOp
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\obj\Debug\ProductsEStore.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\obj\Debug\ProductsEStore.pdb
-F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\obj\Debug\ProductsEStore.csprojResolveAssemblyReference.cache

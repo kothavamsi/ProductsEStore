@@ -21,6 +21,11 @@ namespace ProductsEStore.Controllers
                 PageSize = 24
             };
 
+            //if (!Helper.IsValidateRequest(requestCriteria))
+            //{
+            //    throw new Exception("Invalid Request");
+            //}
+
             Response response = _repository.GetProducts(requestCriteria);
 
             // Dependency Injection

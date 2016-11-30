@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MyEBooks.Core.FileSystem
+namespace ProductsEStore.Models
 {
-    public class FileSystemRepositorySettings
+    public class ExceptionPageModel : ViewModelBase
     {
     }
 }
