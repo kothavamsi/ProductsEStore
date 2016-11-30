@@ -8,22 +8,12 @@
 }
 @if (@Model.FoundResult)
 {
-    <div class="visible-lg-inline visible-md-inline">
-        <h2>
-            @Model.Header.Message
-        </h2>
-    </div>
-    <div class="visible-sm-inline visible-xs-inline">
+    <div>
         <h3>
             @Model.Header.Message
         </h3>
     </div>
-    
-    
-@*<div>
-        <span>PageSize: @Model.Pager.PageSize</span> <span>PagerDisplayLength: @Model.Pager.PagerDisplayLength</span>
-        <span>TotalItems: @Model.Pager.TotalItems</span> <span>TotalPages: @Model.Pager.TotalPages</span>
-    </div>*@
+
     <div class="container-fluid">
         @for (int row = 1; row <= rows && bookIndex < totalBookCount; row++)
         {

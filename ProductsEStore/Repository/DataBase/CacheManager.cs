@@ -18,7 +18,6 @@ namespace ProductsEStore.Repository.DataBase
             where T : class
         {
             T item = MemoryCache.Default.Get(cacheKey) as T;
-            //item = null;
             if (item == null)
             {
                 item = getItemCallback();
