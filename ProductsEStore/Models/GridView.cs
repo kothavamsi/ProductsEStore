@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProductsEStore.Models
 {
-    public class Grid
+    public class GridView
     {
         public int ColumnSize { get; set; }
         public IList<Product> Products { get; set; }
@@ -15,14 +15,21 @@ namespace ProductsEStore.Models
         public int sm_col { get; set; }
         public int xs_col { get; set; }
 
-        public Grid(int columnSize, IList<Product> products)
+        public GridView()
+        {
+            ColumnSize = 2;
+            Products = new List<Product>();
+        }
+
+        public GridView(int columnSize, IList<Product> products)
         {
             ColumnSize = columnSize;
             Products = products;
             RowCount = (Products.Count / ColumnSize) + (Products.Count % ColumnSize > 0 ? 1 : 0);
             lg_col = 12 / ColumnSize;
             md_col = ((12 / ColumnSize) * 2) > 12 ? 12 : ((12 / ColumnSize) * 2);
-            sm_col = xs_col = 12;
+            sm_col = ((12 / ColumnSize) * 3) > 12 ? 12 : ((12 / ColumnSize) * 3);
+            xs_col = 12;
         }
 
     }

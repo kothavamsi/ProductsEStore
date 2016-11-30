@@ -23,7 +23,7 @@ namespace ProductsEStore.Controllers
             Response response = _repository.GetProducts(requestCriteria);
 
             // Dependency Injection
-            var productListViewResult = Helper.GetProductListViewResult(requestCriteria, response, _repository);
+            var productListViewResult = Helper.GetProductListViewResult(requestCriteria, response, _repository,6);
             string headerMessage = string.Format("Total {0} Books", response.ProductCount, requestCriteria.SeoFriendlyCategoryName);
             productListViewResult.Header = new ProductListViewResultHeader()
             {

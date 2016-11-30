@@ -10,7 +10,7 @@ namespace ProductsEStore.Models
     {
         public bool FoundResult { get; set; }
         public ProductListViewResultHeader Header { get; set; }
-        public IList<Product> ViewProducts { get; set; }
+        public GridView GridView { get; set; }
         public int ProductCount { get; set; }
         public Pager Pager { get; set; }
 
@@ -18,7 +18,6 @@ namespace ProductsEStore.Models
         public ProductListViewResult(IRepository repository)
             : base(repository)
         {
-            ViewProducts = new List<Product>();
             FoundResult = false;
         }
     }

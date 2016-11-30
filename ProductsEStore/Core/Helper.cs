@@ -6,26 +6,18 @@ using ProductsEStore.Models;
 
 namespace ProductsEStore.Core
 {
-    public  class Helper
+    public class Helper
     {
-        public static ProductListViewResult GetProductListViewResult(RequestCriteria requestCriteria, Response response,IRepository repository)
+        public static ProductListViewResult GetProductListViewResult(RequestCriteria requestCriteria, Response response, IRepository repository, int ColumnSize = 4)
         {
             ProductListViewResult productListViewResult;
-            //if (!IsSearchCategoryValid(categoryName))
-            //{
-            //    return new SearchResult() { SearchKeyword = categoryName, PageNo = pageNo, FoundResult = false };
-            //}
-            //if (!IsPageNumberInValidRange(pageNo, categoryName))
-            //{
-            //    throw new Exception(string.Format("The Page No:{0} Is NotValid", pageNo));
-            //}
 
+            // Dependency Injection
             productListViewResult = new ProductListViewResult(repository)
             {
-                ViewProducts = response.ViewProducts,
                 FoundResult = response.ViewProducts.Count > 0 ? true : false,
                 ProductCount = response.ProductCount,
-                
+                GridView = new GridView(ColumnSize, response.ViewProducts),
                 Pager = new Pager(response.ProductCount, requestCriteria.PageNo)
             };
             return productListViewResult;
