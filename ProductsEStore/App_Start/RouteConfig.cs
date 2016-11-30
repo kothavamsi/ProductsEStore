@@ -60,13 +60,13 @@ namespace ProductsEStore
             routes.MapRoute(
                name: "NewRealeasesPaging",
                url: "new-release/page/{pageNo}",
-               defaults: new { controller = "MostReviews", action = "Index" }
+               defaults: new { controller = "NewRelease", action = "Index" }
 
            );
             routes.MapRoute(
                 name: "NewRealeases",
                 url: "new-release/",
-                defaults: new { controller = "MostReviews", action = "Index" }
+                defaults: new { controller = "NewRelease", action = "Index" }
             );
 
 
