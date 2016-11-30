@@ -293,7 +293,6 @@
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
     <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Shared\err.htm" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -306,7 +305,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Web.config" />
@@ -318,7 +316,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\Result.cshtml" />
+    <Content Include="Views\Shared\ProductGridViewResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_PagerPartial.cshtml" />
@@ -357,8 +355,9 @@
     <Content Include="Views\Shared\_PopularTagsPartial.cshtml" />
     <Content Include="Views\Shared\_MonthlyPartial.cshtml" />
     <Content Include="Views\TopSellers\Index.cshtml" />
-    <Content Include="Views\Shared\Copy of Result.cshtml" />
     <Content Include="Views\Shared\_GridViewPartial.cshtml" />
+    <Content Include="Views\Shared\ProductListViewResult.cshtml" />
+    <Content Include="Views\Shared\_ListViewPartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,40 @@
+﻿@model ProductsEStore.Models.GridView
+@{
+    int productIndex = 0;
+}
+<div class="container-fluid">
+    @for (int row = 1; row <= @Model.RowCount && productIndex < @Model.CurrentPageProducts.Count; row++)
+    {
+        <div class="row">
+            @for (int col = 1; col <= @Model.ColumnCount && productIndex < @Model.CurrentPageProducts.Count; col++)
+            {
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <img src="@Model.CurrentPageProducts[productIndex].CoverPageUrl" alt="phyton guide"
+                                    class="img-thumbnail img-responsive">
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h5 class="panel-title" style="overflow: hidden">@Model.CurrentPageProducts[productIndex].Title</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h5 class="panel-title" style="overflow: hidden">@Model.CurrentPageProducts[productIndex].Title</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h5 class="panel-title" style="overflow: hidden">@Model.CurrentPageProducts[productIndex].Title</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                productIndex++;
+            }
+        </div>
+    }
+</div>

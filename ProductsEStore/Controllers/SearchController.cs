@@ -41,7 +41,7 @@ namespace ProductsEStore.Controllers
             {
                 new TagManager().PostPopularTag(new PopularTag().CreateTagInstance(keyword));
             }
-            return View("result", gridViewLayout);
+            return View("ProductListViewResult", gridViewLayout);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace ProductsEStore.Controllers
             RepositoryResponse repoResp = _repository.GetProducts(reqCriteria);
             GridViewLayout gridViewLayout = new GridViewLayout(reqCriteria, repoResp, 4);
             gridViewLayout.NavigationBar.RenderSortByListMenu = false;
-            return View("Result", gridViewLayout);
+            return View("ProductListViewResult", gridViewLayout);
         }
 
     }

@@ -27,7 +27,7 @@ namespace ProductsEStore.Controllers
             GridViewLayout gridViewLayout = new GridViewLayout(reqCriteria, repoResp, 6);
             gridViewLayout.NavigationBar = new NavigationBar(_repository);
             gridViewLayout.NavigationBar.RenderSortByListMenu = false;
-            return View("result", gridViewLayout);
+            return View("ProductGridViewResult", gridViewLayout);
         }
     }
 }
