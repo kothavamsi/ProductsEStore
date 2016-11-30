@@ -61,9 +61,9 @@ namespace ProductsEStore.Core
             return r.ToList();
         }
 
-        public Response GetProducts(RequestCriteria requestCriteria)
+        public RepositoryResponse GetProducts(RequestCriteria requestCriteria)
         {
-            Response response = new Response();
+            RepositoryResponse response = new RepositoryResponse();
             switch (requestCriteria.RequestMode)
             {
                 case RequestMode.GetItemsInCategory:
@@ -78,18 +78,103 @@ namespace ProductsEStore.Core
                 case RequestMode.All:
                     response = GetAllProducts(requestCriteria.PageNo, requestCriteria.PageSize, requestCriteria.SortMode);
                     break;
+                case RequestMode.MostReviews:
+                    response = GetMostReviewedProducts(requestCriteria.PageNo, requestCriteria.PageSize, requestCriteria.SortMode);
+                    break;
+                case RequestMode.NewReleases:
+                    response = GetNewReleasedProducts(requestCriteria.PageNo, requestCriteria.PageSize, requestCriteria.SortMode);
+                    break;
             }
             return response;
         }
 
-        private Response GetAllProducts(int pageNo, int pageSize, SortMode sortMode)
+        private RepositoryResponse GetNewReleasedProducts(int pageNo, int pageSize, SortMode sortMode)
+        {
+            return _cacheService.GetOrSet(string.Format("GetNewReleasedProducts_{0}_{1}_{2}", pageNo, pageSize, sortMode.ToString()),
+                () => GetNewReleasedProductsDB(pageNo, pageSize, sortMode));
+        }
+
+        // NEWRELEASES NOT IMPLEMENTED PROPERLY AS DATABASE HAS NO DATA FOR RELEASE DATES
+        // TODO: SortMode Not Yet Implemented
+        private RepositoryResponse GetNewReleasedProductsDB(int pageNo, int pageSize, SortMode sortMode)
+        {
+            var newReleasedProductsQuery = from dbProduct in dbContext.Products
+                                           orderby dbProduct.Title
+                                           select dbProduct;
+            var pagedNewReleasedProductsQueryQuery = newReleasedProductsQuery.Skip((pageNo - 1) * pageSize).Take(pageSize);
+            var MappedProductsQuery = from dbProduct in pagedNewReleasedProductsQueryQuery
+                                      select new ProductsEStore.Models.Product()
+                                      {
+                                          Title = dbProduct.Title,
+                                          Author = dbProduct.Author,
+                                          CategoryId = dbProduct.CategoryId,
+                                          CoverPageUrl = dbProduct.CoverPageUrl,
+                                          DetailPageUrl = dbProduct.DetailsPageUrl,
+                                          Id = dbProduct.Id,
+                                          ISBN_10 = dbProduct.ISBN10,
+                                          ISBN_13 = dbProduct.ISBN13,
+                                          Language = dbProduct.Language,
+                                          Pages = dbProduct.Length ?? -1,
+                                          Edition = dbProduct.Edition ?? -1,
+                                          //PublishedDate = dbProduct.PublicationDate ?? DateTime.MinValue
+                                      };
+            RepositoryResponse response = new RepositoryResponse()
+            {
+                ItemsCount = newReleasedProductsQuery.Count(),
+                CurrentPageProducts = MappedProductsQuery.ToList()
+            };
+            return response;
+        }
+
+
+
+        private RepositoryResponse GetMostReviewedProducts(int pageNo, int pageSize, SortMode sortMode)
+        {
+            return _cacheService.GetOrSet(string.Format("GetMostReviewedProducts_{0}_{1}_{2}", pageNo, pageSize, sortMode.ToString()),
+                () => GetMostReviewedProductsFromDB(pageNo, pageSize, sortMode));
+        }
+
+        // MOSTREVIEW NOT IMPLEMENTED PROPERLY AS DATABASE HAS NO DATA FOR REVIEW RATING
+        // TODO: SortMode Not Yet Implemented
+        private RepositoryResponse GetMostReviewedProductsFromDB(int pageNo, int pageSize, SortMode sortMode)
+        {
+            var mostReviewedProductsQuery = from dbProduct in dbContext.Products
+                                            orderby dbProduct.Title
+                                            select dbProduct;
+            var pagedmostReviewedProductsQuery = mostReviewedProductsQuery.Skip((pageNo - 1) * pageSize).Take(pageSize);
+            var MappedProductsQuery = from dbProduct in pagedmostReviewedProductsQuery
+                                      select new ProductsEStore.Models.Product()
+                                      {
+                                          Title = dbProduct.Title,
+                                          Author = dbProduct.Author,
+                                          CategoryId = dbProduct.CategoryId,
+                                          CoverPageUrl = dbProduct.CoverPageUrl,
+                                          DetailPageUrl = dbProduct.DetailsPageUrl,
+                                          Id = dbProduct.Id,
+                                          ISBN_10 = dbProduct.ISBN10,
+                                          ISBN_13 = dbProduct.ISBN13,
+                                          Language = dbProduct.Language,
+                                          Pages = dbProduct.Length ?? -1,
+                                          Edition = dbProduct.Edition ?? -1,
+                                          //PublishedDate = dbProduct.PublicationDate ?? DateTime.MinValue
+                                      };
+            RepositoryResponse response = new RepositoryResponse()
+            {
+                ItemsCount = mostReviewedProductsQuery.Count(),
+                CurrentPageProducts = MappedProductsQuery.ToList()
+            };
+            return response;
+        }
+
+
+        private RepositoryResponse GetAllProducts(int pageNo, int pageSize, SortMode sortMode)
         {
             return _cacheService.GetOrSet(string.Format("GetAllProducts_{0}_{1}_{2}", pageNo, pageSize, sortMode.ToString()),
                 () => GetAllProductsFromDB(pageNo, pageSize, sortMode));
         }
 
         // TODO: SortMode Not Yet Implemented
-        private Response GetAllProductsFromDB(int pageNo, int pageSize, SortMode sortMode)
+        private RepositoryResponse GetAllProductsFromDB(int pageNo, int pageSize, SortMode sortMode)
         {
             var allProductsQuery = from dbProduct in dbContext.Products
                                    orderby dbProduct.Title
@@ -111,7 +196,7 @@ namespace ProductsEStore.Core
                                           Edition = dbProduct.Edition ?? -1,
                                           //PublishedDate = dbProduct.PublicationDate ?? DateTime.MinValue
                                       };
-            Response response = new Response()
+            RepositoryResponse response = new RepositoryResponse()
             {
                 ItemsCount = allProductsQuery.Count(),
                 CurrentPageProducts = MappedProductsQuery.ToList()
@@ -119,14 +204,14 @@ namespace ProductsEStore.Core
             return response;
         }
 
-        private Response GetProductItemsInCategory(string seoFriendlyCategoryName, int pageNo, int pageSize, SortMode sortMode)
+        private RepositoryResponse GetProductItemsInCategory(string seoFriendlyCategoryName, int pageNo, int pageSize, SortMode sortMode)
         {
             return _cacheService.GetOrSet(string.Format("GetProductItemsInCategory_{0}_{1}_{2}_{3}", seoFriendlyCategoryName, pageNo, pageSize, sortMode.ToString()),
                 () => GetProductItemsInCategoryFromDB(seoFriendlyCategoryName, pageNo, pageSize, sortMode));
         }
 
         // TODO: SortMode Not Yet Implemented
-        private Response GetProductItemsInCategoryFromDB(string seoFriendlyCategoryName, int pageNo, int pageSize, SortMode sortMode)
+        private RepositoryResponse GetProductItemsInCategoryFromDB(string seoFriendlyCategoryName, int pageNo, int pageSize, SortMode sortMode)
         {
             var categoryProductsQuery = from dbProduct in dbContext.Products
                                         where dbProduct.Category.SEOFriendlyName == seoFriendlyCategoryName
@@ -153,7 +238,7 @@ namespace ProductsEStore.Core
                                       };
 
 
-            Response response = new Response()
+            RepositoryResponse response = new RepositoryResponse()
             {
                 ItemsCount = categoryProductsQuery.Count(),
                 CurrentPageProducts = MappedProductsQuery.ToList()
@@ -161,14 +246,14 @@ namespace ProductsEStore.Core
             return response;
         }
 
-        private Response GetProductItemsBySearchKeyWord(string searchKeyWord, int pageNo, int pageSize, SortMode sortMode)
+        private RepositoryResponse GetProductItemsBySearchKeyWord(string searchKeyWord, int pageNo, int pageSize, SortMode sortMode)
         {
             return _cacheService.GetOrSet(string.Format("GetProductItemsBySearchKeyWord_{0}_{1}_{2}_{3}", searchKeyWord, pageNo, pageSize, sortMode.ToString()),
                 () => GetProductItemsBySearchKeyWordFromDB(searchKeyWord, pageNo, pageSize, sortMode));
         }
 
         // TODO: SortMode Not Yet Implemented
-        private Response GetProductItemsBySearchKeyWordFromDB(string searchKeyWord, int pageNo, int pageSize, SortMode sortMode)
+        private RepositoryResponse GetProductItemsBySearchKeyWordFromDB(string searchKeyWord, int pageNo, int pageSize, SortMode sortMode)
         {
             var keywordProductsQuery = from dbProduct in dbContext.Products
                                        where dbProduct.Title.Contains(searchKeyWord)
@@ -192,7 +277,7 @@ namespace ProductsEStore.Core
                                           Edition = dbProduct.Edition ?? -1,
                                           PublishedDate = dbProduct.PublicationDate ?? DateTime.MinValue
                                       };
-            Response response = new Response()
+            RepositoryResponse response = new RepositoryResponse()
             {
                 ItemsCount = keywordProductsQuery.Count(),
                 CurrentPageProducts = MappedProductsQuery.ToList()
@@ -200,14 +285,14 @@ namespace ProductsEStore.Core
             return response;
         }
 
-        private Response GetProductsByYearMonth(int year, int month, int pageNo, int pageSize, SortMode sortMode)
+        private RepositoryResponse GetProductsByYearMonth(int year, int month, int pageNo, int pageSize, SortMode sortMode)
         {
             return _cacheService.GetOrSet(string.Format("GetProductsByYearMonth_{0}_{1}_{2}_{3}_{4}", year, month, pageNo, pageSize, sortMode.ToString()),
                 () => GetProductsByYearMonthFromDB(year, month, pageNo, pageSize, sortMode));
         }
 
         // TODO: SortMode Not Yet Implemented
-        private Response GetProductsByYearMonthFromDB(int year, int month, int pageNo, int pageSize, SortMode sortMode)
+        private RepositoryResponse GetProductsByYearMonthFromDB(int year, int month, int pageNo, int pageSize, SortMode sortMode)
         {
             var MonthYearProductsQuery = from dbProduct in dbContext.Products
                                          where dbProduct.PublicationDate.Value.Month == month && dbProduct.PublicationDate.Value.Year == year
@@ -231,7 +316,7 @@ namespace ProductsEStore.Core
                                           Edition = dbProduct.Edition ?? -1,
                                           PublishedDate = dbProduct.PublicationDate ?? DateTime.MinValue
                                       };
-            Response response = new Response()
+            RepositoryResponse response = new RepositoryResponse()
             {
                 ItemsCount = MonthYearProductsQuery.Count(),
                 CurrentPageProducts = MappedProductsQuery.ToList()

@@ -11,9 +11,16 @@ namespace ProductsEStore.Controllers
 {
     public class HomeController : MyBaseController
     {
+        IRepository _repository;
+
+        public HomeController(IRepository repository)
+        {
+            _repository = repository;
+        }
+
         public ActionResult Index(string sort = "post-date", int pageNo = 1)
         {
-            RequestCriteria requestCriteria = new RequestCriteria()
+            RequestCriteria reqCriteria = new RequestCriteria()
             {
                 RequestMode = RequestMode.All,
                 SortMode = SortModeMappings.GetSortMode(sort),
@@ -21,36 +28,21 @@ namespace ProductsEStore.Controllers
                 PageSize = 24
             };
 
-            //if (!Helper.IsValidateRequest(requestCriteria))
-            //{
-            //    throw new Exception("Invalid Request");
-            //}
-
-            Response response = _repository.GetProducts(requestCriteria);
-
-            // Dependency Injection
-            var productsDisplayLayout = Helper.GetProductsDisplayLayout(requestCriteria, response, _repository, 6);
-            string headerMessage = string.Format(
-                "Found {0} books >> Displaying {1} to {2} books",
-                response.ItemsCount,
-                1 + (pageNo - 1) * requestCriteria.PageSize,
-                response.CurrentPageProducts.Count + (pageNo - 1) * requestCriteria.PageSize);
-            productsDisplayLayout.Header.Message = headerMessage;
-
-            productsDisplayLayout.PageTitle = productsDisplayLayout.TitleTemplate.Replace("{{TITLE}}", productsDisplayLayout.SiteName);
-            return View("Index", productsDisplayLayout);
+            RepositoryResponse repoResp = _repository.GetProducts(reqCriteria);
+            GridViewLayout gridViewLayout = new GridViewLayout(reqCriteria, repoResp, 6);
+            gridViewLayout.NavigationBar.RenderSortByListMenu = true;
+            return View("Index", gridViewLayout);
         }
 
         public ActionResult About()
         {
-            this.ViewModelBaseObj.NavigationBar.RenderSortByListMenu = false;
-            return View("About", this.ViewModelBaseObj);
+            BaseModel.NavigationBar.RenderSortByListMenu = false;
+            return View("About", BaseModel);
         }
 
         public ActionResult Contact()
         {
-            // Dependency Injection
-            Contact contact = new Contact(_repository);
+            Contact contact = new Contact();
             contact.NavigationBar.RenderSortByListMenu = false;
             return View("Contact", contact);
         }
@@ -58,14 +50,11 @@ namespace ProductsEStore.Controllers
         [HttpPost]
         public ActionResult Contact(Contact contact)
         {
-            // Dependency Injection made manually as Contact object is created by MVC framework 
-            // by calling zero argument constructor but our dependency is injected using one argument constructor
-            contact.NavigationBar = new NavigationBar(_repository);
 
             if (ModelState.IsValid)
             {
-                this.ViewModelBaseObj.NavigationBar.RenderSortByListMenu = false;
-                return View("ContactSuccess", this.ViewModelBaseObj);
+                BaseModel.NavigationBar.RenderSortByListMenu = false;
+                return View("ContactSuccess", BaseModel);
             }
             else
             {
@@ -77,37 +66,36 @@ namespace ProductsEStore.Controllers
 
         public ActionResult PrivacyPolicy()
         {
-            this.ViewModelBaseObj.NavigationBar.RenderSortByListMenu = false;
-            return View("PrivacyPolicy", this.ViewModelBaseObj);
+            BaseModel.NavigationBar.RenderSortByListMenu = false;
+            return View("PrivacyPolicy", BaseModel);
         }
 
         public ActionResult FAQ()
         {
-            this.ViewModelBaseObj.NavigationBar.RenderSortByListMenu = false;
-            return View("FAQ", this.ViewModelBaseObj);
+            BaseModel.NavigationBar.RenderSortByListMenu = false;
+            return View("FAQ", BaseModel);
         }
 
         public ActionResult RSS()
         {
-            this.ViewModelBaseObj.NavigationBar.RenderSortByListMenu = false;
-            return View("RSS", this.ViewModelBaseObj);
+            BaseModel.NavigationBar.RenderSortByListMenu = false;
+            return View("RSS", BaseModel);
         }
 
         public ActionResult DMCA()
         {
-            this.ViewModelBaseObj.NavigationBar.RenderSortByListMenu = false;
-            return View("DMCA", this.ViewModelBaseObj);
+            BaseModel.NavigationBar.RenderSortByListMenu = false;
+            return View("DMCA", BaseModel);
         }
 
         public ActionResult Donate()
         {
-            this.ViewModelBaseObj.NavigationBar.RenderSortByListMenu = false;
-            return View("Donate", this.ViewModelBaseObj);
+            BaseModel.NavigationBar.RenderSortByListMenu = false;
+            return View("Donate", BaseModel);
         }
 
         public ActionResult Sitemap()
         {
-            // Dependency Injection
             var siteMapData = new SiteMapData(_repository);
             siteMapData.NavigationBar.RenderSortByListMenu = false;
             return View("Sitemap", siteMapData);

@@ -14,7 +14,8 @@ namespace ProductsEStore.Core
         GetItemsInCategory = 3,
         TopSeller = 4,
         MostReviews = 5,
-        Monthly = 6
+        Monthly = 6,
+        NewReleases = 7
     }
 
     public enum SortMode

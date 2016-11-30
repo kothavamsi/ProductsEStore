@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ProductsEStore.Core;
+using ProductsEStore.Repository.DataBase;
 
 namespace ProductsEStore.Models
 {
     // This is StronglyTyped ViewModel For Layout
     public class ViewModelBase
     {
-        public PopularTagData PopularTagData;
+        //public PopularTagData PopularTagData;
         public NavigationBar NavigationBar;
         public string PageTitle { get; set; }
         public string SiteName { get; set; }
@@ -19,20 +20,12 @@ namespace ProductsEStore.Models
 
         public ViewModelBase()
         {
-            PopularTagData = new PopularTagData();
-            SiteName = "My eBook";
+            //PopularTagData = new PopularTagData();
+            SiteName = "MyeBook";
             SiteDomain = "www.myebook.net";
             SiteTagLine = "free eBooks Store";
-            TitleTemplate = "{{TITLE}} - " + SiteTagLine;
-        }
-
-        // Dependency Injection
-        IRepository _repository;
-        public ViewModelBase(IRepository repository)
-            : this()
-        {
-            _repository = repository;
-            NavigationBar = new NavigationBar(_repository);
+            TitleTemplate = "{{TITLE}} - " + SiteName;
+            NavigationBar = new NavigationBar(new DatabaseRepository(new InMemoryCache()));
         }
     }
 
@@ -46,8 +39,8 @@ namespace ProductsEStore.Models
         IRepository _repository;
         public NavigationBar(IRepository repository)
         {
-            _repository = repository;
             RenderSortByListMenu = true;
+            _repository = repository;
             Categories = _repository.GetCategoryListItems();
             SortByListItems = _repository.GetSortByListItems();
         }

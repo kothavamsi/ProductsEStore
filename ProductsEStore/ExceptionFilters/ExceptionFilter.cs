@@ -24,8 +24,8 @@ namespace ProductsEStore.ExceptionFilters
             {
                 filterContext.Result = new ViewResult()
                 {
-                    ViewData = new ViewDataDictionary<ViewModelBase>(new MyBaseController().ViewModelBaseObj),
-                    ViewName = "error"
+                    //ViewData = new ViewDataDictionary<ViewModelBase>(new MyBaseController().ViewModelBaseObj),
+                    //ViewName = "error"
                 };
                 filterContext.ExceptionHandled = true;
             }

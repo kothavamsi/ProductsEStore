@@ -11,20 +11,10 @@ namespace ProductsEStore.Controllers
 {
     public class MyBaseController : Controller
     {
-        public ViewModelBase ViewModelBaseObj;
-
-        public IRepository _repository;
-        public ICacheService _inMemoryCache;
+        public ViewModelBase BaseModel;
         public MyBaseController()
         {
-            _inMemoryCache = new InMemoryCache();
-
-             //Dependency Injection
-            _repository = new DatabaseRepository(_inMemoryCache);
-
-             //Dependency Injection
-            ViewModelBaseObj = new ViewModelBase(_repository);
+            BaseModel = new ViewModelBase();
         }
-
     }
 }

@@ -24,8 +24,9 @@ namespace ProductsEStore
         {
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
-            //kernel.Bind<ICacheService>().To<InMemoryCache>();
-            //kernel.Bind<IRepository>().To<DatabaseRepository>();
+            
+            kernel.Bind<ICacheService>().To<InMemoryCache>();
+            kernel.Bind<IRepository>().To<DatabaseRepository>();
             return kernel;
         }
 

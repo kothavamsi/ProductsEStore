@@ -58,15 +58,30 @@ namespace ProductsEStore
             );
 
             routes.MapRoute(
-                name: "MostReviews",
-                url: "most-reviews/",
+               name: "NewRealeasesPaging",
+               url: "new-release/page/{pageNo}",
+               defaults: new { controller = "MostReviews", action = "Index" }
+
+           );
+            routes.MapRoute(
+                name: "NewRealeases",
+                url: "new-release/",
                 defaults: new { controller = "MostReviews", action = "Index" }
             );
+
+
             routes.MapRoute(
                name: "MostReviewsWithPaging",
                url: "most-reviews/page/{pageNo}",
                defaults: new { controller = "MostReviews", action = "Index" }
+
            );
+            routes.MapRoute(
+                name: "MostReviews",
+                url: "most-reviews/",
+                defaults: new { controller = "MostReviews", action = "Index" }
+            );
+
 
             routes.MapRoute(
                 name: "NewRelease",

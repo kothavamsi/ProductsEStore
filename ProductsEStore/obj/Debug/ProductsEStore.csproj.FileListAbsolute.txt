@@ -66,6 +66,9 @@ F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\EntityFr
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\Microsoft.Web.Infrastructure.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\Microsoft.Web.WebPages.OAuth.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\Newtonsoft.Json.dll
+F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\Ninject.dll
+F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\Ninject.Web.Common.dll
+F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\Ninject.Web.Mvc.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\System.Net.Http.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\System.Net.Http.Formatting.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\System.Net.Http.WebRequest.dll
@@ -78,10 +81,14 @@ F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\System.W
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\System.Web.WebPages.Deployment.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\System.Web.WebPages.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\System.Web.WebPages.Razor.dll
+F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\WebActivatorEx.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\WebGrease.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\WebMatrix.Data.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\WebMatrix.WebData.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\AsyncCtpLibrary.xml
+F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\Ninject.xml
+F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\Ninject.Web.Common.xml
+F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\Ninject.Web.Mvc.xml
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\EntityFramework.xml
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\Newtonsoft.Json.xml
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\System.Net.Http.xml
@@ -106,11 +113,3 @@ F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\DotNetOp
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\obj\Debug\ProductsEStore.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\obj\Debug\ProductsEStore.pdb
-F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\obj\Debug\ProductsEStore.csprojResolveAssemblyReference.cache
-F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\Ninject.dll
-F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\Ninject.Web.Common.dll
-F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\Ninject.Web.Mvc.dll
-F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\WebActivatorEx.dll
-F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\Ninject.xml
-F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\Ninject.Web.Common.xml
-F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\Ninject.Web.Mvc.xml

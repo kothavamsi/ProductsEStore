@@ -4,18 +4,32 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProductsEStore.Models;
+using ProductsEStore.Core;
 
 namespace ProductsEStore.Controllers
 {
     public class NewReleaseController : MyBaseController
     {
-        public ActionResult Index()
+        IRepository _repository;
+        public NewReleaseController(IRepository repository)
         {
-            // Dependency Injection
-            var newRelease = new NewRelease(_repository);
-            newRelease.NavigationBar.RenderSortByListMenu = false;
-            return View("Index", newRelease);
+            _repository = repository;
         }
 
+        public ActionResult Index(int pageNo = 1)
+        {
+            RequestCriteria reqCriteria = new RequestCriteria()
+            {
+                RequestMode = RequestMode.NewReleases,
+                SortMode = SortMode.None,
+                PageNo = pageNo,
+                PageSize = 12
+            };
+
+            RepositoryResponse repoResp = _repository.GetProducts(reqCriteria);
+            GridViewLayout gridViewLayout = new GridViewLayout(reqCriteria, repoResp, 4);
+            gridViewLayout.NavigationBar.RenderSortByListMenu = false;
+            return View("Result", gridViewLayout);
+        }
     }
 }

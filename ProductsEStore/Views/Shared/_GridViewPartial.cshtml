@@ -6,7 +6,7 @@
     @for (int row = 1; row <= @Model.RowCount && productIndex < @Model.CurrentPageProducts.Count; row++)
     {
         <div class="row">
-            @for (int col = 1; col <= @Model.ColumnSize && productIndex < @Model.CurrentPageProducts.Count; col++)
+            @for (int col = 1; col <= @Model.ColumnCount && productIndex < @Model.CurrentPageProducts.Count; col++)
             {
 
                 string colLayout = string.Format("col-lg-{0} col-md-{1} col-sm-{2} col-xs-{3}", @Model.lg_col, @Model.md_col, @Model.sm_col, @Model.xs_col);

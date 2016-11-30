@@ -184,26 +184,28 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\MostReviewsController.cs" />
     <Compile Include="Controllers\MyBaseController.cs" />
-    <Compile Include="Controllers\NewReleaseController.cs" />
+    <Compile Include="Controllers\NewReleaseController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TopSellersController.cs" />
     <Compile Include="Controllers\YearAndMonthController.cs" />
-    <Compile Include="Core\Helper.cs" />
     <Compile Include="ExceptionFilters\ExceptionFilter.cs" />
-    <Compile Include="Models\ExceptionPageModel.cs" />
+    <Compile Include="Models\ExceptionPageModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\GridView.cs" />
-    <Compile Include="Models\IDisplayLayout.cs" />
-    <Compile Include="Models\GridDisplayLayout.cs" />
     <Compile Include="Core\RequestCriteria.cs" />
     <Compile Include="Core\Response.cs" />
     <Compile Include="Core\SortByListItem.cs" />
     <Compile Include="Core\CategoryListItem.cs" />
     <Compile Include="Models\Contact.cs" />
-    <Compile Include="Models\MostReviews.cs" />
+    <Compile Include="Models\GridViewLayout.cs" />
     <Compile Include="Models\NewRelease.cs" />
     <Compile Include="Models\SiteMapData.cs" />
-    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="LogHandler\Config\LogManagerSection.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Repository\DataBase\CacheManager.cs" />
@@ -223,7 +225,6 @@
     <Compile Include="LogHandler\XmlLog\XmlLogger.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -356,8 +357,6 @@
     <Content Include="Views\Shared\_PopularTagsPartial.cshtml" />
     <Content Include="Views\Shared\_MonthlyPartial.cshtml" />
     <Content Include="Views\TopSellers\Index.cshtml" />
-    <Content Include="Views\MostReviews\Index.cshtml" />
-    <Content Include="Views\NewRelease\Index.cshtml" />
     <Content Include="Views\Shared\Copy of Result.cshtml" />
     <Content Include="Views\Shared\_GridViewPartial.cshtml" />
   </ItemGroup>

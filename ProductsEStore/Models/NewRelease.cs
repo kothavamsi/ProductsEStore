@@ -9,10 +9,8 @@ namespace ProductsEStore.Models
     public class NewRelease : ViewModelBase
     {
         public string Title { get; set; }
-
-        // Dependency Injection
-        public NewRelease(IRepository repository)
-            : base(repository)
+        
+        public NewRelease()
         {
             Title = "vamsi NewRelease";
         }

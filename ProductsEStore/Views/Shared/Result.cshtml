@@ -1,9 +1,9 @@
-﻿@model ProductsEStore.Models.GridDisplayLayout
+﻿@model ProductsEStore.Models.GridViewLayout
 @if (@Model.HasRenderableProducts)
 {
     <div>
         <h5>
-            @Model.Header.Message
+            @Model.LayoutHeader.Message
         </h5>
     </div>
     <div class="container-fluid">
@@ -11,7 +11,7 @@
             @Html.Partial("_GridViewPartial", @Model.GridView)
         </div>
         <div class="container-fluid text-center">
-            @Html.Partial("_PagerPartial", @Model.GridView.Pager)
+            @Html.Partial("_PagerPartial", @Model.Pager)
         </div>
     </div>
 }

@@ -45,6 +45,6 @@ namespace ProductsEStore.Core
         /// </summary>
         /// <param name="requestCriteria">Selection Criteria for the type of products we want to include in response </param>
         /// <returns>Response that contains products matched to RequestCriteria</returns>
-        Response GetProducts(RequestCriteria requestCriteria);
+        RepositoryResponse GetProducts(RequestCriteria requestCriteria);
     }
 }

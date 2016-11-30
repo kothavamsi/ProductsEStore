@@ -3,12 +3,12 @@ using ProductsEStore.Models;
 
 namespace ProductsEStore.Core
 {
-    public class Response
+    public class RepositoryResponse
     {
         public IList<Product> CurrentPageProducts { get; set; }
         public int ItemsCount { get; set; }
 
-        public Response()
+        public RepositoryResponse()
         {
            
         }

@@ -8,6 +8,12 @@ namespace ProductsEStore.Controllers
 {
     public class SearchController : MyBaseController
     {
+        IRepository _repository;
+        public SearchController(IRepository repository)
+        {
+            _repository = repository;
+        }
+
         [HttpPost]
         public ActionResult Index(string keyword)
         {
@@ -17,7 +23,7 @@ namespace ProductsEStore.Controllers
         [HttpGet]
         public ActionResult Index(string keyword, int pageNo = 1)
         {
-            RequestCriteria requestCriteria = new RequestCriteria()
+            RequestCriteria reqCriteria = new RequestCriteria()
             {
                 RequestMode = RequestMode.SearchKeyWord,
                 SearchKeyWord = keyword,
@@ -26,78 +32,16 @@ namespace ProductsEStore.Controllers
                 PageSize = 12
             };
 
-            Response response = _repository.GetProducts(requestCriteria);
-
-            // Dependency Injection
-            var productsDisplayLayout = Helper.GetProductsDisplayLayout(requestCriteria, response, _repository, 1);
-            
-            string headerMessage = string.Format(
-                "{0} Found >> Displaying {1} to {2} books",
-                response.ItemsCount,
-                1 + (pageNo - 1) * requestCriteria.PageSize,
-                response.CurrentPageProducts.Count + (pageNo - 1) * requestCriteria.PageSize);
-            productsDisplayLayout.Header.Message = headerMessage;
-
-            var title = string.Format("You searched for {0}", keyword);
-            productsDisplayLayout.PageTitle = productsDisplayLayout.TitleTemplate.Replace("{{TITLE}}", title);
-
-            if (productsDisplayLayout.HasRenderableProducts)
+            RepositoryResponse repoResp = _repository.GetProducts(reqCriteria);
+            GridViewLayout gridViewLayout = new GridViewLayout(reqCriteria, repoResp, 6);
+            gridViewLayout.NavigationBar = new NavigationBar(_repository);
+            gridViewLayout.NavigationBar.RenderSortByListMenu = false;
+           
+            if (gridViewLayout.HasRenderableProducts)
             {
                 new TagManager().PostPopularTag(new PopularTag().CreateTagInstance(keyword));
             }
-
-            productsDisplayLayout.NavigationBar.RenderSortByListMenu = false;
-            return View("Result", productsDisplayLayout);
+            return View("result", gridViewLayout);
         }
-
-        //private SearchResult GetBookSearchResult(string keyword, int pageNo)
-        //{
-        //    SearchResult searchResult;
-        //    if (!IsSearchKeywordValid(keyword))
-        //    {
-        //        return new SearchResult() { SearchKeyword = keyword, PageNo = pageNo, FoundResult = false };
-        //    }
-        //    if (!IsPageNumberInValidRange(pageNo, keyword))
-        //    {
-        //        throw new Exception(string.Format("The Page No:{0} Is NotValid", pageNo));
-        //    }
-
-        //    var books = new BookManager().GetBooksByKeyword(keyword);
-        //    int totalBooks = books.Count;
-        //    var displayedBooks = books.Skip((pageNo - 1) * PagerSettings.PageSize).Take(PagerSettings.PageSize).ToList();
-        //    var pager = new Pager(totalBooks, pageNo);
-        //    var foundResult = books.Count > 0 ? true : false;
-
-        //    searchResult = new SearchResult()
-        //    {
-        //        Books = books,
-        //        DisplayedBooks = displayedBooks,
-        //        PageNo = pageNo,
-        //        Pager = pager,
-        //        SearchKeyword = keyword,
-        //        FoundResult = foundResult,
-        //        NavBar = new NavBar() { RenderSortByList = false }
-        //    };
-        //    return searchResult;
-        //}
-
-        //private bool IsSearchKeywordValid(string keyword)
-        //{
-        //    return !string.IsNullOrEmpty(keyword);
-        //}
-
-        //private bool IsPageNumberInValidRange(int pageNo, string keyword)
-        //{
-        //    var totalPages = GetTotalPages(keyword);
-        //    var retVal = (pageNo == 1 || pageNo > 1 && pageNo <= totalPages);
-        //    return retVal;
-        //}
-
-        //private int GetTotalPages(string keyword)
-        //{
-        //    var books = new BookManager().GetBooksByKeyword(keyword);
-        //    var totalPages = new Pager().GetPageCount(books.Count);
-        //    return totalPages;
-        //}
     }
 }

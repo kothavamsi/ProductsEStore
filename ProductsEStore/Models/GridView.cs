@@ -7,25 +7,23 @@ namespace ProductsEStore.Models
 {
     public class GridView
     {
-        public int ColumnSize { get; set; }
+        public int ColumnCount { get; set; }
         public IList<Product> CurrentPageProducts { get; set; }
         public int RowCount { get; set; }
         public int lg_col { get; set; }
         public int md_col { get; set; }
         public int sm_col { get; set; }
         public int xs_col { get; set; }
-        public Pager Pager { get; set; }
 
-        public GridView(int columns, IList<Product> currentPageProducts, int itemsCount, int currentPageNumber, int pageSize)
+        public GridView(int columns, IList<Product> currentPageProducts)
         {
-            ColumnSize = columns;
+            ColumnCount = columns;
             CurrentPageProducts = currentPageProducts;
-            RowCount = (CurrentPageProducts.Count / ColumnSize) + (CurrentPageProducts.Count % ColumnSize > 0 ? 1 : 0);
-            lg_col = 12 / ColumnSize;
-            md_col = ((12 / ColumnSize) * 2) > 12 ? 12 : ((12 / ColumnSize) * 2);
-            sm_col = ((12 / ColumnSize) * 3) > 12 ? 12 : ((12 / ColumnSize) * 3);
+            RowCount = (CurrentPageProducts.Count / ColumnCount) + (CurrentPageProducts.Count % ColumnCount > 0 ? 1 : 0);
+            lg_col = 12 / ColumnCount;
+            md_col = ((12 / ColumnCount) * 2) > 12 ? 12 : ((12 / ColumnCount) * 2);
+            sm_col = ((12 / ColumnCount) * 3) > 12 ? 12 : ((12 / ColumnCount) * 3);
             xs_col = 12;
-            Pager = new Pager(itemsCount,currentPageNumber,pageSize);
         }
 
     }

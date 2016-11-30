@@ -4,21 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProductsEStore.Models;
+using ProductsEStore.Core;
 
 namespace ProductsEStore.Controllers
 {
     public class TopSellersController : MyBaseController
     {
-        //
-        // GET: /TopSellers/
-
         public ActionResult Index()
         {
-            // Dependency Injection
-            var topSellers = new TopSellers(_repository);
-            topSellers.NavigationBar.RenderSortByListMenu = false;
-            return View("Index", topSellers);
+            BaseModel.NavigationBar.RenderSortByListMenu = false;
+            return View("index", BaseModel);
         }
-
     }
 }

@@ -117,7 +117,7 @@ namespace ProductsEStore.Models
     {
         public static string[] MonthNames = new string[] { "", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
 
-        new public PopularTagData PopularTagData;
+        public PopularTagData PopularTagData;
         public PopularAuthorData PopularAuthorData;
         public PopularPublisherData PopularPublisherData;
         public MonthlyData MonthlyData;
@@ -130,7 +130,6 @@ namespace ProductsEStore.Models
         // Dependency Injection
         IRepository _repository;
         public SiteMapData(IRepository repository)
-            : base(repository)
         {
             this._repository = repository;
             MonthlyData = new MonthlyData(_repository);

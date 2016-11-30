@@ -12,7 +12,6 @@ namespace ProductsEStore.Models
 
         // Dependency Injection
         public TopSellers(IRepository repository)
-            : base(repository)
         {
             Title = "vamsi topsellers";
         }
