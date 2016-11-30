@@ -19,10 +19,10 @@ namespace ProductsEStore.Controllers
         {
             _inMemoryCache = new InMemoryCache();
 
-            // Dependency Injection
+             //Dependency Injection
             _repository = new DatabaseRepository(_inMemoryCache);
 
-            // Dependency Injection
+             //Dependency Injection
             ViewModelBaseObj = new ViewModelBase(_repository);
         }
 
