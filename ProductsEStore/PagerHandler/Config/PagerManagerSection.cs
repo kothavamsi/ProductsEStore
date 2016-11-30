@@ -13,11 +13,5 @@ namespace ProductsEStore.PagerHandler.Config
         {
             get { return (int)this["pagerDisplayLength"]; }
         }
-
-        [ConfigurationProperty("pageSize")]
-        public int PageSize
-        {
-            get { return (int)this["pageSize"]; }
-        }
     }
 }

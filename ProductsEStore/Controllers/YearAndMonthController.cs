@@ -1,36 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using ProductsEStore.Models;
+﻿using System.Web.Mvc;
 using ProductsEStore.Core;
-using ProductsEStore.PagerHandler.PagerSettingsHandler;
+using ProductsEStore.Models;
 
 namespace ProductsEStore.Controllers
 {
     public class YearAndMonthController : MyBaseController
     {
-        public ActionResult Index(int Year, int Month, int pageNo = 1,string sort = "post-date")
+        public ActionResult Index(int Year, int Month, int pageNo = 1, string sort = "post-date")
         {
             RequestCriteria requestCriteria = new RequestCriteria()
             {
                 RequestMode = RequestMode.Monthly,
+                MonthlyYearly = new MonthlyYearly() { Month = Month, Year = Year },
                 SortMode = SortModeMappings.GetSortMode(sort),
                 PageNo = pageNo,
-                MonthlyYearly = new MonthlyYearly() { Month = Month,Year = Year}
+                PageSize = 12
             };
 
             Response response = _repository.GetProducts(requestCriteria);
 
             // Dependency Injection
-            var productListViewResult = Helper.GetProductListViewResult(requestCriteria, response, _repository);
-            string headerMessage = string.Format("Added {0} Books In {1} {2}", response.ProductCount, SiteMapData.MonthNames[Month], Year);
-            productListViewResult.Header = new ProductListViewResultHeader()
-            {
-                Message = headerMessage
-            };
-            return View("Result", productListViewResult);
+            var productsDisplayLayout = Helper.GetProductsDisplayLayout(requestCriteria, response, _repository, 4);
+            
+            string headerMessage = string.Format(
+                "{0} Books Added on {1}{2} >> Displaying {3} to {4} books",
+                response.ItemsCount,
+                SiteMapData.MonthNames[Month],
+                Year,
+                1 + (pageNo - 1) * requestCriteria.PageSize,
+                response.CurrentPageProducts.Count + (pageNo - 1) * requestCriteria.PageSize);
+            productsDisplayLayout.Header.Message = headerMessage;
+
+            var title = string.Format("{0} {1} Books", SiteMapData.MonthNames[Month], Year);
+            productsDisplayLayout.PageTitle = productsDisplayLayout.TitleTemplate.Replace("{{TITLE}}", title);
+            
+            return View("Result", productsDisplayLayout);
         }
 
         //private SearchResult GetBookSearchResult(int year, int month, int pageNo)

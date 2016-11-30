@@ -1,13 +1,8 @@
 ﻿using System.Web.Mvc;
 using ProductsEStore.Core;
-using ProductsEStore.LogHandler;
 using ProductsEStore.Models;
-using System.Collections.Generic;
-using System.Linq;
-using ProductsEStore.PagerHandler.PagerSettingsHandler;
-using System;
-using ProductsEStore.WebApi;
 using ProductsEStore.Repository.DataBase;
+using ProductsEStore.WebApi;
 
 namespace ProductsEStore.Controllers
 {
@@ -27,26 +22,32 @@ namespace ProductsEStore.Controllers
                 RequestMode = RequestMode.SearchKeyWord,
                 SearchKeyWord = keyword,
                 SortMode = SortMode.None,
-                PageNo = pageNo
+                PageNo = pageNo,
+                PageSize = 12
             };
 
             Response response = _repository.GetProducts(requestCriteria);
 
             // Dependency Injection
-            var productListViewResult = Helper.GetProductListViewResult(requestCriteria, response, _repository);
-            string headerMessage = string.Format("Searched - {0} (Found {1} Books)", requestCriteria.SearchKeyWord, response.ProductCount);
-            productListViewResult.Header = new ProductListViewResultHeader()
-            {
-                Message = headerMessage
-            };
+            var productsDisplayLayout = Helper.GetProductsDisplayLayout(requestCriteria, response, _repository, 1);
+            
+            string headerMessage = string.Format(
+                "{0} Found >> Displaying {1} to {2} books",
+                response.ItemsCount,
+                1 + (pageNo - 1) * requestCriteria.PageSize,
+                response.CurrentPageProducts.Count + (pageNo - 1) * requestCriteria.PageSize);
+            productsDisplayLayout.Header.Message = headerMessage;
 
-            productListViewResult.NavigationBar.RenderSortByListMenu = false;
+            var title = string.Format("You searched for {0}", keyword);
+            productsDisplayLayout.PageTitle = productsDisplayLayout.TitleTemplate.Replace("{{TITLE}}", title);
 
-            if (productListViewResult.FoundResult)
+            if (productsDisplayLayout.HasRenderableProducts)
             {
                 new TagManager().PostPopularTag(new PopularTag().CreateTagInstance(keyword));
             }
-            return View("Result", productListViewResult);
+
+            productsDisplayLayout.NavigationBar.RenderSortByListMenu = false;
+            return View("Result", productsDisplayLayout);
         }
 
         //private SearchResult GetBookSearchResult(string keyword, int pageNo)

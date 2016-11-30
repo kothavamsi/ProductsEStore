@@ -14,7 +14,7 @@ namespace ProductsEStore
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "SearchPage",
+                name: "SearchWithPaging",
                 url: "search/{keyword}/page/{pageNo}",
                 defaults: new { controller = "Search", action = "Index" }
             );
@@ -26,7 +26,7 @@ namespace ProductsEStore
              );
 
             routes.MapRoute(
-                name: "CategoryPage",
+                name: "CategoryWithPaging",
                 url: "category/{seoFriendlyCategoryName}/page/{pageNo}",
                 defaults: new { controller = "Category", action = "Index" }
             );
@@ -41,11 +41,11 @@ namespace ProductsEStore
                 name: "YearAndMonth",
                 url: "{Year}/{Month}/page/{pageNo}",
                 defaults: new { controller = "YearAndMonth", action = "Index" },
-                constraints: new { Year = @"\d{4}", Month=@"\d{1,2}" }
+                constraints: new { Year = @"\d{4}", Month = @"\d{1,2}" }
             );
 
             routes.MapRoute(
-                name: "YearAndMonthPage",
+                name: "YearAndMonthWithPaging",
                 url: "{Year}/{Month}",
                 defaults: new { controller = "YearAndMonth", action = "Index" },
                 constraints: new { Year = @"\d{4}", Month = @"\d{1,2}" }
@@ -63,25 +63,34 @@ namespace ProductsEStore
                 defaults: new { controller = "MostReviews", action = "Index" }
             );
             routes.MapRoute(
-               name: "MostReviewsPage",
+               name: "MostReviewsWithPaging",
                url: "most-reviews/page/{pageNo}",
                defaults: new { controller = "MostReviews", action = "Index" }
            );
+
             routes.MapRoute(
                 name: "NewRelease",
                 url: "new-release/",
                 defaults: new { controller = "NewRelease", action = "Index" }
             );
             routes.MapRoute(
-               name: "NewReleasePage",
+               name: "NewReleaseWithPaging",
                url: "new-release/page/{pageNo}",
                defaults: new { controller = "NewRelease", action = "Index" }
            );
+
+            routes.MapRoute(
+               name: "DefaultWithPaging",
+               url: "page/{pageNo}",
+               defaults: new { controller = "Home", action = "Index" }
+           );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}",
                 defaults: new { controller = "Home", action = "Index" }
             );
+
         }
     }
 }

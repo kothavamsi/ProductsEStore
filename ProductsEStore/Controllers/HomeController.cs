@@ -17,19 +17,23 @@ namespace ProductsEStore.Controllers
             {
                 RequestMode = RequestMode.All,
                 SortMode = SortModeMappings.GetSortMode(sort),
-                PageNo = pageNo
+                PageNo = pageNo,
+                PageSize = 24
             };
 
             Response response = _repository.GetProducts(requestCriteria);
 
             // Dependency Injection
-            var productListViewResult = Helper.GetProductListViewResult(requestCriteria, response, _repository,6);
-            string headerMessage = string.Format("Total {0} Books", response.ProductCount, requestCriteria.SeoFriendlyCategoryName);
-            productListViewResult.Header = new ProductListViewResultHeader()
-            {
-                Message = headerMessage
-            };
-            return View("Index", productListViewResult);
+            var productsDisplayLayout = Helper.GetProductsDisplayLayout(requestCriteria, response, _repository, 6);
+            string headerMessage = string.Format(
+                "Found {0} books >> Displaying {1} to {2} books",
+                response.ItemsCount,
+                1 + (pageNo - 1) * requestCriteria.PageSize,
+                response.CurrentPageProducts.Count + (pageNo - 1) * requestCriteria.PageSize);
+            productsDisplayLayout.Header.Message = headerMessage;
+
+            productsDisplayLayout.PageTitle = productsDisplayLayout.TitleTemplate.Replace("{{TITLE}}", productsDisplayLayout.SiteName);
+            return View("Index", productsDisplayLayout);
         }
 
         public ActionResult About()

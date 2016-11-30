@@ -1,7 +1,7 @@
 ﻿@model ProductsEStore.Models.TopSellers
 
 @{
-    ViewBag.Title = "Index";
+    Model.PageTitle = Model.TitleTemplate.Replace("{{TITLE}}", "Top Sellers");
 }
 
 <h2>@Model.Title</h2>

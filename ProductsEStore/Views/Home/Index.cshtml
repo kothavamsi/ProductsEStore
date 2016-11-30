@@ -1,6 +1,6 @@
 ﻿@{
-    ViewBag.Title = "MyEbook";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    Model.TitleTemplate.Replace("{{TITLE}}", Model.SiteName); 
 }
-@model ProductsEStore.Models.ProductListViewResult
+@model ProductsEStore.Models.GridDisplayLayout
 @Html.Partial("Result", @Model)

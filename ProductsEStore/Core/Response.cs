@@ -5,8 +5,8 @@ namespace ProductsEStore.Core
 {
     public class Response
     {
-        public IList<Product> ViewProducts { get; set; }
-        public int ProductCount { get; set; }
+        public IList<Product> CurrentPageProducts { get; set; }
+        public int ItemsCount { get; set; }
 
         public Response()
         {

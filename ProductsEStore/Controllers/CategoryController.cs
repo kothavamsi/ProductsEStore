@@ -1,10 +1,6 @@
 ﻿using System.Web.Mvc;
 using ProductsEStore.Core;
-using ProductsEStore.LogHandler;
 using ProductsEStore.Models;
-using System.Linq;
-using ProductsEStore.PagerHandler.PagerSettingsHandler;
-using System;
 
 namespace ProductsEStore.Controllers
 {
@@ -17,19 +13,27 @@ namespace ProductsEStore.Controllers
                 RequestMode = RequestMode.GetItemsInCategory,
                 SeoFriendlyCategoryName = seoFriendlyCategoryName,
                 SortMode = SortModeMappings.GetSortMode(sort),
-                PageNo = pageNo
+                PageNo = pageNo,
+                PageSize = 12
             };
 
             Response response = _repository.GetProducts(requestCriteria);
 
             // Dependency Injection
-            var productListViewResult = Helper.GetProductListViewResult(requestCriteria, response, _repository);
-            string headerMessage = string.Format("Found {0} Books Under {1} Category", response.ProductCount, requestCriteria.SeoFriendlyCategoryName);
-            productListViewResult.Header = new ProductListViewResultHeader()
-            {
-                Message = headerMessage
-            };
-            return View("Result", productListViewResult);
+            var productsDisplayLayOut = Helper.GetProductsDisplayLayout(requestCriteria, response, _repository, 4);
+
+            string headerMessage = string.Format(
+                "{0} Books under {1} category >> Displaying {2} to {3} books",
+                response.ItemsCount,
+                seoFriendlyCategoryName,
+                1 + (pageNo - 1) * requestCriteria.PageSize,
+                response.CurrentPageProducts.Count + (pageNo - 1) * requestCriteria.PageSize);
+
+            var title = string.Format("Popular {0} Books", seoFriendlyCategoryName);
+            productsDisplayLayOut.PageTitle = productsDisplayLayOut.TitleTemplate.Replace("{{TITLE}}", title);
+
+            productsDisplayLayOut.Header.Message = headerMessage;
+            return View("Result", productsDisplayLayOut);
         }
 
 

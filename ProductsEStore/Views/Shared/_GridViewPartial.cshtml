@@ -3,20 +3,20 @@
     int productIndex = 0;
 }
 <div class="container-fluid">
-    @for (int row = 1; row <= @Model.RowCount && productIndex < @Model.Products.Count; row++)
+    @for (int row = 1; row <= @Model.RowCount && productIndex < @Model.CurrentPageProducts.Count; row++)
     {
         <div class="row">
-            @for (int col = 1; col <= @Model.ColumnSize && productIndex < @Model.Products.Count; col++)
+            @for (int col = 1; col <= @Model.ColumnSize && productIndex < @Model.CurrentPageProducts.Count; col++)
             {
 
                 string colLayout = string.Format("col-lg-{0} col-md-{1} col-sm-{2} col-xs-{3}", @Model.lg_col, @Model.md_col, @Model.sm_col, @Model.xs_col);
                 <div class="@colLayout">
                     <div class="panel panel-info">
                         <div class="panel-heading text-nowrap">
-                            <h5 class="panel-title" style="overflow: hidden">@Model.Products[productIndex].Title</h5>
+                            <h5 class="panel-title" style="overflow: hidden">@Model.CurrentPageProducts[productIndex].Title</h5>
                         </div>
                         <div class="panel-body">
-                            <img src="@Model.Products[productIndex].CoverPageUrl" alt="phyton guide"
+                            <img src="@Model.CurrentPageProducts[productIndex].CoverPageUrl" alt="phyton guide"
                                     class="img-thumbnail img-responsive">
                         </div>
                     </div>

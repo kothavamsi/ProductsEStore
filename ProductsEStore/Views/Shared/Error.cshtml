@@ -1,6 +1,5 @@
-﻿@model HandleErrorInfo
-@{
-    ViewBag.Title = "Sorry, there was a problem!";
+﻿@{
+    Model.PageTitle = Model.TitleTemplate.Replace("{{TITLE}}", "Page Not Found");
 }
 <div class="alert alert-warning">
     <p>

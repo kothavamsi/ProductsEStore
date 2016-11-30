@@ -11,16 +11,25 @@ namespace ProductsEStore.Models
     {
         public PopularTagData PopularTagData;
         public NavigationBar NavigationBar;
+        public string PageTitle { get; set; }
+        public string SiteName { get; set; }
+        public string SiteTagLine { get; set; }
+        public string SiteDomain { get; set; }
+        public string TitleTemplate { get; set; }
 
         public ViewModelBase()
         {
             PopularTagData = new PopularTagData();
+            SiteName = "My eBook";
+            SiteDomain = "www.myebook.net";
+            SiteTagLine = "free eBooks Store";
+            TitleTemplate = "{{TITLE}} - " + SiteTagLine;
         }
 
         // Dependency Injection
         IRepository _repository;
         public ViewModelBase(IRepository repository)
-            : base()
+            : this()
         {
             _repository = repository;
             NavigationBar = new NavigationBar(_repository);

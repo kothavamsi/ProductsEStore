@@ -1,8 +1,6 @@
 ﻿using System.Configuration;
-using ProductsEStore.LogHandler.Config;
-using ProductsEStore.PagerHandler.Config;
 
-namespace ProductsEStore.PagerHandler.PagerSettingsHandler
+namespace ProductsEStore.PagerHandler.Config
 {
     public static class PagerSettingsManager
     {
@@ -15,7 +13,6 @@ namespace ProductsEStore.PagerHandler.PagerSettingsHandler
         {
             PagerManagerSection pms = (PagerManagerSection)ConfigurationManager.GetSection("pagerManager");
             PagerSettings.PagerDisplayLength = pms.PagerDisplayLength;
-            PagerSettings.PageSize = pms.PageSize;
         }
     }
 }

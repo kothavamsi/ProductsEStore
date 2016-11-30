@@ -59,6 +59,7 @@ namespace ProductsEStore.Core
         public RequestMode RequestMode;
         public SortMode SortMode;
         public int PageNo;
+        public int PageSize;
         public string SearchKeyWord;
         public int CategoryId;
         public string SeoFriendlyCategoryName;

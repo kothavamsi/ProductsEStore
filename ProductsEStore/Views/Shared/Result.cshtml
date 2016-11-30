@@ -1,28 +1,24 @@
-﻿@model ProductsEStore.Models.ProductListViewResult
-@{
-    ViewBag.Title = "Search Results";
-}
-@if (@Model.FoundResult)
+﻿@model ProductsEStore.Models.GridDisplayLayout
+@if (@Model.HasRenderableProducts)
 {
     <div>
-        <h3>
+        <h5>
             @Model.Header.Message
-        </h3>
+        </h5>
     </div>
     <div class="container-fluid">
         <div class="container-fluid text-center">
             @Html.Partial("_GridViewPartial", @Model.GridView)
         </div>
         <div class="container-fluid text-center">
-            @Html.Partial("_PagerPartial", @Model.Pager)
+            @Html.Partial("_PagerPartial", @Model.GridView.Pager)
         </div>
     </div>
 }
 else
 {
-    <h1 class="h2 alert-danger">
-        @Model.Header.Message
-    </h1>
-    <p>
-        Sorry, no ebooks matched your criteria.</p>
+    <div class="alert alert-warning">
+        <p>
+            Sorry, no ebooks matched your criteria.</p>
+    </div>
 }

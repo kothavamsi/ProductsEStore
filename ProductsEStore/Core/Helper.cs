@@ -8,18 +8,15 @@ namespace ProductsEStore.Core
 {
     public class Helper
     {
-        public static ProductListViewResult GetProductListViewResult(RequestCriteria requestCriteria, Response response, IRepository repository, int ColumnSize = 4)
+        public static GridDisplayLayout GetProductsDisplayLayout(RequestCriteria requestCriteria, Response response, IRepository repository, int columns)
         {
-            ProductListViewResult productListViewResult;
-
             // Dependency Injection
-            productListViewResult = new ProductListViewResult(repository)
-            {
-                FoundResult = response.ViewProducts.Count > 0 ? true : false,
-                ProductCount = response.ProductCount,
-                GridView = new GridView(ColumnSize, response.ViewProducts),
-                Pager = new Pager(response.ProductCount, requestCriteria.PageNo)
-            };
+            GridDisplayLayout productListViewResult = new GridDisplayLayout(repository)
+           {
+               HasRenderableProducts = response.CurrentPageProducts.Count > 0 ? true : false,
+               ItemsCount = response.ItemsCount,
+               GridView = new GridView(columns, response.CurrentPageProducts, response.ItemsCount, requestCriteria.PageNo, requestCriteria.PageSize),
+           };
             return productListViewResult;
         }
     }

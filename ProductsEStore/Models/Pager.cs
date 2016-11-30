@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using ProductsEStore.PagerHandler.PagerSettingsHandler;
+﻿using ProductsEStore.PagerHandler.Config;
 
 namespace ProductsEStore.Models
 {
 
     public class Pager
     {
-        public static int DEFAULT_PAGER_DISPLAY_LENGTH = 5;
-        public static int DEFAULT_PAGE_SIZE = 12;
-
         public bool IsRenderable { get; set; }
         public int PageSize { get; set; }
-        public int TotalItems { get; set; }
+        public int ItemsCount { get; set; }
         public int TotalPages { get; set; }
         public int PagerDisplayLength { get; set; }
         public int StartIndex { get; set; }
@@ -25,27 +18,27 @@ namespace ProductsEStore.Models
         public bool IsFirstEnabled { get; set; }
         public bool IsLastEnabled { get; set; }
 
-        public Pager(int totalItems, int pageNo)
+        public Pager(int itemsCount, int currentPageNumber, int pageSize)
         {
-            PagerDisplayLength = PagerSettings.PagerDisplayLength == 0 ? DEFAULT_PAGER_DISPLAY_LENGTH : PagerSettings.PagerDisplayLength;
-            PageSize = PagerSettings.PageSize == 0 ? DEFAULT_PAGE_SIZE : PagerSettings.PageSize;
+            PagerDisplayLength = PagerSettings.PagerDisplayLength;
+            PageSize = pageSize;
             IsNextEnabled = false;
             IsPreviousEnabled = false;
             IsRenderable = false;
-            ConstructPager(totalItems, pageNo);
+            ConstructPager(itemsCount, currentPageNumber);
         }
 
-        public int GetPageCount(int totalItems)
+        public int GetPageCount(int itemsCount)
         {
-            return (totalItems / PageSize) + ((totalItems % PageSize) > 0 ? 1 : 0);
+            return (itemsCount / PageSize) + ((itemsCount % PageSize) > 0 ? 1 : 0);
         }
 
-        private void ConstructPager(int totalItems, int pageNo)
+        private void ConstructPager(int itemsCount, int currentPageNumber)
         {
-            CurrentIndex = pageNo;
-            TotalItems = totalItems;
+            CurrentIndex = currentPageNumber;
+            ItemsCount = itemsCount;
 
-            TotalPages = GetPageCount(totalItems);
+            TotalPages = GetPageCount(itemsCount);
             if (TotalPages > 1)
                 IsRenderable = true;
             else
@@ -54,17 +47,17 @@ namespace ProductsEStore.Models
             // If pager can move right wards
             if (TotalPages > PagerDisplayLength)
             {
-                 // if pageNo can be placed at center of our pager
-                if (IsPageNumberCenter(pageNo))
+                // if pageNo can be placed at center of our pager
+                if (IsPageNumberCenter(currentPageNumber))
                 {
-                    var center = pageNo;
+                    var center = currentPageNumber;
                     StartIndex = center - PagerDisplayLength / 2;
                     EndIndex = center + PagerDisplayLength / 2;
                 }
                 else
                 {
                     //if pageNo is towrads left side of pager
-                    if (pageNo <= PagerDisplayLength / 2)
+                    if (currentPageNumber <= PagerDisplayLength / 2)
                     {
                         StartIndex = 1;
                         EndIndex = StartIndex + PagerDisplayLength - 1;
@@ -85,7 +78,7 @@ namespace ProductsEStore.Models
             }
 
             // nextButton enable or disable ?
-            if (IsPageAtEnd(pageNo))
+            if (IsPageAtEnd(currentPageNumber))
             {
                 IsNextEnabled = false;
             }
@@ -95,7 +88,7 @@ namespace ProductsEStore.Models
             }
 
             // prevButton enable or disable ?
-            if (IsPageAtStart(pageNo))
+            if (IsPageAtStart(currentPageNumber))
             {
                 IsPreviousEnabled = false;
             }
@@ -106,7 +99,7 @@ namespace ProductsEStore.Models
 
 
             // firstButton enable or disable ?
-            if (IsPageAffinityTowardsStart(pageNo))
+            if (IsPageAffinityTowardsStart(currentPageNumber))
             {
                 IsFirstEnabled = false;
             }
@@ -116,7 +109,7 @@ namespace ProductsEStore.Models
             }
 
             // lastButton enable or disable ?
-            if (IsPageAffinityTowardsEnd(pageNo))
+            if (IsPageAffinityTowardsEnd(currentPageNumber))
             {
                 IsLastEnabled = false;
             }

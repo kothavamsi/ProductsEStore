@@ -1,7 +1,7 @@
 ﻿@model ProductsEStore.Models.MostReviews
 
 @{
-    ViewBag.Title = "Index";
+    Model.PageTitle = Model.TitleTemplate.Replace("{{TITLE}}", "Most Reviews"); 
 }
 
 <h2>@Model.Title</h2>

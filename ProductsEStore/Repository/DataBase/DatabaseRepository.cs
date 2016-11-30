@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using ProductsEStore.Models;
 using ProductsEStore.Repository.DataBase;
-using System.Web.Caching;
-using ProductsEStore.PagerHandler.PagerSettingsHandler;
 
 namespace ProductsEStore.Core
 {
     public class DatabaseRepository : IRepository
     {
         ProductStoreEntities dbContext;
-
         ICacheService _cacheService;
+
         public DatabaseRepository(ICacheService cacheService)
         {
             dbContext = new ProductStoreEntities();
@@ -71,34 +67,34 @@ namespace ProductsEStore.Core
             switch (requestCriteria.RequestMode)
             {
                 case RequestMode.GetItemsInCategory:
-                    response = GetProductItemsInCategory(requestCriteria.SeoFriendlyCategoryName, requestCriteria.PageNo, requestCriteria.SortMode);
+                    response = GetProductItemsInCategory(requestCriteria.SeoFriendlyCategoryName, requestCriteria.PageNo, requestCriteria.PageSize, requestCriteria.SortMode);
                     break;
                 case RequestMode.SearchKeyWord:
-                    response = GetProductItemsBySearchKeyWord(requestCriteria.SearchKeyWord, requestCriteria.PageNo, requestCriteria.SortMode);
+                    response = GetProductItemsBySearchKeyWord(requestCriteria.SearchKeyWord, requestCriteria.PageNo, requestCriteria.PageSize, requestCriteria.SortMode);
                     break;
                 case RequestMode.Monthly:
-                    response = GetProductsByYearMonth(requestCriteria.MonthlyYearly.Year, requestCriteria.MonthlyYearly.Month, requestCriteria.PageNo, requestCriteria.SortMode);
+                    response = GetProductsByYearMonth(requestCriteria.MonthlyYearly.Year, requestCriteria.MonthlyYearly.Month, requestCriteria.PageNo, requestCriteria.PageSize, requestCriteria.SortMode);
                     break;
                 case RequestMode.All:
-                    response = GetAllProducts(requestCriteria.PageNo, requestCriteria.SortMode);
+                    response = GetAllProducts(requestCriteria.PageNo, requestCriteria.PageSize, requestCriteria.SortMode);
                     break;
             }
             return response;
         }
 
-        private Response GetAllProducts(int PageNo, SortMode sortMode)
+        private Response GetAllProducts(int pageNo, int pageSize, SortMode sortMode)
         {
-            return _cacheService.GetOrSet(string.Format("GetAllProducts_{0}_{1}", PageNo, sortMode.ToString()),
-                () => GetAllProductsFromDB(PageNo, sortMode));
+            return _cacheService.GetOrSet(string.Format("GetAllProducts_{0}_{1}_{2}", pageNo, pageSize, sortMode.ToString()),
+                () => GetAllProductsFromDB(pageNo, pageSize, sortMode));
         }
 
         // TODO: SortMode Not Yet Implemented
-        private Response GetAllProductsFromDB(int PageNo, SortMode sortMode)
+        private Response GetAllProductsFromDB(int pageNo, int pageSize, SortMode sortMode)
         {
             var allProductsQuery = from dbProduct in dbContext.Products
                                    orderby dbProduct.Title
                                    select dbProduct;
-            var pagedAllProductsQuery = allProductsQuery.Skip((PageNo - 1) * PagerSettings.PageSize).Take(PagerSettings.PageSize);
+            var pagedAllProductsQuery = allProductsQuery.Skip((pageNo - 1) * pageSize).Take(pageSize);
             var MappedProductsQuery = from dbProduct in pagedAllProductsQuery
                                       select new ProductsEStore.Models.Product()
                                       {
@@ -117,27 +113,27 @@ namespace ProductsEStore.Core
                                       };
             Response response = new Response()
             {
-                ProductCount = allProductsQuery.Count(),
-                ViewProducts = MappedProductsQuery.ToList()
+                ItemsCount = allProductsQuery.Count(),
+                CurrentPageProducts = MappedProductsQuery.ToList()
             };
             return response;
         }
 
-        private Response GetProductItemsInCategory(string SeoFriendlyCategoryName, int PageNo, SortMode sortMode)
+        private Response GetProductItemsInCategory(string seoFriendlyCategoryName, int pageNo, int pageSize, SortMode sortMode)
         {
-            return _cacheService.GetOrSet(string.Format("GetProductItemsInCategory_{0}_{1}_{2}", SeoFriendlyCategoryName, PageNo, sortMode.ToString()),
-                () => GetProductItemsInCategoryFromDB(SeoFriendlyCategoryName, PageNo, sortMode));
+            return _cacheService.GetOrSet(string.Format("GetProductItemsInCategory_{0}_{1}_{2}_{3}", seoFriendlyCategoryName, pageNo, pageSize, sortMode.ToString()),
+                () => GetProductItemsInCategoryFromDB(seoFriendlyCategoryName, pageNo, pageSize, sortMode));
         }
 
         // TODO: SortMode Not Yet Implemented
-        private Response GetProductItemsInCategoryFromDB(string SeoFriendlyCategoryName, int PageNo, SortMode sortMode)
+        private Response GetProductItemsInCategoryFromDB(string seoFriendlyCategoryName, int pageNo, int pageSize, SortMode sortMode)
         {
             var categoryProductsQuery = from dbProduct in dbContext.Products
-                                        where dbProduct.Category.SEOFriendlyName == SeoFriendlyCategoryName
+                                        where dbProduct.Category.SEOFriendlyName == seoFriendlyCategoryName
                                         orderby dbProduct.Title
                                         select dbProduct;
 
-            var pagedcategoryProductsQuery = categoryProductsQuery.Skip((PageNo - 1) * PagerSettings.PageSize).Take(PagerSettings.PageSize);
+            var pagedcategoryProductsQuery = categoryProductsQuery.Skip((pageNo - 1) * pageSize).Take(pageSize);
 
             var MappedProductsQuery = from dbProduct in pagedcategoryProductsQuery
                                       select new ProductsEStore.Models.Product()
@@ -159,26 +155,26 @@ namespace ProductsEStore.Core
 
             Response response = new Response()
             {
-                ProductCount = categoryProductsQuery.Count(),
-                ViewProducts = MappedProductsQuery.ToList()
+                ItemsCount = categoryProductsQuery.Count(),
+                CurrentPageProducts = MappedProductsQuery.ToList()
             };
             return response;
         }
 
-        private Response GetProductItemsBySearchKeyWord(string SearchKeyWord, int PageNo, SortMode sortMode)
+        private Response GetProductItemsBySearchKeyWord(string searchKeyWord, int pageNo, int pageSize, SortMode sortMode)
         {
-            return _cacheService.GetOrSet(string.Format("GetProductItemsBySearchKeyWord_{0}_{1}_{2}", SearchKeyWord, PageNo, sortMode.ToString()),
-                () => GetProductItemsBySearchKeyWordFromDB(SearchKeyWord, PageNo, sortMode));
+            return _cacheService.GetOrSet(string.Format("GetProductItemsBySearchKeyWord_{0}_{1}_{2}_{3}", searchKeyWord, pageNo, pageSize, sortMode.ToString()),
+                () => GetProductItemsBySearchKeyWordFromDB(searchKeyWord, pageNo, pageSize, sortMode));
         }
 
         // TODO: SortMode Not Yet Implemented
-        private Response GetProductItemsBySearchKeyWordFromDB(string SearchKeyWord, int PageNo, SortMode sortMode)
+        private Response GetProductItemsBySearchKeyWordFromDB(string searchKeyWord, int pageNo, int pageSize, SortMode sortMode)
         {
             var keywordProductsQuery = from dbProduct in dbContext.Products
-                                       where dbProduct.Title.Contains(SearchKeyWord)
+                                       where dbProduct.Title.Contains(searchKeyWord)
                                        orderby dbProduct.Title
                                        select dbProduct;
-            var pagedkeywordProductsQuery = keywordProductsQuery.Skip((PageNo - 1) * PagerSettings.PageSize).Take(PagerSettings.PageSize);
+            var pagedkeywordProductsQuery = keywordProductsQuery.Skip((pageNo - 1) * pageSize).Take(pageSize);
 
             var MappedProductsQuery = from dbProduct in pagedkeywordProductsQuery
                                       select new ProductsEStore.Models.Product()
@@ -198,26 +194,26 @@ namespace ProductsEStore.Core
                                       };
             Response response = new Response()
             {
-                ProductCount = keywordProductsQuery.Count(),
-                ViewProducts = MappedProductsQuery.ToList()
+                ItemsCount = keywordProductsQuery.Count(),
+                CurrentPageProducts = MappedProductsQuery.ToList()
             };
             return response;
         }
 
-        private Response GetProductsByYearMonth(int year, int month, int PageNo, SortMode sortMode)
+        private Response GetProductsByYearMonth(int year, int month, int pageNo, int pageSize, SortMode sortMode)
         {
-            return _cacheService.GetOrSet(string.Format("GetProductsByYearMonth_{0}_{1}_{2}_{3}", year, month, PageNo, sortMode.ToString()),
-                () => GetProductsByYearMonthFromDB(year, month, PageNo, sortMode));
+            return _cacheService.GetOrSet(string.Format("GetProductsByYearMonth_{0}_{1}_{2}_{3}_{4}", year, month, pageNo, pageSize, sortMode.ToString()),
+                () => GetProductsByYearMonthFromDB(year, month, pageNo, pageSize, sortMode));
         }
 
         // TODO: SortMode Not Yet Implemented
-        private Response GetProductsByYearMonthFromDB(int year, int month, int PageNo, SortMode sortMode)
+        private Response GetProductsByYearMonthFromDB(int year, int month, int pageNo, int pageSize, SortMode sortMode)
         {
             var MonthYearProductsQuery = from dbProduct in dbContext.Products
                                          where dbProduct.PublicationDate.Value.Month == month && dbProduct.PublicationDate.Value.Year == year
                                          orderby dbProduct.Title
                                          select dbProduct;
-            var pagedMonthYearProductsQuery = MonthYearProductsQuery.Skip((PageNo - 1) * PagerSettings.PageSize).Take(PagerSettings.PageSize);
+            var pagedMonthYearProductsQuery = MonthYearProductsQuery.Skip((pageNo - 1) * pageSize).Take(pageSize);
 
             var MappedProductsQuery = from dbProduct in pagedMonthYearProductsQuery
                                       select new ProductsEStore.Models.Product()
@@ -237,8 +233,8 @@ namespace ProductsEStore.Core
                                       };
             Response response = new Response()
             {
-                ProductCount = MonthYearProductsQuery.Count(),
-                ViewProducts = MappedProductsQuery.ToList()
+                ItemsCount = MonthYearProductsQuery.Count(),
+                CurrentPageProducts = MappedProductsQuery.ToList()
             };
             return response;
         }
@@ -262,6 +258,5 @@ namespace ProductsEStore.Core
         {
 
         }
-
     }
 }
