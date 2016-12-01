@@ -1,7 +1,8 @@
 ﻿using System.Web.Mvc;
 using ProductsEStore.Core;
 using ProductsEStore.Models;
-using ProductsEStore.Repository.DataBase;
+using ProductsEStore.Repository;
+using ProductsEStore.Repository.SqlServerDB;
 using ProductsEStore.WebApi;
 
 namespace ProductsEStore.Controllers

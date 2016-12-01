@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductsEStore", "ProductsEStore.csproj", "{73BC22C1-CD8E-4765-8773-9216912AC192}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NInjectTesting", "..\NInjectTesting\NInjectTesting.csproj", "{8138CDC5-F757-467E-ABF6-221D9C7C25D9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,10 +13,6 @@ Global
 		{73BC22C1-CD8E-4765-8773-9216912AC192}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73BC22C1-CD8E-4765-8773-9216912AC192}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73BC22C1-CD8E-4765-8773-9216912AC192}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8138CDC5-F757-467E-ABF6-221D9C7C25D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8138CDC5-F757-467E-ABF6-221D9C7C25D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8138CDC5-F757-467E-ABF6-221D9C7C25D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8138CDC5-F757-467E-ABF6-221D9C7C25D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

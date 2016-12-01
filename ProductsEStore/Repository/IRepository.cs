@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using ProductsEStore.Models;
+using ProductsEStore.Core;
 
-namespace ProductsEStore.Core
+namespace ProductsEStore.Repository
 {
     public interface IRepository
     {

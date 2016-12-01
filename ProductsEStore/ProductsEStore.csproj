@@ -208,13 +208,14 @@
     <Compile Include="Models\SiteMapData.cs" />
     <Compile Include="LogHandler\Config\LogManagerSection.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Repository\DataBase\CacheManager.cs" />
-    <Compile Include="Repository\DataBase\DatabaseRepository.cs" />
-    <Compile Include="Repository\DataBase\ProductStore.Designer.cs">
+    <Compile Include="Repository\MemoryChache\InMemoryCache.cs" />
+    <Compile Include="Repository\SqlServerDB\SqlServerDbRepository.cs" />
+    <Compile Include="Repository\SqlServerDB\ProductStore.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProductStore.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Repository\ICacheService.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="LogHandler\HtmlLog\HtmlLogger.cs" />
     <Compile Include="LogHandler\ILogger.cs" />
@@ -277,9 +278,9 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
     <Content Include="Scripts\TagCloudSquareJs\jquery-1.11.3.min.js" />
     <Content Include="Scripts\TagCloudSquareJs\jquery.tagcloud.js" />
-    <Content Include="Repository\DataBase\Sql\Categories.sql" />
-    <Content Include="Repository\DataBase\Sql\Cleaning&amp;CreatingProductStore.sql" />
-    <Content Include="Repository\DataBase\Sql\Tags.sql" />
+    <Content Include="Repository\SqlServerDB\SqlScripts\Categories.sql" />
+    <Content Include="Repository\SqlServerDB\SqlScripts\Cleaning&amp;CreatingProductStore.sql" />
+    <Content Include="Repository\SqlServerDB\SqlScripts\Tags.sql" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -345,7 +346,7 @@
     <None Include="fonts\glyphicons-halflings-regular.ttf" />
     <None Include="fonts\glyphicons-halflings-regular.woff" />
     <None Include="fonts\glyphicons-halflings-regular.woff2" />
-    <EntityDeploy Include="Repository\DataBase\ProductStore.edmx">
+    <EntityDeploy Include="Repository\SqlServerDB\ProductStore.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ProductStore.Designer.cs</LastGenOutput>
     </EntityDeploy>

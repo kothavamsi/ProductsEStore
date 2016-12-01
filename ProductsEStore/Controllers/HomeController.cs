@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using ProductsEStore.Models;
 using ProductsEStore.WebApi;
 using ProductsEStore.Core;
+using ProductsEStore.Repository;
 
 namespace ProductsEStore.Controllers
 {

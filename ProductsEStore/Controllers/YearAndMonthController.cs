@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using ProductsEStore.Core;
 using ProductsEStore.Models;
+using ProductsEStore.Repository;
 
 namespace ProductsEStore.Controllers
 {

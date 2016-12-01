@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using ProductsEStore.Core;
-using ProductsEStore.Repository.DataBase;
 using ProductsEStore.SiteMap;
 using ProductsEStore.WebApi;
+using ProductsEStore.Repository;
+using ProductsEStore.Repository.SqlServerDB;
 
 namespace ProductsEStore.Models
 {

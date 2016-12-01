@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ProductsEStore.Core;
+using ProductsEStore.Repository;
 
 namespace ProductsEStore.Models
 {
@@ -10,7 +11,6 @@ namespace ProductsEStore.Models
     {
         public string Title { get; set; }
 
-        // Dependency Injection
         public TopSellers(IRepository repository)
         {
             Title = "vamsi topsellers";

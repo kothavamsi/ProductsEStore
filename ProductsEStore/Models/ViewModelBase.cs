@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using ProductsEStore.Core;
-using ProductsEStore.Repository.DataBase;
+using ProductsEStore.Repository;
 
 namespace ProductsEStore.Models
 {
@@ -25,7 +22,7 @@ namespace ProductsEStore.Models
             SiteDomain = "www.myebook.net";
             SiteTagLine = "free eBooks Store";
             TitleTemplate = "{{TITLE}} - " + SiteName;
-            NavigationBar = new NavigationBar(new DatabaseRepository(new InMemoryCache()));
+            NavigationBar = new NavigationBar((IRepository)MvcApplication.DIContainer.GetService(typeof(IRepository)));
         }
     }
 

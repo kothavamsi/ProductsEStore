@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProductStoreModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="ProductStoreModelStoreContainer">
+    <EntitySet Name="Category" EntityType="ProductStoreModel.Store.Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Contacts" EntityType="ProductStoreModel.Store.Contacts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PopularAuthorTags" EntityType="ProductStoreModel.Store.PopularAuthorTags" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PopularPublisherTags" EntityType="ProductStoreModel.Store.PopularPublisherTags" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PopularTags" EntityType="ProductStoreModel.Store.PopularTags" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Product" EntityType="ProductStoreModel.Store.Product" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SortByMenuItems" EntityType="ProductStoreModel.Store.SortByMenuItems" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Subscriptions" EntityType="ProductStoreModel.Store.Subscriptions" store:Type="Tables" store:Schema="dbo" store:Name="Subscriptions">
+      <DefiningQuery>SELECT 
+      [Subscriptions].[Id] AS [Id], 
+      [Subscriptions].[Email] AS [Email], 
+      [Subscriptions].[SubscribedOn] AS [SubscribedOn], 
+      [Subscriptions].[SubscriptionValid] AS [SubscriptionValid]
+      FROM [dbo].[Subscriptions] AS [Subscriptions]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Product_Category" Association="ProductStoreModel.Store.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ParentId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="SEOFriendlyName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="BackUpName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Rank" Type="int" Nullable="false" />
+    <Property Name="Enabled" Type="bit" Nullable="false" />
+    <Property Name="Weight" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime2" />
+  </EntityType>
+  <EntityType Name="Contacts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="Responded" Type="bit" Nullable="false" />
+    <Property Name="RespondedOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PopularAuthorTags">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Author" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastSearchedOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PopularPublisherTags">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Publisher" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastSearchedOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PopularTags">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Keyword" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Count" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="LastSearchedOn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="Author" Type="nvarchar" MaxLength="256" />
+    <Property Name="Length" Type="int" />
+    <Property Name="Edition" Type="int" />
+    <Property Name="Language" Type="nvarchar" MaxLength="256" />
+    <Property Name="Publisher" Type="nvarchar" MaxLength="256" />
+    <Property Name="PublicationDate" Type="datetime" />
+    <Property Name="ISBN10" Type="nvarchar" MaxLength="256" />
+    <Property Name="ISBN13" Type="nvarchar" MaxLength="256" />
+    <Property Name="CoverPageUrl" Type="nvarchar" MaxLength="256" />
+    <Property Name="DetailsPageUrl" Type="nvarchar" MaxLength="256" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SortByMenuItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="SEOFriendlyName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="BackUpName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Rank" Type="int" Nullable="false" />
+    <Property Name="Enabled" Type="bit" Nullable="false" />
+    <Property Name="Weight" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime2" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'ProductStore.dbo.Subscriptions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="Subscriptions">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="SubscribedOn" />
+      <PropertyRef Name="SubscriptionValid" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="SubscribedOn" Type="datetime" Nullable="false" />
+    <Property Name="SubscriptionValid" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="ProductStoreModel.Store.Category" Multiplicity="1" />
+    <End Role="Product" Type="ProductStoreModel.Store.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ProductsEStore.Repository.DataBase;
+using ProductsEStore.Repository.SqlServerDB;
 
 namespace ProductsEStore.WebApi
 {

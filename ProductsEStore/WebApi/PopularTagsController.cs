@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
-using ProductsEStore.Repository.DataBase;
+using ProductsEStore.Repository.SqlServerDB;
 
 namespace ProductsEStore.WebApi
 {

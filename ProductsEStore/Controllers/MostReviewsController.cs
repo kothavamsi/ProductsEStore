@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ProductsEStore.Models;
 using ProductsEStore.Core;
+using ProductsEStore.Repository;
 
 namespace ProductsEStore.Controllers
 {
