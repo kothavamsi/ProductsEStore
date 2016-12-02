@@ -4,6 +4,8 @@ using ProductsEStore.Models;
 using ProductsEStore.Repository;
 using System.Linq;
 using ProductsEStore.WebsiteSettings;
+using ProductsEStore.WebApi;
+using ProductsEStore.Repository.SqlServerDB;
 
 namespace ProductsEStore.Controllers
 {
@@ -18,7 +20,7 @@ namespace ProductsEStore.Controllers
         public ActionResult Index(int Year, int Month, int pageNo = 1, string sort = "post-date")
         {
             SitePage sitePage = (from page in BaseModel.Configuration.DisplaySettings.SitePages
-                                 where page.Name == PageName.SearchPage
+                                 where page.Name == PageName.YearlyMonthlyPage
                                  select page).First();
             int _pageSize = sitePage.Layout.PageSize;
             int _columns = sitePage.Layout.Columns;
@@ -48,7 +50,7 @@ namespace ProductsEStore.Controllers
              reqCriteria.MonthlyYearly.Year,
              displayingXtoYBooks);
 
-            productsViewLayout.PageTitle = BaseModel.TitleTemplate.Replace("{{TITLE}}", string.Format("You searched for {0}", reqCriteria.SearchKeyWord));
+            
 
             return View("DisplayResult", productsViewLayout);
         }

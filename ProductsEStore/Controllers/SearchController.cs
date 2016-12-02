@@ -55,6 +55,11 @@ namespace ProductsEStore.Controllers
             productsViewLayout.LayoutHeader.Message = string.Format("{0} Found >> {1}", repoResp.ItemsCount, displayingXtoYBooks);
             productsViewLayout.PageTitle = BaseModel.TitleTemplate.Replace("{{TITLE}}", string.Format("You searched for {0}", reqCriteria.SearchKeyWord));
 
+            if (productsViewLayout.HasRenderableProducts)
+            {
+                new TagManager().PostPopularTag(new PopularTag().CreateTagInstance(keyword));
+
+            }
             return View("DisplayResult", productsViewLayout);
         }
     }

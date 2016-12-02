@@ -19,19 +19,19 @@
         <pager size="7" />
       </sitePage>
       <sitePage name="categoryPage">
-        <layout viewType="grid" columns="4" pageSize="16" />
+        <layout viewType="list" columns="4" pageSize="16" />
         <pager size="5" />
       </sitePage>
       <sitePage name="searchPage">
-        <layout viewType="grid" columns="4" pageSize="16" />
+        <layout viewType="list" columns="4" pageSize="16" />
         <pager size="5" />
       </sitePage>
       <sitePage name="newReleasePage">
-        <layout viewType="grid" columns="4" pageSize="16" />
+        <layout viewType="list" columns="4" pageSize="16" />
         <pager size="5" />
       </sitePage>
       <sitePage name="mostReviewsPage">
-        <layout viewType="grid" columns="4" pageSize="16" />
+        <layout viewType="list" columns="4" pageSize="16" />
         <pager size="5" />
       </sitePage>
       <sitePage name="yearlyMonthlyPage">
