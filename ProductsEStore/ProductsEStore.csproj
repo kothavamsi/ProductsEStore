@@ -14,7 +14,7 @@
     <RootNamespace>ProductsEStore</RootNamespace>
     <AssemblyName>ProductsEStore</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <MvcBuildViews>false</MvcBuildViews>
+    <MvcBuildViews>true</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -184,6 +184,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\MostReviewsController.cs" />
     <Compile Include="Controllers\MyBaseController.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="Controllers\TopSellersController.cs" />
     <Compile Include="Controllers\YearAndMonthController.cs" />
     <Compile Include="ExceptionFilters\ExceptionFilter.cs" />
+    <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\ExceptionPageModel.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -359,6 +361,8 @@
     <Content Include="Views\Shared\_GridViewPartial.cshtml" />
     <Content Include="Views\Shared\ProductListViewResult.cshtml" />
     <Content Include="Views\Shared\_ListViewPartial.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
