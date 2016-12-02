@@ -56,7 +56,7 @@ namespace ProductsEStore.Models
         public string ConfirmPassword { get; set; }
     }
 
-    public class LoginModel
+    public class LoginModel :ViewModelBase
     {
         [Required]
         [Display(Name = "User name")]

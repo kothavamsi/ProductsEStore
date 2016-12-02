@@ -210,6 +210,9 @@
     <Compile Include="Models\SiteMapData.cs" />
     <Compile Include="LogHandler\Config\LogManagerSection.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Models\ViewModelBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Repository\MemoryChache\InMemoryCache.cs" />
     <Compile Include="Repository\SqlServerDB\SqlServerDbRepository.cs" />
     <Compile Include="Repository\SqlServerDB\ProductStore.Designer.cs">
@@ -235,9 +238,6 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Pager.cs" />
     <Compile Include="Models\TopSellers.cs" />
-    <Compile Include="Models\ViewModelBase.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="PagerHandler\Config\PagerManagerSection.cs" />
     <Compile Include="PagerHandler\PagerSettings.cs" />
     <Compile Include="PagerHandler\PagerSettingsManager.cs" />

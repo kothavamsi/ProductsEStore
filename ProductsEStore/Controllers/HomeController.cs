@@ -41,6 +41,7 @@ namespace ProductsEStore.Controllers
             return View("About", BaseModel);
         }
 
+        [HttpGet]
         public ActionResult Contact()
         {
             Contact contact = new Contact();

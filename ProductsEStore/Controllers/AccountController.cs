@@ -15,7 +15,7 @@ namespace ProductsEStore.Controllers
 {
     [Authorize]
     [InitializeSimpleMembership]
-    public class AccountController : Controller
+    public class AccountController : MyBaseController
     {
         //
         // GET: /Account/Login
@@ -24,7 +24,9 @@ namespace ProductsEStore.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            LoginModel loginModel = new LoginModel();
+            loginModel.NavigationBar.RenderSortByListMenu = false;
+            return View("login", loginModel);
         }
 
         //
