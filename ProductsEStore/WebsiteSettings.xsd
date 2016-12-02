@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="configuration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="webSiteSettings">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="siteName" type="xs:string" />
+              <xs:element name="SiteTagLine" type="xs:string" />
+              <xs:element name="SiteDomain" type="xs:string" />
+              <xs:element name="pageTitleTemplate" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="logManager">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="add">
+                <xs:complexType>
+                  <xs:attribute name="listenerType" type="xs:string" use="required" />
+                  <xs:attribute name="path" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="enable" type="xs:boolean" use="required" />
+            <xs:attribute name="overwrite" type="xs:boolean" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="displaySettings">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="homePage">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="layout">
+                      <xs:complexType>
+                        <xs:attribute name="viewType" type="xs:string" use="required" />
+                        <xs:attribute name="columns" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="products" type="xs:unsignedByte" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="pager">
+                      <xs:complexType>
+                        <xs:attribute name="size" type="xs:unsignedByte" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="categoryPage">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="layout">
+                      <xs:complexType>
+                        <xs:attribute name="viewType" type="xs:string" use="required" />
+                        <xs:attribute name="columns" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="products" type="xs:unsignedByte" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="pager">
+                      <xs:complexType>
+                        <xs:attribute name="size" type="xs:unsignedByte" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="mostReviewsPage">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="layout">
+                      <xs:complexType>
+                        <xs:attribute name="viewType" type="xs:string" use="required" />
+                        <xs:attribute name="columns" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="products" type="xs:unsignedByte" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="pager">
+                      <xs:complexType>
+                        <xs:attribute name="size" type="xs:unsignedByte" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="newReleasesPage">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="layout">
+                      <xs:complexType>
+                        <xs:attribute name="viewType" type="xs:string" use="required" />
+                        <xs:attribute name="columns" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="products" type="xs:unsignedByte" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="pager">
+                      <xs:complexType>
+                        <xs:attribute name="size" type="xs:unsignedByte" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="searchPage">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="layout">
+                      <xs:complexType>
+                        <xs:attribute name="viewType" type="xs:string" use="required" />
+                        <xs:attribute name="columns" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="products" type="xs:unsignedByte" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="pager">
+                      <xs:complexType>
+                        <xs:attribute name="size" type="xs:unsignedByte" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="sitemapPage">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="layout">
+                      <xs:complexType>
+                        <xs:attribute name="viewType" type="xs:string" use="required" />
+                        <xs:attribute name="columns" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="products" type="xs:unsignedByte" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="pager">
+                      <xs:complexType>
+                        <xs:attribute name="size" type="xs:unsignedByte" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="popularTags">
+                      <xs:complexType>
+                        <xs:attribute name="totalItems" type="xs:unsignedByte" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="popularAuthorTags">
+                      <xs:complexType>
+                        <xs:attribute name="totalItems" type="xs:unsignedByte" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="popularPublisherTags">
+                      <xs:complexType>
+                        <xs:attribute name="totalItems" type="xs:unsignedByte" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="recentBooks">
+                      <xs:complexType>
+                        <xs:attribute name="totalItems" type="xs:unsignedByte" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="booksByMonth">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="relative">
+                            <xs:complexType>
+                              <xs:attribute name="totalMonthsFromCurrent" type="xs:unsignedByte" use="required" />
+                              <xs:attribute name="enabled" type="xs:boolean" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="fixed">
+                            <xs:complexType>
+                              <xs:attribute name="fromYear" type="xs:unsignedShort" use="required" />
+                              <xs:attribute name="fromMonth" type="xs:unsignedByte" use="required" />
+                              <xs:attribute name="enabled" type="xs:boolean" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

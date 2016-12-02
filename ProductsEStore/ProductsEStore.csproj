@@ -249,6 +249,7 @@
     <Compile Include="WebApi\TagExtenstions.cs" />
     <Compile Include="WebApi\PopularTagsController.cs" />
     <Compile Include="WebApi\TagManager.cs" />
+    <Compile Include="WebsiteSettings\Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -312,6 +313,9 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="WebsiteSettings.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -344,6 +348,15 @@
     <None Include="Content\bootstrap-theme.min.css.map" />
     <None Include="Content\bootstrap.css.map" />
     <None Include="Content\bootstrap.min.css.map" />
+    <Content Include="Copy of Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Copy of Web.Debug.config">
+      <DependentUpon>Copy of Web.config</DependentUpon>
+    </Content>
+    <Content Include="Copy of Web.Release.config">
+      <DependentUpon>Copy of Web.config</DependentUpon>
+    </Content>
     <None Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="fonts\glyphicons-halflings-regular.svg" />
     <None Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -363,6 +376,9 @@
     <Content Include="Views\Shared\_ListViewPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <None Include="WebsiteSettings.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
