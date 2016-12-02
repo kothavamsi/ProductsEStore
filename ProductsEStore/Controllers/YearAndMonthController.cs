@@ -21,11 +21,11 @@ namespace ProductsEStore.Controllers
                 MonthlyYearly = new MonthlyYearly() { Month = Month, Year = Year },
                 SortMode = SortModeMappings.GetSortMode(sort),
                 PageNo = pageNo,
-                PageSize = 12
+                PageSize = BaseModel.Configuration.DisplaySettings.ProductByYearMonthPage.Layout.PageSize
             };
 
             RepositoryResponse repoResp = _repository.GetProducts(reqCriteria);
-            ProductsViewLayout productsViewLayout = new GridViewLayout(reqCriteria, repoResp, 6);
+            ProductsViewLayout productsViewLayout = GetProductsViewLayout(reqCriteria, repoResp);
             return View("DisplayResult", productsViewLayout);
         }
     }

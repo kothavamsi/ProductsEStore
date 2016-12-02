@@ -9,7 +9,6 @@ namespace ProductsEStore.Models
         public int PageSize { get; set; }
         public int ItemsCount { get; set; }
         public int TotalPages { get; set; }
-        public int PagerDisplayLength { get; set; }
         public int StartIndex { get; set; }
         public int EndIndex { get; set; }
         public int CurrentIndex { get; set; }
@@ -17,14 +16,15 @@ namespace ProductsEStore.Models
         public bool IsNextEnabled { get; set; }
         public bool IsFirstEnabled { get; set; }
         public bool IsLastEnabled { get; set; }
+        private int PagerSize { get; set; }
 
-        public Pager(int itemsCount, int currentPageNumber, int pageSize)
+        public Pager(int itemsCount, int currentPageNumber, int pageSize, int pagerSize)
         {
-            PagerDisplayLength = PagerSettings.PagerDisplayLength;
             PageSize = pageSize;
             IsNextEnabled = false;
             IsPreviousEnabled = false;
             IsRenderable = false;
+            PagerSize = pagerSize;
             ConstructPager(itemsCount, currentPageNumber);
         }
 
@@ -45,28 +45,28 @@ namespace ProductsEStore.Models
                 IsRenderable = false;
 
             // If pager can move right wards
-            if (TotalPages > PagerDisplayLength)
+            if (TotalPages > PagerSize)
             {
                 // if pageNo can be placed at center of our pager
                 if (IsPageNumberCenter(currentPageNumber))
                 {
                     var center = currentPageNumber;
-                    StartIndex = center - PagerDisplayLength / 2;
-                    EndIndex = center + PagerDisplayLength / 2;
+                    StartIndex = center - PagerSize / 2;
+                    EndIndex = center + PagerSize / 2;
                 }
                 else
                 {
                     //if pageNo is towrads left side of pager
-                    if (currentPageNumber <= PagerDisplayLength / 2)
+                    if (currentPageNumber <= PagerSize / 2)
                     {
                         StartIndex = 1;
-                        EndIndex = StartIndex + PagerDisplayLength - 1;
+                        EndIndex = StartIndex + PagerSize - 1;
                     }
                     //if pageNo is towrads right side of pager
                     else
                     {
                         EndIndex = TotalPages;
-                        StartIndex = EndIndex - PagerDisplayLength + 1;
+                        StartIndex = EndIndex - PagerSize + 1;
                     }
                 }
             }
@@ -121,7 +121,7 @@ namespace ProductsEStore.Models
 
         private bool IsPageNumberCenter(int pageNo)
         {
-            return ((pageNo > PagerDisplayLength / 2) && ((pageNo + (PagerDisplayLength / 2)) <= TotalPages));
+            return ((pageNo > PagerSize / 2) && ((pageNo + (PagerSize / 2)) <= TotalPages));
         }
 
         private bool IsPageAtStart(int pageNo)

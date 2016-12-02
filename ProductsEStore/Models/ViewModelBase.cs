@@ -9,7 +9,7 @@ namespace ProductsEStore.Models
     public class ViewModelBase
     {
         //public PopularTagData PopularTagData;
-        public NavigationBar NavigationBar;
+        public NavigationBar NavigationBar { get; set; }
         public string PageTitle { get; set; }
         public string SiteName { get; set; }
         public string SiteTagLine { get; set; }

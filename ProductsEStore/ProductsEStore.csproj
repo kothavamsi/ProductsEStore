@@ -188,9 +188,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\MostReviewsController.cs" />
     <Compile Include="Controllers\MyBaseController.cs" />
-    <Compile Include="Controllers\NewReleaseController.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Controllers\NewReleaseController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TopSellersController.cs" />
     <Compile Include="Controllers\YearAndMonthController.cs" />

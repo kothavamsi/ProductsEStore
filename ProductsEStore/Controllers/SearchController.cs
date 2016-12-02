@@ -30,11 +30,11 @@ namespace ProductsEStore.Controllers
                 SearchKeyWord = keyword,
                 SortMode = SortMode.None,
                 PageNo = pageNo,
-                PageSize = 12
+                PageSize = BaseModel.Configuration.DisplaySettings.SearchPage.Layout.PageSize
             };
 
             RepositoryResponse repoResp = _repository.GetProducts(reqCriteria);
-            ProductsViewLayout productsViewLayout = new GridViewLayout(reqCriteria, repoResp, 4);
+            ProductsViewLayout productsViewLayout = GetProductsViewLayout(reqCriteria, repoResp);
 
             if (productsViewLayout.HasRenderableProducts)
             {

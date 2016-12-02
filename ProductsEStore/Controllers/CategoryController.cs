@@ -21,11 +21,11 @@ namespace ProductsEStore.Controllers
                 SeoFriendlyCategoryName = seoFriendlyCategoryName,
                 SortMode = SortModeMappings.GetSortMode(sort),
                 PageNo = pageNo,
-                PageSize = 12
+                PageSize = BaseModel.Configuration.DisplaySettings.CategoryPage.Layout.PageSize
             };
 
             RepositoryResponse repoResp = _repository.GetProducts(reqCriteria);
-            ProductsViewLayout productsViewLayout = new ListViewLayout(reqCriteria, repoResp);
+            ProductsViewLayout productsViewLayout = GetProductsViewLayout(reqCriteria, repoResp);
             productsViewLayout.NavigationBar.RenderSortByListMenu = true;
             return View("DisplayResult", productsViewLayout);
         }

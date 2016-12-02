@@ -195,8 +195,8 @@ namespace ProductsEStore.WebsiteSettings
         [XmlAttribute("columns")]
         public int Columns { get; set; }
 
-        [XmlAttribute("products")]
-        public int Products { get; set; }
+        [XmlAttribute("pageSize")]
+        public int PageSize { get; set; }
     }
 
     public enum ViewType

@@ -23,14 +23,14 @@ namespace ProductsEStore.Controllers
         {
             RequestCriteria reqCriteria = new RequestCriteria()
             {
-                RequestMode = RequestMode.All,
+                RequestMode = RequestMode.HomePageProducts,
                 SortMode = SortModeMappings.GetSortMode(sort),
                 PageNo = pageNo,
-                PageSize = 24
+                PageSize = BaseModel.Configuration.DisplaySettings.HomePage.Layout.PageSize
             };
 
             RepositoryResponse repoResp = _repository.GetProducts(reqCriteria);
-            ProductsViewLayout productsViewLayout = new GridViewLayout(reqCriteria, repoResp, 6);
+            ProductsViewLayout productsViewLayout = GetProductsViewLayout(reqCriteria, repoResp);
             productsViewLayout.NavigationBar.RenderSortByListMenu = true;
             return View("DisplayResult", "_LayoutHome", productsViewLayout);
         }

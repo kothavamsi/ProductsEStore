@@ -9,7 +9,7 @@ namespace ProductsEStore.Core
     public enum RequestMode
     {
         None = 0,
-        All = 1,
+        HomePageProducts = 1,
         SearchKeyWord = 2,
         GetItemsInCategory = 3,
         TopSeller = 4,

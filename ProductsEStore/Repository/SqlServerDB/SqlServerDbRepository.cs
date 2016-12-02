@@ -75,7 +75,7 @@ namespace ProductsEStore.Repository.SqlServerDB
                 case RequestMode.Monthly:
                     response = GetProductsByYearMonth(requestCriteria.MonthlyYearly.Year, requestCriteria.MonthlyYearly.Month, requestCriteria.PageNo, requestCriteria.PageSize, requestCriteria.SortMode);
                     break;
-                case RequestMode.All:
+                case RequestMode.HomePageProducts:
                     response = GetAllProducts(requestCriteria.PageNo, requestCriteria.PageSize, requestCriteria.SortMode);
                     break;
                 case RequestMode.MostReviews:

@@ -14,27 +14,27 @@
   </logManagerSettings>
   <displaySettings>
     <homePage>
-      <layout viewType="grid" columns="4" products="16" />
-      <pager size="5" />
+      <layout viewType="grid" columns="2" pageSize="6" />
+      <pager size="7" />
     </homePage>
     <categoryPage>
-      <layout viewType="grid" columns="4" products="16" />
+      <layout viewType="list" columns="4" pageSize="16" />
       <pager size="5" />
     </categoryPage>
     <mostReviewsPage>
-      <layout viewType="grid" columns="4" products="16" />
+      <layout viewType="grid" columns="4" pageSize="16" />
       <pager size="5" />
     </mostReviewsPage>
     <newReleasesPage>
-      <layout viewType="grid" columns="4" products="16" />
+      <layout viewType="grid" columns="4" pageSize="16" />
       <pager size="5" />
     </newReleasesPage>
     <searchPage>
-      <layout viewType="grid" columns="4" products="16" />
+      <layout viewType="list" columns="4" pageSize="16" />
       <pager size="5" />
     </searchPage>
     <productByYearMonthPage>
-      <layout viewType="grid" columns="4" products="16" />
+      <layout viewType="grid" columns="4" pageSize="16" />
       <pager size="5" />
     </productByYearMonthPage>
     <sitemapPage>

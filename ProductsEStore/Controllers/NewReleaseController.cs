@@ -24,11 +24,11 @@ namespace ProductsEStore.Controllers
                 RequestMode = RequestMode.NewReleases,
                 SortMode = SortMode.None,
                 PageNo = pageNo,
-                PageSize = 12
+                PageSize = BaseModel.Configuration.DisplaySettings.NewReleasesPage.Layout.PageSize
             };
 
             RepositoryResponse repoResp = _repository.GetProducts(reqCriteria);
-            ProductsViewLayout productsViewLayout = new GridViewLayout(reqCriteria, repoResp, 4);
+            ProductsViewLayout productsViewLayout = GetProductsViewLayout(reqCriteria, repoResp);
             productsViewLayout.NavigationBar.RenderSortByListMenu = false;
             return View("DisplayResult", productsViewLayout);
         }

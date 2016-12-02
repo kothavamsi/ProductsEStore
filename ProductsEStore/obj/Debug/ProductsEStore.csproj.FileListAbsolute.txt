@@ -52,8 +52,7 @@ F:\WorkSpace\VisualStudioDnetExamples\MyEBooks\MyEBooks\bin\ProductsEStore.dll
 F:\WorkSpace\VisualStudioDnetExamples\MyEBooks\MyEBooks\bin\ProductsEStore.pdb
 F:\WorkSpace\VisualStudioDnetExamples\MyEBooks\MyEBooks\obj\Debug\ProductsEStore.dll
 F:\WorkSpace\VisualStudioDnetExamples\MyEBooks\MyEBooks\obj\Debug\ProductsEStore.pdb
-F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\ProductsEStore.dll
-F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\ProductsEStore.pdb
+F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\WebMatrix.WebData.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\Antlr3.Runtime.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\AsyncCtpLibrary.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\DotNetOpenAuth.AspNet.dll
@@ -84,7 +83,6 @@ F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\System.W
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\WebActivatorEx.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\WebGrease.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\WebMatrix.Data.dll
-F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\WebMatrix.WebData.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\AsyncCtpLibrary.xml
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\Ninject.xml
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\Ninject.Web.Common.xml
@@ -111,7 +109,8 @@ F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\DotNetOp
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\DotNetOpenAuth.OAuth.xml
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\DotNetOpenAuth.OpenId.xml
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
-F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\obj\Debug\ProductsEStore.csprojResolveAssemblyReference.cache
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\obj\Debug\ProductsEStore.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\obj\Debug\ProductsEStore.pdb
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\WebsiteSettings\Configuration.xml
+F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\ProductsEStore.dll
+F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\ProductsEStore.pdb

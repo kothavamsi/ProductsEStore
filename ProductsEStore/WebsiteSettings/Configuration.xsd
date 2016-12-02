@@ -43,7 +43,7 @@
                       <xsd:complexType>
                         <xsd:attribute name="viewType" type="xsd:string" use="required" />
                         <xsd:attribute name="columns" type="xsd:unsignedByte" use="required" />
-                        <xsd:attribute name="products" type="xsd:unsignedByte" use="required" />
+                        <xsd:attribute name="pageSize" type="xsd:unsignedByte" use="required" />
                       </xsd:complexType>
                     </xsd:element>
                     <xsd:element name="pager">
@@ -61,7 +61,7 @@
                       <xsd:complexType>
                         <xsd:attribute name="viewType" type="xsd:string" use="required" />
                         <xsd:attribute name="columns" type="xsd:unsignedByte" use="required" />
-                        <xsd:attribute name="products" type="xsd:unsignedByte" use="required" />
+                        <xsd:attribute name="pageSize" type="xsd:unsignedByte" use="required" />
                       </xsd:complexType>
                     </xsd:element>
                     <xsd:element name="pager">
@@ -79,7 +79,7 @@
                       <xsd:complexType>
                         <xsd:attribute name="viewType" type="xsd:string" use="required" />
                         <xsd:attribute name="columns" type="xsd:unsignedByte" use="required" />
-                        <xsd:attribute name="products" type="xsd:unsignedByte" use="required" />
+                        <xsd:attribute name="pageSize" type="xsd:unsignedByte" use="required" />
                       </xsd:complexType>
                     </xsd:element>
                     <xsd:element name="pager">
@@ -97,7 +97,7 @@
                       <xsd:complexType>
                         <xsd:attribute name="viewType" type="xsd:string" use="required" />
                         <xsd:attribute name="columns" type="xsd:unsignedByte" use="required" />
-                        <xsd:attribute name="products" type="xsd:unsignedByte" use="required" />
+                        <xsd:attribute name="pageSize" type="xsd:unsignedByte" use="required" />
                       </xsd:complexType>
                     </xsd:element>
                     <xsd:element name="pager">
@@ -115,7 +115,7 @@
                       <xsd:complexType>
                         <xsd:attribute name="viewType" type="xsd:string" use="required" />
                         <xsd:attribute name="columns" type="xsd:unsignedByte" use="required" />
-                        <xsd:attribute name="products" type="xsd:unsignedByte" use="required" />
+                        <xsd:attribute name="pageSize" type="xsd:unsignedByte" use="required" />
                       </xsd:complexType>
                     </xsd:element>
                     <xsd:element name="pager">
@@ -133,7 +133,7 @@
                       <xsd:complexType>
                         <xsd:attribute name="viewType" type="xsd:string" use="required" />
                         <xsd:attribute name="columns" type="xsd:unsignedByte" use="required" />
-                        <xsd:attribute name="products" type="xsd:unsignedByte" use="required" />
+                        <xsd:attribute name="pageSize" type="xsd:unsignedByte" use="required" />
                       </xsd:complexType>
                     </xsd:element>
                     <xsd:element name="pager">
