@@ -194,12 +194,13 @@
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TopSellersController.cs" />
     <Compile Include="Controllers\YearAndMonthController.cs" />
+    <Compile Include="Models\ListViewLayout.cs" />
+    <Compile Include="Models\GridViewLayout.cs" />
     <Compile Include="ExceptionFilters\ExceptionFilter.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\ExceptionPageModel.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\ProductsView.cs" />
     <Compile Include="Core\RequestCriteria.cs" />
     <Compile Include="Core\Response.cs" />
     <Compile Include="Core\SortByListItem.cs" />
@@ -319,11 +320,11 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\ProductGridViewResult.cshtml" />
+    <Content Include="Views\Shared\DisplayResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_PagerPartial.cshtml" />
-    <Content Include="Views\Shared\_HomeLayout.cshtml" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml" />
     <Content Include="Views\Home\PrivacyPolicy.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Home\RSS.cshtml" />
@@ -359,9 +360,8 @@
     <Content Include="Views\Shared\_MonthlyPartial.cshtml" />
     <Content Include="Views\TopSellers\Index.cshtml" />
     <Content Include="Views\Shared\_GridViewPartial.cshtml" />
-    <Content Include="Views\Shared\ProductListViewResult.cshtml" />
     <Content Include="Views\Shared\_ListViewPartial.cshtml" />
-    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>

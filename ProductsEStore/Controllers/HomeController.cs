@@ -30,14 +30,13 @@ namespace ProductsEStore.Controllers
             };
 
             RepositoryResponse repoResp = _repository.GetProducts(reqCriteria);
-            ProductsViewLayout productViewLayout = new ProductsViewLayout(reqCriteria, repoResp, 6);
-            productViewLayout.NavigationBar.RenderSortByListMenu = true;
-            return View("ProductGridViewResult", "_HomeLayout", productViewLayout);
+            ProductsViewLayout productsViewLayout = new GridViewLayout(reqCriteria, repoResp, 6);
+            productsViewLayout.NavigationBar.RenderSortByListMenu = true;
+            return View("DisplayResult", "_LayoutHome", productsViewLayout);
         }
 
         public ActionResult About()
         {
-            BaseModel.NavigationBar.RenderSortByListMenu = false;
             return View("About", BaseModel);
         }
 
@@ -45,61 +44,51 @@ namespace ProductsEStore.Controllers
         public ActionResult Contact()
         {
             Contact contact = new Contact();
-            contact.NavigationBar.RenderSortByListMenu = false;
             return View("Contact", contact);
         }
 
         [HttpPost]
         public ActionResult Contact(Contact contact)
         {
-
             if (ModelState.IsValid)
             {
-                BaseModel.NavigationBar.RenderSortByListMenu = false;
                 return View("ContactSuccess", BaseModel);
             }
             else
             {
                 _repository.SaveContact(contact);
-                contact.NavigationBar.RenderSortByListMenu = false;
                 return View("Contact", contact);
             }
         }
 
         public ActionResult PrivacyPolicy()
         {
-            BaseModel.NavigationBar.RenderSortByListMenu = false;
             return View("PrivacyPolicy", BaseModel);
         }
 
         public ActionResult FAQ()
         {
-            BaseModel.NavigationBar.RenderSortByListMenu = false;
             return View("FAQ", BaseModel);
         }
 
         public ActionResult RSS()
         {
-            BaseModel.NavigationBar.RenderSortByListMenu = false;
             return View("RSS", BaseModel);
         }
 
         public ActionResult DMCA()
         {
-            BaseModel.NavigationBar.RenderSortByListMenu = false;
             return View("DMCA", BaseModel);
         }
 
         public ActionResult Donate()
         {
-            BaseModel.NavigationBar.RenderSortByListMenu = false;
             return View("Donate", BaseModel);
         }
 
         public ActionResult Sitemap()
         {
             var siteMapData = new SiteMapData(_repository);
-            siteMapData.NavigationBar.RenderSortByListMenu = false;
             return View("Sitemap", siteMapData);
         }
     }

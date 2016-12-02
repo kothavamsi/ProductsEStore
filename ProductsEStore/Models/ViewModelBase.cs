@@ -36,7 +36,7 @@ namespace ProductsEStore.Models
         IRepository _repository;
         public NavigationBar(IRepository repository)
         {
-            RenderSortByListMenu = true;
+            RenderSortByListMenu = false;
             _repository = repository;
             Categories = _repository.GetCategoryListItems();
             SortByListItems = _repository.GetSortByListItems();

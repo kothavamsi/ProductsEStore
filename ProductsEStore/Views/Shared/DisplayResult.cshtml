@@ -1,4 +1,4 @@
-﻿@model ProductsEStore.Models.ProductsViewLayout
+﻿@model ProductsViewLayout
 @if (@Model.HasRenderableProducts)
 {
     <div>
@@ -8,7 +8,14 @@
     </div>
     <div class="container-fluid">
         <div class="container-fluid text-center">
-            @Html.Partial("_ListViewPartial", @Model.ProductsView)
+            @if (Model is GridViewLayout)
+            {
+                @Html.Partial("_GridViewPartial", @Model.ProductsDisplay)
+            }
+            @if (Model is ListViewLayout)
+            {
+                @Html.Partial("_ListViewPartial", @Model.ProductsDisplay)
+            }
         </div>
         <div class="container-fluid text-center">
             @Html.Partial("_PagerPartial", @Model.Pager)

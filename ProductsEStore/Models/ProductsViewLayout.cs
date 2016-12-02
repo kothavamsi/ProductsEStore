@@ -6,17 +6,13 @@ using ProductsEStore.Core;
 
 namespace ProductsEStore.Models
 {
-    public class LayoutHeader
+    public abstract class ProductsViewLayout : ViewModelBase
     {
-        public string Message { get; set; }
-    }
-
-    public class ProductsViewLayout : ViewModelBase
-    {
-        public LayoutHeader LayoutHeader { get; set; }
-        public ProductsView ProductsView { get; set; }
         public bool HasRenderableProducts { get; set; }
+        public LayoutHeader LayoutHeader { get; set; }
+        public ProductsDisplay ProductsDisplay { get; set; }
         public Pager Pager { get; set; }
+        public LayoutFooter LayoutFooter { get; set; }
 
         private RequestCriteria reqCriteria { get; set; }
         private RepositoryResponse repoResp { get; set; }
@@ -27,14 +23,13 @@ namespace ProductsEStore.Models
             this.reqCriteria = reqCriteria;
             this.repoResp = repoResp;
             this.columns = columns;
-            ProductsView = new ProductsView(columns, repoResp.CurrentPageProducts);
+            ProductsDisplay = new ProductsDisplay(columns, repoResp.CurrentPageProducts);
             HasRenderableProducts = repoResp.CurrentPageProducts.Count > 0 ? true : false;
             LayoutHeader = new LayoutHeader() { Message = GetLayoutHeaderMessage() };
             Pager = new Pager(repoResp.ItemsCount, reqCriteria.PageNo, reqCriteria.PageSize);
         }
 
-
-        public string GetLayoutHeaderMessage()
+        private string GetLayoutHeaderMessage()
         {
             string headerMsg = "";
 
@@ -79,6 +74,38 @@ namespace ProductsEStore.Models
                     break;
             }
             return headerMsg;
+        }
+    }
+
+    public class LayoutHeader
+    {
+        public string Message { get; set; }
+    }
+
+    public class LayoutFooter
+    {
+        public string Message { get; set; }
+    }
+
+    public class ProductsDisplay
+    {
+        public int ColumnCount { get; set; }
+        public IList<Product> CurrentPageProducts { get; set; }
+        public int RowCount { get; set; }
+        public int lg_col { get; set; }
+        public int md_col { get; set; }
+        public int sm_col { get; set; }
+        public int xs_col { get; set; }
+
+        public ProductsDisplay(int columns, IList<Product> currentPageProducts)
+        {
+            ColumnCount = columns;
+            CurrentPageProducts = currentPageProducts;
+            RowCount = (CurrentPageProducts.Count / ColumnCount) + (CurrentPageProducts.Count % ColumnCount > 0 ? 1 : 0);
+            lg_col = 12 / ColumnCount;
+            md_col = ((12 / ColumnCount) * 2) > 12 ? 12 : ((12 / ColumnCount) * 2);
+            sm_col = ((12 / ColumnCount) * 3) > 12 ? 12 : ((12 / ColumnCount) * 3);
+            xs_col = 12;
         }
     }
 }
