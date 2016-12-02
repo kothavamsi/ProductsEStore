@@ -19,7 +19,7 @@
             }
             @if (@Model.IsPreviousEnabled)
             {
-                <li><a href="@Url.Action("index", new { pageNo = @Model.CurrentIndex - 1 })" aria-label="Previous">
+                <li><a href="@Url.Action("index", new { pageNo = @Model.CurrentPageIndex - 1 })" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span> </a></li>
             }
             else
@@ -30,7 +30,7 @@
             @for (i = @Model.StartIndex; i <= @Model.EndIndex; i++)
             {
                 className = "";
-                if (i == @Model.CurrentIndex)
+                if (i == @Model.CurrentPageIndex)
                 {
                     className = "active";
                 }
@@ -38,7 +38,7 @@
             }
             @if (@Model.IsNextEnabled)
             {
-                <li><a href="@Url.Action("index", new { pageNo = @Model.CurrentIndex + 1 })" aria-label="Next">
+                <li><a href="@Url.Action("index", new { pageNo = @Model.CurrentPageIndex + 1 })" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span> </a></li>
             }
             else

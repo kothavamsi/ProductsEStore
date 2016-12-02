@@ -2,6 +2,8 @@
 using ProductsEStore.Core;
 using ProductsEStore.Models;
 using ProductsEStore.Repository;
+using System.Linq;
+using ProductsEStore.WebsiteSettings;
 
 namespace ProductsEStore.Controllers
 {
@@ -15,17 +17,39 @@ namespace ProductsEStore.Controllers
 
         public ActionResult Index(int Year, int Month, int pageNo = 1, string sort = "post-date")
         {
+            SitePage sitePage = (from page in BaseModel.Configuration.DisplaySettings.SitePages
+                                 where page.Name == PageName.SearchPage
+                                 select page).First();
+            int _pageSize = sitePage.Layout.PageSize;
+            int _columns = sitePage.Layout.Columns;
+            int _pagerSize = sitePage.Pager.Size;
+
             RequestCriteria reqCriteria = new RequestCriteria()
             {
-                RequestMode = RequestMode.Monthly,
+                RequestForPage = PageName.YearlyMonthlyPage,
                 MonthlyYearly = new MonthlyYearly() { Month = Month, Year = Year },
                 SortMode = SortModeMappings.GetSortMode(sort),
                 PageNo = pageNo,
-                PageSize = BaseModel.Configuration.DisplaySettings.ProductByYearMonthPage.Layout.PageSize
+                PageSize = _pageSize
             };
 
             RepositoryResponse repoResp = _repository.GetProducts(reqCriteria);
-            ProductsViewLayout productsViewLayout = GetProductsViewLayout(reqCriteria, repoResp);
+            ProductsViewLayout productsViewLayout = GetProductsViewLayout(reqCriteria, repoResp, _columns, _pageSize, _pagerSize, sitePage);
+
+            string displayingXtoYBooks = string.Format(
+            "Displaying {0} to {1} books",
+            1 + (reqCriteria.PageNo - 1) * reqCriteria.PageSize,
+            repoResp.CurrentPageProducts.Count + (reqCriteria.PageNo - 1) * reqCriteria.PageSize);
+
+            productsViewLayout.LayoutHeader.Message = string.Format(
+             "{0} Books Added on {1}{2} >> {3}",
+             repoResp.ItemsCount,
+             SiteMapData.MonthNames[reqCriteria.MonthlyYearly.Month],
+             reqCriteria.MonthlyYearly.Year,
+             displayingXtoYBooks);
+
+            productsViewLayout.PageTitle = BaseModel.TitleTemplate.Replace("{{TITLE}}", string.Format("You searched for {0}", reqCriteria.SearchKeyWord));
+
             return View("DisplayResult", productsViewLayout);
         }
     }

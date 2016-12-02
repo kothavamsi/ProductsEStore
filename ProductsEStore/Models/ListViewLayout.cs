@@ -9,8 +9,8 @@ namespace ProductsEStore.Models
 {
     public class ListViewLayout : ProductsViewLayout
     {
-        public ListViewLayout(RequestCriteria reqCriteria, RepositoryResponse repoResp)
-            : base(reqCriteria, repoResp)
+        public ListViewLayout(RequestCriteria reqCriteria, RepositoryResponse repoResp, int pageSize, int pagerSize)
+            : base(reqCriteria, repoResp, 1, pageSize, pagerSize)
         {
         }
     }

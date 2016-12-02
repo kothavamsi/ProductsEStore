@@ -185,13 +185,27 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\CategoryController.cs" />
-    <Compile Include="Controllers\MostReviewsController.cs" />
-    <Compile Include="Controllers\MyBaseController.cs" />
-    <Compile Include="Controllers\NewReleaseController.cs" />
-    <Compile Include="Controllers\SearchController.cs" />
-    <Compile Include="Controllers\TopSellersController.cs" />
-    <Compile Include="Controllers\YearAndMonthController.cs" />
+    <Compile Include="Controllers\CategoryController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\MostReviewsController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\MyBaseController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\NewReleaseController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\SearchController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\TopSellersController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\YearAndMonthController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\ListViewLayout.cs" />
     <Compile Include="Models\GridViewLayout.cs" />
     <Compile Include="ExceptionFilters\ExceptionFilter.cs" />
@@ -375,9 +389,6 @@
     <Content Include="Views\Shared\_ListViewPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <None Include="WebsiteSettings\Configuration.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

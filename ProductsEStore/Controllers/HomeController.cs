@@ -7,6 +7,7 @@ using ProductsEStore.Models;
 using ProductsEStore.WebApi;
 using ProductsEStore.Core;
 using ProductsEStore.Repository;
+using ProductsEStore.WebsiteSettings;
 
 namespace ProductsEStore.Controllers
 {
@@ -21,17 +22,32 @@ namespace ProductsEStore.Controllers
 
         public ActionResult Index(string sort = "post-date", int pageNo = 1)
         {
+            SitePage sitePage = (from page in BaseModel.Configuration.DisplaySettings.SitePages
+                                 where page.Name == PageName.HomePage
+                                 select page).First();
+            int _pageSize = sitePage.Layout.PageSize;
+            int _columns = sitePage.Layout.Columns;
+            int _pagerSize = sitePage.Pager.Size;
+
             RequestCriteria reqCriteria = new RequestCriteria()
             {
-                RequestMode = RequestMode.HomePageProducts,
+                RequestForPage = PageName.HomePage,
                 SortMode = SortModeMappings.GetSortMode(sort),
                 PageNo = pageNo,
-                PageSize = BaseModel.Configuration.DisplaySettings.HomePage.Layout.PageSize
+                PageSize = _pageSize
             };
 
             RepositoryResponse repoResp = _repository.GetProducts(reqCriteria);
-            ProductsViewLayout productsViewLayout = GetProductsViewLayout(reqCriteria, repoResp);
+            ProductsViewLayout productsViewLayout = GetProductsViewLayout(reqCriteria, repoResp, _columns, _pageSize, _pagerSize, sitePage);
             productsViewLayout.NavigationBar.RenderSortByListMenu = true;
+
+            string displayingXtoYBooks = string.Format(
+            "Displaying {0} to {1} books",
+            1 + (reqCriteria.PageNo - 1) * reqCriteria.PageSize,
+            repoResp.CurrentPageProducts.Count + (reqCriteria.PageNo - 1) * reqCriteria.PageSize);
+            productsViewLayout.LayoutHeader.Message = string.Format("Found {0} books >> {1}", repoResp.ItemsCount, displayingXtoYBooks);
+            productsViewLayout.PageTitle = string.Format("{0} - {1}", productsViewLayout.SiteName, productsViewLayout.SiteTagLine);
+            
             return View("DisplayResult", "_LayoutHome", productsViewLayout);
         }
 

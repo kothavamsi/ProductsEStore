@@ -13,46 +13,18 @@ namespace ProductsEStore.Controllers
             BaseModel = new ViewModelBase();
         }
 
-        public ProductsViewLayout GetProductsViewLayout(RequestCriteria reqCriteria, RepositoryResponse repoResp)
+        public ProductsViewLayout GetProductsViewLayout(RequestCriteria reqCriteria, RepositoryResponse repoResp, int columns, int pageSize, int pagerSize, SitePage sitePage)
         {
             ProductsViewLayout productsViewLayout = null;
-            ProductsEStore.WebsiteSettings.ViewType viewType = GetViewType(reqCriteria);
-            if (viewType == WebsiteSettings.ViewType.list)
+            if (sitePage.Layout.ViewType == WebsiteSettings.ViewType.grid)
             {
-                productsViewLayout = new ListViewLayout(reqCriteria, repoResp);
+                productsViewLayout = new GridViewLayout(reqCriteria, repoResp, columns, pageSize, pagerSize);
             }
-            if (viewType == WebsiteSettings.ViewType.grid)
+            if (sitePage.Layout.ViewType == WebsiteSettings.ViewType.list)
             {
-                productsViewLayout = new GridViewLayout(reqCriteria, repoResp);
+                productsViewLayout = new ListViewLayout(reqCriteria, repoResp, pageSize, pagerSize);
             }
             return productsViewLayout;
-        }
-
-        private WebsiteSettings.ViewType GetViewType(RequestCriteria reqCriteria)
-        {
-            WebsiteSettings.ViewType viewType = WebsiteSettings.ViewType.list;
-            switch (reqCriteria.RequestMode)
-            {
-                case RequestMode.HomePageProducts:
-                    viewType = BaseModel.Configuration.DisplaySettings.HomePage.Layout.ViewType;
-                    break;
-                case RequestMode.GetItemsInCategory:
-                    viewType = BaseModel.Configuration.DisplaySettings.CategoryPage.Layout.ViewType;
-                    break;
-                case RequestMode.MostReviews:
-                    viewType = BaseModel.Configuration.DisplaySettings.MostReviewsPage.Layout.ViewType;
-                    break;
-                case RequestMode.NewReleases:
-                    viewType = BaseModel.Configuration.DisplaySettings.NewReleasesPage.Layout.ViewType;
-                    break;
-                case RequestMode.SearchKeyWord:
-                    viewType = BaseModel.Configuration.DisplaySettings.SearchPage.Layout.ViewType;
-                    break;
-                case RequestMode.Monthly:
-                    viewType = BaseModel.Configuration.DisplaySettings.ProductByYearMonthPage.Layout.ViewType;
-                    break;
-            }
-            return viewType;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ProductsEStore.Core;
+using ProductsEStore.WebsiteSettings;
 
 namespace ProductsEStore.Repository.SqlServerDB
 {
@@ -64,24 +65,24 @@ namespace ProductsEStore.Repository.SqlServerDB
         public RepositoryResponse GetProducts(RequestCriteria requestCriteria)
         {
             RepositoryResponse response = new RepositoryResponse();
-            switch (requestCriteria.RequestMode)
+            switch (requestCriteria.RequestForPage)
             {
-                case RequestMode.GetItemsInCategory:
+                case PageName.CategoryPage:
                     response = GetProductItemsInCategory(requestCriteria.SeoFriendlyCategoryName, requestCriteria.PageNo, requestCriteria.PageSize, requestCriteria.SortMode);
                     break;
-                case RequestMode.SearchKeyWord:
+                case PageName.SearchPage:
                     response = GetProductItemsBySearchKeyWord(requestCriteria.SearchKeyWord, requestCriteria.PageNo, requestCriteria.PageSize, requestCriteria.SortMode);
                     break;
-                case RequestMode.Monthly:
+                case PageName.YearlyMonthlyPage:
                     response = GetProductsByYearMonth(requestCriteria.MonthlyYearly.Year, requestCriteria.MonthlyYearly.Month, requestCriteria.PageNo, requestCriteria.PageSize, requestCriteria.SortMode);
                     break;
-                case RequestMode.HomePageProducts:
+                case PageName.HomePage:
                     response = GetAllProducts(requestCriteria.PageNo, requestCriteria.PageSize, requestCriteria.SortMode);
                     break;
-                case RequestMode.MostReviews:
+                case PageName.MostReviewsPage:
                     response = GetMostReviewedProducts(requestCriteria.PageNo, requestCriteria.PageSize, requestCriteria.SortMode);
                     break;
-                case RequestMode.NewReleases:
+                case PageName.NewReleasePage:
                     response = GetNewReleasedProducts(requestCriteria.PageNo, requestCriteria.PageSize, requestCriteria.SortMode);
                     break;
             }

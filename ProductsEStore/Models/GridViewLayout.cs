@@ -9,8 +9,8 @@ namespace ProductsEStore.Models
 {
     public class GridViewLayout : ProductsViewLayout
     {
-        public GridViewLayout(RequestCriteria reqCriteria, RepositoryResponse repoResp)
-            : base(reqCriteria, repoResp)
+        public GridViewLayout(RequestCriteria reqCriteria, RepositoryResponse repoResp, int columns, int pageSize, int pagerSize)
+            : base(reqCriteria, repoResp, columns, pageSize, pagerSize)
         {
         }
     }

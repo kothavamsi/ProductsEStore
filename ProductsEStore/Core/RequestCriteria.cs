@@ -3,20 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ProductsEStore.Core;
+using ProductsEStore.WebsiteSettings;
 
 namespace ProductsEStore.Core
 {
-    public enum RequestMode
-    {
-        None = 0,
-        HomePageProducts = 1,
-        SearchKeyWord = 2,
-        GetItemsInCategory = 3,
-        TopSeller = 4,
-        MostReviews = 5,
-        Monthly = 6,
-        NewReleases = 7
-    }
 
     public enum SortMode
     {
@@ -52,12 +42,11 @@ namespace ProductsEStore.Core
     {
         public RequestCriteria()
         {
-            RequestMode = RequestMode.None;
             SortMode = SortMode.None;
             PageNo = 1;
         }
 
-        public RequestMode RequestMode;
+        public PageName RequestForPage;
         public SortMode SortMode;
         public int PageNo;
         public int PageSize;

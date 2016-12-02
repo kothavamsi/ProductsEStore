@@ -12,7 +12,7 @@ namespace ProductsEStore.Controllers
     {
         public ActionResult Index()
         {
-            BaseModel.NavigationBar.RenderSortByListMenu = false;
+            BaseModel.PageTitle = BaseModel.TitleTemplate.Replace("{{TITLE}}", "Top Sellers");
             return View("index", BaseModel);
         }
     }

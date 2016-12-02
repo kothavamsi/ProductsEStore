@@ -57,7 +57,6 @@ namespace ProductsEStore.WebsiteSettings
 
     }
 
-
     public class Listener
     {
         [XmlAttribute("listenerType")]
@@ -82,25 +81,10 @@ namespace ProductsEStore.WebsiteSettings
 
     public class DisplaySettings
     {
-        [XmlElement("homePage", Order = 1)]
-        public HomePage HomePage { get; set; }
+        [XmlArrayItem("sitePage")]
+        public SitePage[] SitePages { get; set; }
 
-        [XmlElement("categoryPage", Order = 2)]
-        public CategoryPage CategoryPage { get; set; }
-
-        [XmlElement("mostReviewsPage", Order = 3)]
-        public MostReviewsPage MostReviewsPage { get; set; }
-
-        [XmlElement("newReleasesPage", Order = 4)]
-        public NewReleasesPage NewReleasesPage { get; set; }
-
-        [XmlElement("searchPage", Order = 5)]
-        public SearchPage SearchPage { get; set; }
-
-        [XmlElement("productByYearMonthPage", Order = 6)]
-        public ProductByYearMonthPage ProductByYearMonthPage { get; set; }
-
-        [XmlElement("sitemapPage", Order = 7)]
+        [XmlElement("sitemapPage")]
         public SiteMapPage SiteMapPage { get; set; }
 
         public DisplaySettings()
@@ -109,83 +93,40 @@ namespace ProductsEStore.WebsiteSettings
         }
     }
 
-    public class HomePage
+    public class SitePage
     {
-        [XmlElement("layout", Order = 1)]
-        public LayOut Layout { get; set; }
+        [XmlAttribute("name")]
+        public PageName Name { get; set; }
 
-        [XmlElement("pager", Order = 2)]
-        public Pager Pager { get; set; }
-
-        public HomePage()
-        {
-        }
-    }
-
-    public class CategoryPage
-    {
         [XmlElement("layout")]
         public LayOut Layout { get; set; }
 
         [XmlElement("pager")]
         public Pager Pager { get; set; }
-
-        public CategoryPage()
-        {
-        }
     }
 
-    public class MostReviewsPage
+    public enum PageName
     {
-        [XmlElement("layout")]
-        public LayOut Layout { get; set; }
+        [XmlEnum("homePage")]
+        HomePage = 1,
 
-        [XmlElement("pager")]
-        public Pager Pager { get; set; }
+        [XmlEnum("categoryPage")]
+        CategoryPage = 2,
 
-        public MostReviewsPage()
-        {
-        }
+        [XmlEnum("searchPage")]
+        SearchPage = 3,
+
+        [XmlEnum("mostReviewsPage")]
+        MostReviewsPage = 4,
+
+        [XmlEnum("newReleasePage")]
+        NewReleasePage = 5,
+
+        [XmlEnum("yearlyMonthlyPage")]
+        YearlyMonthlyPage = 6
     }
 
-    public class NewReleasesPage
-    {
-        [XmlElement("layout")]
-        public LayOut Layout { get; set; }
 
-        [XmlElement("pager")]
-        public Pager Pager { get; set; }
-
-        public NewReleasesPage()
-        {
-        }
-    }
-
-    public class SearchPage
-    {
-        [XmlElement("layout")]
-        public LayOut Layout { get; set; }
-
-        [XmlElement("pager")]
-        public Pager Pager { get; set; }
-
-        public SearchPage()
-        {
-        }
-    }
-
-    public class ProductByYearMonthPage
-    {
-        [XmlElement("layout")]
-        public LayOut Layout { get; set; }
-
-        [XmlElement("pager")]
-        public Pager Pager { get; set; }
-
-        public ProductByYearMonthPage()
-        {
-        }
-    }
 
     public class LayOut
     {

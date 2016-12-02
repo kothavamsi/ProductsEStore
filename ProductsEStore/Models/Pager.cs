@@ -11,34 +11,28 @@ namespace ProductsEStore.Models
         public int TotalPages { get; set; }
         public int StartIndex { get; set; }
         public int EndIndex { get; set; }
-        public int CurrentIndex { get; set; }
+        public int CurrentPageIndex { get; set; }
         public bool IsPreviousEnabled { get; set; }
         public bool IsNextEnabled { get; set; }
         public bool IsFirstEnabled { get; set; }
         public bool IsLastEnabled { get; set; }
         private int PagerSize { get; set; }
 
-        public Pager(int itemsCount, int currentPageNumber, int pageSize, int pagerSize)
+        public Pager(int itemsCount, int currentPageIndex, int pageSize, int pagerSize)
         {
             PageSize = pageSize;
             IsNextEnabled = false;
             IsPreviousEnabled = false;
             IsRenderable = false;
-            PagerSize = pagerSize;
-            ConstructPager(itemsCount, currentPageNumber);
-        }
-
-        public int GetPageCount(int itemsCount)
-        {
-            return (itemsCount / PageSize) + ((itemsCount % PageSize) > 0 ? 1 : 0);
-        }
-
-        private void ConstructPager(int itemsCount, int currentPageNumber)
-        {
-            CurrentIndex = currentPageNumber;
             ItemsCount = itemsCount;
+            CurrentPageIndex = currentPageIndex;
+            PagerSize = pagerSize;
+            ConstructPager();
+        }
 
-            TotalPages = GetPageCount(itemsCount);
+        private void ConstructPager()
+        {
+            TotalPages = (ItemsCount / PageSize) + ((ItemsCount % PageSize) > 0 ? 1 : 0);
             if (TotalPages > 1)
                 IsRenderable = true;
             else
@@ -48,16 +42,16 @@ namespace ProductsEStore.Models
             if (TotalPages > PagerSize)
             {
                 // if pageNo can be placed at center of our pager
-                if (IsPageNumberCenter(currentPageNumber))
+                if (IsPageNumberCenter(CurrentPageIndex))
                 {
-                    var center = currentPageNumber;
+                    var center = CurrentPageIndex;
                     StartIndex = center - PagerSize / 2;
                     EndIndex = center + PagerSize / 2;
                 }
                 else
                 {
                     //if pageNo is towrads left side of pager
-                    if (currentPageNumber <= PagerSize / 2)
+                    if (CurrentPageIndex <= PagerSize / 2)
                     {
                         StartIndex = 1;
                         EndIndex = StartIndex + PagerSize - 1;
@@ -78,7 +72,7 @@ namespace ProductsEStore.Models
             }
 
             // nextButton enable or disable ?
-            if (IsPageAtEnd(currentPageNumber))
+            if (IsPageAtEnd(CurrentPageIndex))
             {
                 IsNextEnabled = false;
             }
@@ -88,7 +82,7 @@ namespace ProductsEStore.Models
             }
 
             // prevButton enable or disable ?
-            if (IsPageAtStart(currentPageNumber))
+            if (IsPageAtStart(CurrentPageIndex))
             {
                 IsPreviousEnabled = false;
             }
@@ -99,7 +93,7 @@ namespace ProductsEStore.Models
 
 
             // firstButton enable or disable ?
-            if (IsPageAffinityTowardsStart(currentPageNumber))
+            if (IsPageAffinityTowardsStart(CurrentPageIndex))
             {
                 IsFirstEnabled = false;
             }
@@ -109,7 +103,7 @@ namespace ProductsEStore.Models
             }
 
             // lastButton enable or disable ?
-            if (IsPageAffinityTowardsEnd(currentPageNumber))
+            if (IsPageAffinityTowardsEnd(CurrentPageIndex))
             {
                 IsLastEnabled = false;
             }

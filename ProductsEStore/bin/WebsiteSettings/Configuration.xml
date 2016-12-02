@@ -13,30 +13,32 @@
     </Listeners>
   </logManagerSettings>
   <displaySettings>
-    <homePage>
-      <layout viewType="grid" columns="2" pageSize="6" />
-      <pager size="7" />
-    </homePage>
-    <categoryPage>
-      <layout viewType="list" columns="4" pageSize="16" />
-      <pager size="5" />
-    </categoryPage>
-    <mostReviewsPage>
-      <layout viewType="grid" columns="4" pageSize="16" />
-      <pager size="5" />
-    </mostReviewsPage>
-    <newReleasesPage>
-      <layout viewType="grid" columns="4" pageSize="16" />
-      <pager size="5" />
-    </newReleasesPage>
-    <searchPage>
-      <layout viewType="list" columns="4" pageSize="16" />
-      <pager size="5" />
-    </searchPage>
-    <productByYearMonthPage>
-      <layout viewType="grid" columns="4" pageSize="16" />
-      <pager size="5" />
-    </productByYearMonthPage>
+    <SitePages>
+      <sitePage name="homePage">
+        <layout viewType="grid" columns="4" pageSize="8" />
+        <pager size="7" />
+      </sitePage>
+      <sitePage name="categoryPage">
+        <layout viewType="grid" columns="4" pageSize="16" />
+        <pager size="5" />
+      </sitePage>
+      <sitePage name="searchPage">
+        <layout viewType="grid" columns="4" pageSize="16" />
+        <pager size="5" />
+      </sitePage>
+      <sitePage name="newReleasePage">
+        <layout viewType="grid" columns="4" pageSize="16" />
+        <pager size="5" />
+      </sitePage>
+      <sitePage name="mostReviewsPage">
+        <layout viewType="grid" columns="4" pageSize="16" />
+        <pager size="5" />
+      </sitePage>
+      <sitePage name="yearlyMonthlyPage">
+        <layout viewType="grid" columns="4" pageSize="16" />
+        <pager size="5" />
+      </sitePage>
+    </SitePages>
     <sitemapPage>
       <popularTags totalItems="15" />
       <popularAuthorTags totalItems="15" />
