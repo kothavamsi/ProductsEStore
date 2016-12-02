@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using ProductsEStore.Core;
 using ProductsEStore.Repository;
+using ProductsEStore.WebsiteSettings;
 
 namespace ProductsEStore.Models
 {
@@ -14,6 +15,7 @@ namespace ProductsEStore.Models
         public string SiteTagLine { get; set; }
         public string SiteDomain { get; set; }
         public string TitleTemplate { get; set; }
+        public Configuration Configuration { get; set; }
 
         public ViewModelBase()
         {
@@ -22,6 +24,7 @@ namespace ProductsEStore.Models
             SiteDomain = "www.myebook.net";
             SiteTagLine = "free eBooks Store";
             TitleTemplate = "{{TITLE}} - " + SiteName;
+            Configuration = MvcApplication.Configuration;
             NavigationBar = new NavigationBar((IRepository)MvcApplication.DIContainer.GetService(typeof(IRepository)));
         }
     }

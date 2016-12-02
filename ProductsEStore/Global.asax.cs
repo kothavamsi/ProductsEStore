@@ -12,6 +12,7 @@ using ProductsEStore.Repository;
 using ProductsEStore.Repository.MemoryChache;
 using ProductsEStore.Repository.SqlServerDB;
 using ProductsEStore.SiteMap;
+using ProductsEStore.WebsiteSettings;
 
 namespace ProductsEStore
 {
@@ -22,11 +23,12 @@ namespace ProductsEStore
     public class MvcApplication : NinjectHttpApplication
     {
         public static IKernel DIContainer;
+        public static Configuration Configuration;
         protected override IKernel CreateKernel()
         {
             var kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
-            
+
             kernel.Bind<ICacheService>().To<InMemoryCache>();
             kernel.Bind<IRepository>().To<SqlServerDbRepository>();
             DIContainer = kernel;
@@ -48,6 +50,7 @@ namespace ProductsEStore
             //BooksLocationSettingsManager.LoadSettings();
             PagerSettingsManager.LoadSettings();
             SiteMapSettingsManager.LoadSettings();
+            Configuration = new MyConfigurationManager().GetConfiguration();
         }
     }
 

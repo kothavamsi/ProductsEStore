@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <websiteSettings>
+    <siteName>MyeBook</siteName>
+    <siteTagline>free eBooks Store</siteTagline>
+    <siteDomain>www.myebook.net</siteDomain>
+    <pageTitleTemplate>{{TITLE}} - {{SITE_NAME}}</pageTitleTemplate>
+  </websiteSettings>
+  <logManagerSettings enable="true" overWrite="true">
+    <Listeners>
+      <Listener listenerType="html" path="c:\sample.html" />
+      <Listener listenerType="xml" path="c:\sample.xml" />
+    </Listeners>
+  </logManagerSettings>
+  <displaySettings>
+    <homePage>
+      <layout viewType="grid" columns="4" products="16" />
+      <pager size="5" />
+    </homePage>
+    <categoryPage>
+      <layout viewType="grid" columns="4" products="16" />
+      <pager size="5" />
+    </categoryPage>
+    <mostReviewsPage>
+      <layout viewType="grid" columns="4" products="16" />
+      <pager size="5" />
+    </mostReviewsPage>
+    <newReleasesPage>
+      <layout viewType="grid" columns="4" products="16" />
+      <pager size="5" />
+    </newReleasesPage>
+    <searchPage>
+      <layout viewType="grid" columns="4" products="16" />
+      <pager size="5" />
+    </searchPage>
+    <productByYearMonthPage>
+      <layout viewType="grid" columns="4" products="16" />
+      <pager size="5" />
+    </productByYearMonthPage>
+    <sitemapPage>
+      <popularTags totalItems="15" />
+      <popularAuthorTags totalItems="15" />
+      <popularPublisherTags totalItems="15" />
+      <recentProducts totalItems="15" />
+      <productsByMonth>
+        <relative totalMonthsFromCurrent="36" enabled="true" />
+        <fixed fromYear="2015" fromMonth="1" enabled="false" />
+      </productsByMonth>
+    </sitemapPage>
+  </displaySettings>
+</configuration>

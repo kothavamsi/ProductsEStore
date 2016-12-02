@@ -249,7 +249,8 @@
     <Compile Include="WebApi\TagExtenstions.cs" />
     <Compile Include="WebApi\PopularTagsController.cs" />
     <Compile Include="WebApi\TagManager.cs" />
-    <Compile Include="WebsiteSettings\Settings.cs" />
+    <Compile Include="WebsiteSettings\Configuration.cs" />
+    <Compile Include="WebsiteSettings\MyConfigurationManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -313,7 +314,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="WebsiteSettings.xml">
+    <Content Include="WebsiteSettings\Configuration.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -376,7 +377,7 @@
     <Content Include="Views\Shared\_ListViewPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <None Include="WebsiteSettings.xsd">
+    <None Include="WebsiteSettings\Configuration.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
