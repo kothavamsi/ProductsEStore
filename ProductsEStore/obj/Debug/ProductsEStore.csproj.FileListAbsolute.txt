@@ -114,3 +114,4 @@ F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\obj\Debug\Pr
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\WebsiteSettings\Configuration.xml
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\ProductsEStore.dll
 F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\bin\ProductsEStore.pdb
+F:\WorkSpace\VisualStudioDnetExamples\ProductsEStore\ProductsEStore\obj\Debug\ProductsEStore.csprojResolveAssemblyReference.cache

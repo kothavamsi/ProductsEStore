@@ -206,13 +206,11 @@
     <Compile Include="Controllers\YearAndMonthController.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Error.cs" />
     <Compile Include="Models\ListViewLayout.cs" />
     <Compile Include="Models\GridViewLayout.cs" />
     <Compile Include="ExceptionFilters\ExceptionFilter.cs" />
     <Compile Include="Models\Admin.cs" />
-    <Compile Include="Models\ExceptionPageModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Core\RequestCriteria.cs" />
     <Compile Include="Core\Response.cs" />
     <Compile Include="Core\SortByListItem.cs" />
@@ -389,6 +387,9 @@
     <Content Include="Views\Shared\_ListViewPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <None Include="WebsiteSettings\Configuration.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
