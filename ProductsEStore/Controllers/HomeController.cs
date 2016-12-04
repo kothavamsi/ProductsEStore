@@ -8,6 +8,7 @@ using ProductsEStore.WebApi;
 using ProductsEStore.Core;
 using ProductsEStore.Repository;
 using ProductsEStore.WebsiteSettings;
+using ProductsEStore.ExceptionFilters;
 
 namespace ProductsEStore.Controllers
 {
@@ -47,7 +48,8 @@ namespace ProductsEStore.Controllers
             repoResp.CurrentPageProducts.Count + (reqCriteria.PageNo - 1) * reqCriteria.PageSize);
             productsViewLayout.LayoutHeader.Message = string.Format("Found {0} books >> {1}", repoResp.ItemsCount, displayingXtoYBooks);
             productsViewLayout.PageTitle = string.Format("{0} - {1}", productsViewLayout.SiteName, productsViewLayout.SiteTagLine);
-            
+
+            throw new RequestCriteriaException(new RequestCriteria() { SeoFriendlyCategoryName = "XYZ" });
             return View("DisplayResult", "_LayoutHome", productsViewLayout);
         }
 
