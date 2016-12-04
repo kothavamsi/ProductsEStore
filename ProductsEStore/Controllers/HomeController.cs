@@ -35,11 +35,11 @@ namespace ProductsEStore.Controllers
                 RequestForPage = PageName.HomePage,
                 SortMode = SortModeMappings.GetSortMode(sort),
                 PageNo = pageNo,
-                PageSize = _pageSize
+                PageSize = _pageSize,
             };
 
             RepositoryResponse repoResp = _repository.GetProducts(reqCriteria);
-            ProductsViewLayout productsViewLayout = GetProductsViewLayout(reqCriteria, repoResp, _columns, _pageSize, _pagerSize, sitePage);
+            ProductsViewLayout productsViewLayout = GetProductsViewLayout(reqCriteria, repoResp, _columns, _pageSize, _pagerSize, sitePage.Layout.ViewType);
             productsViewLayout.NavigationBar.RenderSortByListMenu = true;
 
             string displayingXtoYBooks = string.Format(
@@ -49,7 +49,7 @@ namespace ProductsEStore.Controllers
             productsViewLayout.LayoutHeader.Message = string.Format("Found {0} books >> {1}", repoResp.ItemsCount, displayingXtoYBooks);
             productsViewLayout.PageTitle = string.Format("{0} - {1}", productsViewLayout.SiteName, productsViewLayout.SiteTagLine);
 
-            throw new RequestCriteriaException(new RequestCriteria() { SeoFriendlyCategoryName = "XYZ" });
+            //throw new RequestCriteriaException(new RequestCriteria() { SeoFriendlyCategoryName = "XYZ" });
             return View("DisplayResult", "_LayoutHome", productsViewLayout);
         }
 

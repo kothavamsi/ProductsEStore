@@ -40,11 +40,11 @@ namespace ProductsEStore.Controllers
                 SearchKeyWord = keyword,
                 SortMode = SortMode.None,
                 PageNo = pageNo,
-                PageSize = _pagerSize
+                PageSize = _pageSize
             };
 
             RepositoryResponse repoResp = _repository.GetProducts(reqCriteria);
-            ProductsViewLayout productsViewLayout = GetProductsViewLayout(reqCriteria, repoResp, _columns, _pageSize, _pagerSize, sitePage);
+            ProductsViewLayout productsViewLayout = GetProductsViewLayout(reqCriteria, repoResp, _columns, _pageSize, _pagerSize, sitePage.Layout.ViewType);
             productsViewLayout.NavigationBar.RenderSortByListMenu = true;
 
             string displayingXtoYBooks = string.Format(

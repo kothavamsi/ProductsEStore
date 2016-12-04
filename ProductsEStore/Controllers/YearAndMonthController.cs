@@ -36,7 +36,7 @@ namespace ProductsEStore.Controllers
             };
 
             RepositoryResponse repoResp = _repository.GetProducts(reqCriteria);
-            ProductsViewLayout productsViewLayout = GetProductsViewLayout(reqCriteria, repoResp, _columns, _pageSize, _pagerSize, sitePage);
+            ProductsViewLayout productsViewLayout = GetProductsViewLayout(reqCriteria, repoResp, _columns, _pageSize, _pagerSize, sitePage.Layout.ViewType);
 
             string displayingXtoYBooks = string.Format(
             "Displaying {0} to {1} books",

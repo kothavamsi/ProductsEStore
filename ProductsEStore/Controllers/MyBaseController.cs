@@ -13,14 +13,14 @@ namespace ProductsEStore.Controllers
             BaseModel = new ViewModelBase();
         }
 
-        public ProductsViewLayout GetProductsViewLayout(RequestCriteria reqCriteria, RepositoryResponse repoResp, int columns, int pageSize, int pagerSize, SitePage sitePage)
+        public ProductsViewLayout GetProductsViewLayout(RequestCriteria reqCriteria, RepositoryResponse repoResp, int columns, int pageSize, int pagerSize, ProductsEStore.WebsiteSettings.ViewType viewType)
         {
             ProductsViewLayout productsViewLayout = null;
-            if (sitePage.Layout.ViewType == WebsiteSettings.ViewType.grid)
+            if (viewType == WebsiteSettings.ViewType.grid)
             {
                 productsViewLayout = new GridViewLayout(reqCriteria, repoResp, columns, pageSize, pagerSize);
             }
-            if (sitePage.Layout.ViewType == WebsiteSettings.ViewType.list)
+            if (viewType == WebsiteSettings.ViewType.list)
             {
                 productsViewLayout = new ListViewLayout(reqCriteria, repoResp, pageSize, pagerSize);
             }

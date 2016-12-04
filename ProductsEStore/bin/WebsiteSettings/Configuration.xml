@@ -19,7 +19,7 @@
         <pager size="7" />
       </sitePage>
       <sitePage name="categoryPage">
-        <layout viewType="list" columns="4" pageSize="16" />
+        <layout viewType="list" columns="1" pageSize="6" />
         <pager size="5" />
       </sitePage>
       <sitePage name="searchPage">
